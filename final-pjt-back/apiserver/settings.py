@@ -182,3 +182,20 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated'
     ]
 }
+
+
+# import os
+
+# #일부 데이터 정적으로 수집하기 위해 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# # 스태틱폴더를 따로 만들어서 앱에 종속되지 않고 접근할 수 있게한다. 
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# MEDIA_URL = '/media/'
+
+# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# AUTH_USER_MODEL = 'accounts.User'

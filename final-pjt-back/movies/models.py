@@ -41,6 +41,13 @@ class Movie(models.Model):
 
     def __str__(self) :
         return self.title
+        
+class Actor(models.Model) :
+    name = models.CharField(max_length=20)
+    movies = models.ManyToManyField(Movie, related_name='actors',blank=True)
+    known_name = models.CharField(max_length=20)
+    def __str__(self) :
+        return self.name
 
 class Review(models.Model) :
     #리뷰작성자

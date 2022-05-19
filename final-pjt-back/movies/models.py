@@ -4,7 +4,7 @@ from django.db import models
 class Genre(models.Model):
     #장르
     name = models.CharField(max_length=8)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='like_genres',blank=True)
 
     def __str__(self):
         return self.name

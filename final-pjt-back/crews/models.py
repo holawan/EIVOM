@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from imagekit.models import ProcessedImageField
 from imagekit.processors import Thumbnail
+from movies.models import Movie
 # Create your models here.
 class Crew(models.Model) :
     crewname = models.CharField(max_length=10,unique=True)
@@ -16,12 +17,14 @@ class Crew(models.Model) :
     crew_location = models.CharField(max_length=4)
     crew_leader = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='leader_user')
     user = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True)
+    movies = models.ManyToManyField(Movie,blank=True)
 
     def __str__(self) :
        return self.crewname
 
 class CrewArticle(models.Model) :
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    crew = models.ForeignKey(Crew,on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now=True)

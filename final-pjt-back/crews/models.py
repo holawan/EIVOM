@@ -14,7 +14,28 @@ class Crew(models.Model) :
         format='JPEG',
         options={'quality': 60}
     )
-    crew_location = models.CharField(max_length=4)
+    LOCATION_COHICES = (
+        (11,'서울특별시'),
+        (21,'부산광역시'),
+        (22,'대구광역시'),
+        (23,'인천광역시'),
+        (24,'광주광역시'),
+        (25,'대전광역시'),
+        (26,'울산광역시'),
+        (29,'세종특별자치시'),
+        (31,'경기도'),
+        (32,'강원도'),
+        (33,'충청북도'),
+        (34,'충청남도'),
+        (35,'전라북도'),
+        (36,'전라남도'),
+        (37,'경상북도'),
+        (38,'경상남도'),
+        (39,'제주특별자치도'),
+
+    )
+    crew_location1 = models.CharField(max_length=10,choices=LOCATION_COHICES)
+    crew_location2 = models.CharField(max_length=5)
     crew_leader = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='leader_user')
     user = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True)
     movies = models.ManyToManyField(Movie,blank=True)
@@ -28,6 +49,7 @@ class CrewArticle(models.Model) :
     title = models.CharField(max_length=50)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) :
        return self.title
@@ -42,6 +64,7 @@ class CrewReview(models.Model) :
    content = models.CharField(max_length=100)
    #작성시간
    created_at = models.DateTimeField(auto_now=True)
+   updated_at = models.DateTimeField(auto_now_add=True)
 
    def __str__(self) :
        return self.content

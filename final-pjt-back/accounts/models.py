@@ -1,3 +1,5 @@
+from secrets import choice
+from unittest.util import _MAX_LENGTH
 from django.db import models
 #Django 
 from imagekit.models import ProcessedImageField
@@ -34,9 +36,34 @@ class Profile(models.Model) :
     #생년월일
     birth = models.DateField()
     #성별
-    gender = models.BooleanField()
-    #시/도
-    location = models.CharField(max_length=4)
+    GENDER_CHOICES = (
+        (0,'남성'),
+        (1,'여성')
+    )
+    gender = models.CharField(max_length=2,choices=GENDER_CHOICES)
+    #도/특별시/광역시
+    LOCATION_COHICES = (
+        (11,'서울특별시'),
+        (21,'부산광역시'),
+        (22,'대구광역시'),
+        (23,'인천광역시'),
+        (24,'광주광역시'),
+        (25,'대전광역시'),
+        (26,'울산광역시'),
+        (29,'세종특별자치시'),
+        (31,'경기도'),
+        (32,'강원도'),
+        (33,'충청북도'),
+        (34,'충청남도'),
+        (35,'전라북도'),
+        (36,'전라남도'),
+        (37,'경상북도'),
+        (38,'경상남도'),
+        (39,'제주특별자치도'),
 
+    )
+    location1 = models.CharField(max_length=10,choices=LOCATION_COHICES)
+    #시/군/구
+    location2 = models.CharField(max_length=5)
     def __str__(self) :
         return self.nickname

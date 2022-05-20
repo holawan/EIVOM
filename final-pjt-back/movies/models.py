@@ -56,6 +56,8 @@ class Review(models.Model) :
    movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
    #리뷰내용
    content = models.CharField(max_length=100)
+   #평점
+   rate = models.IntegerField(choices=zip(range(1,6),range(1,6)))
    #작성시간
    created_at = models.DateTimeField(auto_now=True)
    #리뷰를 좋아하는 유저

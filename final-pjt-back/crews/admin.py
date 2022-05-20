@@ -5,7 +5,7 @@ from .models import Crew,CrewArticle,CrewReview
 
 
 class CrewAdmin(admin.ModelAdmin):
-    list_display = ('crewname', 'crew_location', )
+    list_display = ('crewname', 'crew_location1', )
 
 
 admin.site.register(Crew, CrewAdmin)

@@ -71,8 +71,6 @@ export default {
       })
       
 
-
-      
     },
 
     logout({ getters, dispatch }) {

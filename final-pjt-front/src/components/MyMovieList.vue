@@ -2,15 +2,14 @@
   <div>
     <h1>MyMovieList</h1>
     <movie-list-item
-      v-for="movie in myMovies"
-      :key="movie.movieid"
+      v-for="movie in movies"
+      :key="movie.id"
       :movie-item="movie"
     ></movie-list-item>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import MovieListItem from './MovieListItem.vue'
 
 
@@ -19,9 +18,10 @@ export default {
   components:{
     MovieListItem
   },
+  props:{ movies:Array },
   computed:{
-    ...mapGetters(['myMovies'])
-  }
+
+  },
 }
 </script>
 

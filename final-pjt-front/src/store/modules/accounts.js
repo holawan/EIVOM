@@ -11,6 +11,11 @@ export default {
     authError: null,
   },
   getters: {
+    isLoggedIn: state => !!state.token,
+    currentUser: state => state.currentUser,
+    profile: state => state.profile,
+    authError: state => state.authError,
+    authHeader: state => ({ Authorization: `Token ${state.token}`})
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -56,18 +61,19 @@ export default {
         .then(res => {
           const token = res.data.key
           dispatch('saveToken', token)
-          router.push({name: 'login'})
+          dispatch('fetchCurrentUser')
+          router.push({name: 'createProfile'})
         })
         .catch(err => {
           console.error(err.response.data)
           commit('SET_AUTH_ERROR', err.response.data)
         })
     },
-    create_propile({commit, dispatch}, profile_info){
+    createProfile({commit, dispatch}, credentials){
       axios({
-        url: drf.accounts.create_propile(),
+        url: drf.accounts.create_profile(),
         method:'post',
-        data: profile_info
+        data: credentials
       })
       
 

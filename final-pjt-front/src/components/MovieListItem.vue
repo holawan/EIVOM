@@ -19,7 +19,7 @@ export default {
   },
   methods:{
     clickMovie(){
-      router.push({ name: 'MovieDetail'})
+      router.push({ name: 'MovieDetail', parmas:{ movieId:movie.id }})
     },
   },
   computed: {

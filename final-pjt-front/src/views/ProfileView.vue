@@ -4,7 +4,7 @@
     <hr>
     <h1>UserInfo</h1>
     <my-crew-list></my-crew-list>
-    <my-movie-list :movies="profile.movies"></my-movie-list>
+    <my-movie-list :movies="profile.like_movies"></my-movie-list>
   </div>
 </template>
 

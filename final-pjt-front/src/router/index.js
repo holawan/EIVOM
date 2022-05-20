@@ -56,7 +56,7 @@ const routes = [
     component: CrewCreateView
   },
   {
-    path: '/articledetail:articlePk',
+    path: '/articledetail/:articlePk',
     name: 'ArticleDetail',
     component: ArticleDetailView
   },

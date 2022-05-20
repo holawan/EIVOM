@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data(){
     return {
@@ -38,9 +39,7 @@ export default {
     }
   },
   methods: {
-    uploadImg(){
-      console.log(',,')
-    }
+    ...mapActions(['createProfile'])
   }
 
 }

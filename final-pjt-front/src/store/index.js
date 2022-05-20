@@ -5,6 +5,9 @@ import router from '@/router'
 
 Vue.use(Vuex)
 import accounts from './modules/accounts'
+import movies from './modules/movies'
+import crews from './modules/crews'
+
 
 export default new Vuex.Store({
   state: {
@@ -16,6 +19,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    modules: { accounts },
+    modules: { accounts, movies, crews },
   }
 })

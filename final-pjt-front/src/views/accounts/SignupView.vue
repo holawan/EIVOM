@@ -6,8 +6,10 @@
 
     <form @submit.prevent="signup(credentials)">
       <div>
-        <label for="userid">아이디: </label>
-        <input v-model="credentials.userid" type="text" id="username" required/>
+        <label for="useremail">아이디: </label>
+        <input v-model="credentials.useremail" type="text" email="useremail" @blur="checkDuplicate" required/>
+        <span class="badge badge-danger mt-1" v-if="!availableEmail">이미 사용중인 이메일입니다.</span>
+	      <span class="badge badge-danger mt-1" v-if="!availableEmailForm">이메일 형식이 다릅니다.</span>
       </div>
       <div>
         <label for="password1">비밀번호: </label>
@@ -46,7 +48,28 @@ export default {
     ...mapGetters(['authError'])
   },
   methods: {
-    ...mapActions(['signup'])
+    ...mapActions(['signup']),
+    async checkDuplicate() {
+      //일단은 사용가능한 이메일로 true로 초기화 한다.
+      this.availableEmail = true;
+        
+        //이메일 유효성을 검사한다.
+      if (!validateEmail(this.email)) {
+        //유효성이 틀리다면 data 값을 false로 한다.
+            this.availableEmailForm = false;
+        return;
+      } else {
+        this.availableEmailForm = true;
+      }
+        
+        //이메일 중복체크를 한다.
+      const response = await checkDuplicateEmail(this.email);
+      if (!response.data) {
+        this.availableEmail = false;
+      } else {
+        this.availableEmail = true;
+      }
+    },
   }
 }
 </script>

@@ -27,7 +27,7 @@ export default {
     crews: () => HOST + CREWS,
     crew: crewId => HOST + CREWS + `${crewId}/`,
     withMovie: movieId => HOST + MOVIES + `${movieId}/` + `with/`,
-    articles: crewId => HOST + CREWS + ARTICLES,
+    articles: crewId => HOST + CREWS + `${crewId}` + ARTICLES,
     article : (crewId, articleId) => HOST + CREWS + `${crewId}` + ARTICLES + `${articleId}`,
   }
 }

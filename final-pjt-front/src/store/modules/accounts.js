@@ -69,13 +69,16 @@ export default {
           commit('SET_AUTH_ERROR', err.response.data)
         })
     },
-    createProfile({commit, dispatch}, credentials){
+    
+    createProfile(credentials){
       axios({
-        url: drf.accounts.create_profile(),
+        url: drf.accounts.createProfile(),
         method:'post',
         data: credentials
       })
-      
+      .then(
+        router.push({name:'SelectGenre'})
+      )  
 
     },
 

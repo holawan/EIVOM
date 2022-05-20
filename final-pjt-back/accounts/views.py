@@ -138,19 +138,15 @@ def kakao_callback(request):
     """
     Email Request
     """
-    print(f'token :{access_token}')
     profile_request = requests.get(
         "https://kapi.kakao.com/v2/user/me", headers={"Authorization": f"Bearer {access_token}"})
-    print(f'request{profile_request}')
     profile_json = profile_request.json()
-    print(profile_json)
     kakao_account = profile_json.get('kakao_account')
     """
     kakao_account에서 이메일 외에
     카카오톡 프로필 이미지, 배경 이미지 url 가져올 수 있음
     print(kakao_account) 참고
     """
-    print(kakao_account)
     # print()
     email = kakao_account.get('email')
     """
@@ -189,7 +185,6 @@ def kakao_callback(request):
         # user의 pk, email, first name, last name과 Access Token, Refresh token 가져옴
         accept_json = accept.json()
         accept_json.pop('user', None)
-        print('alsdkfjsklfadjad')
         return JsonResponse(accept_json)
 
 class KakaoLogin(SocialLoginView):

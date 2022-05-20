@@ -9,14 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
-from pathlib import Path
-
-# import environ
-# env = environ.Env(
-#     # set casting, default value
-#     DEBUG=(bool, False)
-# )
 from pathlib import Path
 import os
 import json
@@ -234,6 +226,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#JWT 환경 세팅 
 REST_USE_JWT = True
 from datetime import timedelta
 SIMPLE_JWT = {
@@ -243,5 +237,5 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-SITE_ID = 1 
+SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'

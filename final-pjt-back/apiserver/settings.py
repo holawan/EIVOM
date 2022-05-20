@@ -31,7 +31,7 @@ for key, value in secrets.items():
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
     #provider 구글 페이스북 카톡 깃허브 등 소셜로그인 제공 
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
     #cors
     'corsheaders',
     #local
@@ -237,5 +238,5 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-SITE_ID = 1
+SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'

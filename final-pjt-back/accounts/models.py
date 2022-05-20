@@ -4,12 +4,26 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import Thumbnail
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
+from .managers import CustomUserManager
 
 # Create your models here.
 
 class User(AbstractUser) :
+    username = None
+    email = models.EmailField(_('email address'),unique=True)
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = [] 
+
+    objects = CustomUserManager()
+    spouse_name = models.CharField(blank=True, max_length=100)
+    date_of_birth = models.DateField(blank=True, null=True)
+
+
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
 
+    def __str__(self) :
+        return self.email
 class Profile(models.Model) :
     #Profle과 user는 1대1 관계 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')

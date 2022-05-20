@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-
+    'rest_framework_simplejwt.token_blacklist',
     #DRF auth
     'dj_rest_auth',
     'dj_rest_auth.registration',
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    #provider 구글 페이스북 카톡 깃허브 등 소셜로그인 제공 
+    'allauth.socialaccount.providers.google',
     #cors
     'corsheaders',
     #local
@@ -70,7 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',  # dj-rest-auth signup 필요
 ]
-SITE_ID = 1
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -170,32 +172,71 @@ AUTH_USER_MODEL = 'accounts.User'
 CORS_ALLOW_ALL_ORIGINS = True
 
 # DRF 인증 관련 설정
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 모두에게 허용
-        # 'rest_framework.permissions.AllowAny', 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         # 모두에게 허용
+#         # 'rest_framework.permissions.AllowAny', 
 
-        # 인증된 사용자만 모든일이 가능 / 비인증 사용자는 모두 401 Unauthorized
-        'rest_framework.permissions.IsAuthenticated'
-    ]
+#         # 인증된 사용자만 모든일이 가능 / 비인증 사용자는 모두 401 Unauthorized
+#         'rest_framework.permissions.IsAuthenticated'
+#     ]
+# }
+#API에 접근시 인증된 유저, 즉 헤더에 access token을 포함하여 유효한 유저만 접근이 가능한 것을 Default로 설정 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ),
 }
 
+AUTHENTICATION_BACKENDS = (
+    #Needed to login by username in Django admin, regardless of 'allauth'
+    'django.contrib.auth.backends.ModelBackend',
+    
+    # 'allauth' specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
-# import os
+import os
 
-# #일부 데이터 정적으로 수집하기 위해 
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
-# # 스태틱폴더를 따로 만들어서 앱에 종속되지 않고 접근할 수 있게한다. 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# MEDIA_URL = '/media/'
+#일부 데이터 정적으로 수집하기 위해 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+# 스태틱폴더를 따로 만들어서 앱에 종속되지 않고 접근할 수 있게한다. 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/media/'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-# AUTH_USER_MODEL = 'accounts.User'
+#Username 필드 미사용 
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+#이메일 필수 사용
+ACCOUNT_EMAIL_REQUIRED = True
+#이메일은 유니크하게 설정 
+ACCOUNT_UNIQUE_EMAIL = True
+#유저필드 미사용
+ACCOUNT_USERNAME_REQUIRED = False
+#인증수단은 이메일 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+REST_USE_JWT = True
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+}
+
+SITE_ID = 1 
+LOGIN_REDIRECT_URL = '/'

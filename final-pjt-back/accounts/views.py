@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.conf import settings
-from accounts.models import User
+from accounts.models import Profile, User
 from allauth.socialaccount.models import SocialAccount
 from dj_rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.google import views as google_view
@@ -10,6 +10,8 @@ from django.http import JsonResponse
 import requests
 from rest_framework import status
 from json.decoder import JSONDecodeError
+
+from accounts import managers, serializers
 # Create your views here.
 
 # 구글 
@@ -191,3 +193,27 @@ class KakaoLogin(SocialLoginView):
     adapter_class = kakao_view.KakaoOAuth2Adapter
     callback_url = KAKAO_CALLBACK_URI
     client_class = OAuth2Client
+
+from django.shortcuts import get_object_or_404
+from django.db.models import Count
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import ProfileSerializer
+
+@api_view(['POST'])
+def profile_create(request,user_pk) :
+    user = User(pk=user_pk)
+    serializer = ProfileSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True) :
+        serializer.save(user=user)
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
+
+
+
+@api_view(['GET'])
+def profile(request,nickname) :
+    profile =get_object_or_404(Profile,nickname=nickname)
+    serializer = ProfileSerializer(profile)
+    return Response(serializer.data)
+   

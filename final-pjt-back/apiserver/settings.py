@@ -230,6 +230,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #JWT 환경 세팅 
 REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'your-auth-cookie-name'
 from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),

@@ -10,5 +10,7 @@ urlpatterns = [
     path('kakao/login/', views.kakao_login, name='kakao_login'),
     path('kakao/login/callback/', views.kakao_callback, name='kakao_callback'),
     path('kakao/login/finish/', views.KakaoLogin.as_view(), name='kakao_login_todjango'),
+    path('profile_create/<int:user_pk>/',views.profile_create,name='profile_create'),
+    path('profile/<str:nickname>/',views.profile,name='profile'),
     
 ]

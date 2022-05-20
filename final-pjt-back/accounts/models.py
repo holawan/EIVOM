@@ -33,16 +33,16 @@ class Profile(models.Model) :
     image = ProcessedImageField(
     blank=True,
     upload_to='thumbnails/',
-    processors=[Thumbnail(300, 300)],
+    # processors=[Thumbnail(300, 300)],
     format='JPEG',
-    options={'quality': 60})
+    options={'quality': 100})
     #배경사진
     backdrop = ProcessedImageField(
     blank=True,
     upload_to='thumbnails/',
-    processors=[Thumbnail(1200, 800)],
+    # processors=[Thumbnail(1200, 800)],
     format='JPEG',
-    options={'quality': 60})
+    options={'quality': 100})
     #소개말
     introduce = models.CharField(max_length=100)
     #생년월일

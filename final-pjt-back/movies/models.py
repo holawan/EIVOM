@@ -31,7 +31,13 @@ class Movie(models.Model):
     #상영시간
     runtime = models.IntegerField()
     #한줄소개
-    tagline = models.CharField(max_length=100)
+    tagline = models.CharField(max_length=100),
+    #배우
+    actor_id = models.JSONField(null=True)
+    actors = models.JSONField(null=True)
+    actors_path = models.JSONField(null=True)
+    #감독
+    director = models.CharField(max_length=100, null=True)
     #조회수
     view_count = models.IntegerField(default=0)
     #장르참조
@@ -42,12 +48,12 @@ class Movie(models.Model):
     def __str__(self) :
         return self.title
         
-class Actor(models.Model) :
-    name = models.CharField(max_length=20)
-    movies = models.ManyToManyField(Movie, related_name='actors',blank=True)
-    known_name = models.CharField(max_length=20)
-    def __str__(self) :
-        return self.name
+# class Actor(models.Model) :
+#     name = models.CharField(max_length=20)
+#     movies = models.ManyToManyField(Movie, related_name='actors',blank=True)
+#     known_name = models.CharField(max_length=20)
+#     def __str__(self) :
+#         return self.name
 
 class Review(models.Model) :
     #리뷰작성자

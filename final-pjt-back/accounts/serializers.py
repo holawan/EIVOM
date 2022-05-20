@@ -17,6 +17,7 @@ class ProfileSerializer(serializers.ModelSerializer) :
     class Meta :
         model = Profile 
         fields = '__all__'
+        read_only_fields=('user',)
     
     # def get_gender(self,obj):
     #     return obj.get_gender_display()

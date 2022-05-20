@@ -3,7 +3,7 @@
   <router-link :to="{ name: 'Search' }">Search</router-link> |
   <router-link :to="{ name: 'Main' }">Main</router-link> |
   <router-link :to="{ name: 'Crew' }">Crew</router-link> |
-  <router-link :to="{ name: 'User' }">User</router-link>
+  <router-link :to="{ name: 'Profile' }">Profile</router-link>
 
 </div>
 </template>

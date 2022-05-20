@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>UserView</h1>
+    <h1>Profile</h1>
     <hr>
     <h1>UserInfo</h1>
     <my-crew-list></my-crew-list>

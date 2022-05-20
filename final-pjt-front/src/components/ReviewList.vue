@@ -1,8 +1,14 @@
 <template>
   <div>
     <h1>ReviewList</h1>
+    
+    <review-list-item
+      v-for="review in reviews"
+      :review="review"
+      :key="review.pk"  
+    ></review-list-item>
+
     <review-form></review-form>
-    <review-list-item></review-list-item>
   </div>
 </template>
 
@@ -15,7 +21,8 @@ export default {
   components: {
     ReviewForm,
     ReviewListItem,
-  }
+  },
+  props:{ reviews:Array }
 }
 </script>
 

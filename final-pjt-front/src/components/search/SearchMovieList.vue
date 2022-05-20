@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>MyMovieList</h1>
+    <h1>SearchList</h1>
     <movie-list-item
-      v-for="movie in myMovies"
+      v-for="movie in searchMovies"
       :key="movie.movieid"
       :movie-item="movie"
     ></movie-list-item>
@@ -11,17 +11,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import MovieListItem from './MovieListItem.vue'
-
+import MovieListItem from '../MovieListItem.vue'
 
 export default {
-  name:'MyMovieList',
+  name:'SearchList',
   components:{
-    MovieListItem
+    MovieListItem,
   },
   computed:{
-    ...mapGetters(['myMovies'])
+    ...mapGetters(['searchMovies'])
   }
+
 }
 </script>
 

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UserView from '@/views/UserView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 import SearchView from '@/views/SearchView.vue'
 import MainView from '@/views/MainView.vue'
 import CrewView from '@/views/CrewView.vue'
@@ -9,6 +9,7 @@ import CastDetailView from '@/views/CastDetailView.vue'
 import CrewDetailView from '@/views/CrewDetailView.vue'
 import CrewCreateView from '@/views/CrewCreateView.vue'
 import ArticleDetailView from '@/views/ArticleDetailView.vue'
+import NotFound404 from '@/views/NotFound404.vue'
 
 
 Vue.use(VueRouter)
@@ -20,9 +21,9 @@ const routes = [
     component: MainView
   },
   {
-    path: '/user',
-    name: 'User',
-    component: UserView
+    path: '/profile/:nickname',
+    name: 'Profile',
+    component: ProfileView
   },
   {
     path: '/search',
@@ -35,17 +36,17 @@ const routes = [
     component: CrewView
   },
   {
-    path: '/castdetail',
+    path: '/castdetail/:castId',
     name: 'CastDetail',
     component: CastDetailView
   },
   {
-    path: '/moviedetail',
+    path: '/moviedetail/:movieId',
     name: 'MovieDetail',
     component: MovieDetailView
   },
   {
-    path: '/crewdetail',
+    path: '/crewdetail/:crewId',
     name: 'CrewDetail',
     component: CrewDetailView
   },
@@ -55,9 +56,13 @@ const routes = [
     component: CrewCreateView
   },
   {
-    path: '/articledetail',
+    path: '/articledetail:articlePk',
     name: 'ArticleDetail',
     component: ArticleDetailView
+  },
+  {
+    path: '*',
+    redirect: '/404'
   },
 
 ]

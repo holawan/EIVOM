@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import SearchVar from '@/components/SearchVar.vue'
-import SearchList from '@/components/SearchList.vue'
-import SearchGenre from '@/components/SearchGenre.vue'
+import SearchVar from '@/components/search/SearchVar.vue'
+import SearchList from '@/components/search/SearchList.vue'
+import SearchGenre from '@/components/search/SearchGenre.vue'
 
 export default {
   name: 'SearchView',

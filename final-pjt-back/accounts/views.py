@@ -212,9 +212,9 @@ def profile_create(request) :
         return Response(serializer.data,status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT'])
-def profile_datail_or_update(request) :
+def profile_datail_or_update(request,nickname) :
     user = request.user
-    profile =get_object_or_404(Profile,user=user)
+    profile =get_object_or_404(Profile,nickname=nickname)
     
     def profile_detail() :
         serializer = ProfileSerializer(profile)
@@ -225,6 +225,8 @@ def profile_datail_or_update(request) :
             if serializer.is_valid(raise_exception=True) :
                 serializer.save(user=user)
                 return Response(serializer.data)
+        else :
+            Response(status=status.HTTP_404_NOT_FOUND)
                 
     if request.method == 'GET' :
         return profile_detail()

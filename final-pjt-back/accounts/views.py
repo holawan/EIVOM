@@ -1,8 +1,32 @@
 from allauth.socialaccount.providers.kakao.views import KakaoOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
+import requests
+import requests
 
+from accounts.models import User
+
+from django.http  import JsonResponse
 class KakaoLogin(SocialLoginView):
+    def get(self, request):
+        # kakao token 받기 / 유효성 검사를 합니다.
+        token = request.headers.get('Authorization')
+
+        if token == None:
+            return JsonResponse({'messsage': 'INVALID_TOKEN'}, status=401)
+            
+    # kakao token을 다시 kakao로 보내서 유저 정보를 받아옵니다.
+        kakao_account = requests.get('https://kapi.kakao.com/v2/user/me', \
+            headers = {'Authorization': f'Bearer {token}'}).json()
+
+    # 받아온 kakao 유저정보중 id가 db에 있는지 확인합니다.
+        if not User.objects.filter(kakao_id=kakao_account['id']).exists():
+            # 유저 정보가 없으면 회원가입 되도록 합니다.
+            user = User.objects.create(
+                kakao_id = kakao_account['id'],
+                email    = kakao_account['kakao_account']['email']
+                )
+            user.save()
     adapter_class = KakaoOAuth2Adapter
     
 class GoogleLogin(SocialLoginView):
@@ -15,7 +39,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import GenreListSerializer, ProfileSerializer
 from movies.models import Genre
-from models import Profile
+from .models import Profile
 
 @api_view(['POST'])
 def profile_create(request) :

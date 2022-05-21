@@ -12,6 +12,6 @@ urlpatterns = [
     path('kakao/login/finish/', views.KakaoLogin.as_view(), name='kakao_login_todjango'),
     path('profile_create/',views.profile_create,name='profile_create'),
     path('profile/<str:nickname>',views.profile_datail_or_update,name='profile'),
-    path('selectgenre/',views.genre_list),
+    path('genrelist/',views.genre_list),
     path('selectgenre/<int:genre1>/<int:genre2>/<int:genre3>/',views.genre_add),
 ]

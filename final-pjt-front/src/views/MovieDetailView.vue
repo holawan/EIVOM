@@ -8,7 +8,13 @@
       LikeIt: 
       <button
         @click="likeMovie(movieId)"
-      >{{ likeCount }} </button>
+      >좋아요 하트 색깔 바뀌기</button>
+    </div>
+    <div>
+      AddCrew:
+      <button
+        @click="addMovie(movieId)"
+      > </button>
     </div>
 
 
@@ -47,6 +53,7 @@ export default {
     ...mapActions([
       'likeMovie',
       'fetchMovie',
+      'addMovie',
 
     ])
   },

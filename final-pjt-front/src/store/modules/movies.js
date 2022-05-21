@@ -8,6 +8,15 @@ export default{
   state: {
     myMovies: [],
     crewMovies: [],
+    boxOfficeMovies:[],
+    RecActorMovies:[],
+    RecForYouMovies:[],
+    RecGenreMovies:[],
+    RecHighlyViewMovies:[],
+    RecMasterPieceMovies:[],
+    RecSimilarMovies:[],
+    RecWeatherMovies:[],
+    RecWeeklyMovies:[],
     movies: [],
     movie: {},
     selectedMovie: null,
@@ -51,10 +60,21 @@ export default{
       .then(res => commit('SET_MOVIE', res.data))
       .catch(err => console.error(err.response))
     },
+
+    addMovie({commit, getters }, {movieId, crewId}){
+      axios({
+        url: drf.movies.addMovie(movieId, crewId),
+        method:'post',
+        headers: getters.authHeaders,
+      })
+      .then(res => commit('SET_MOVIE', res.data))
+      .catch(err => console.err(err.response))
+    },
+
     createReview({commit, getters}, {movieId, content}) {
       const review = {content}
       axios({
-        url: drf.movies.review(movieId),
+        url: drf.movies.reviews(movieId),
         method: 'post',
         data: review,
         headers: getters.authHeader,

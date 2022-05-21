@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 #Django 
 from imagekit.models import ProcessedImageField
@@ -31,18 +32,21 @@ class Profile(models.Model) :
     nickname = models.CharField(max_length=10,unique=True)
     #프사
     image = ProcessedImageField(
-    blank=True,
+    null=True,
     upload_to='thumbnails/',
     # processors=[Thumbnail(300, 300)],
     format='JPEG',
-    options={'quality': 100})
+    options={'quality': 100},
+    default='media/김태리.jpg')
     #배경사진
     backdrop = ProcessedImageField(
-    blank=True,
+    null=True,
     upload_to='thumbnails/',
     # processors=[Thumbnail(1200, 800)],
     format='JPEG',
-    options={'quality': 100})
+    options={'quality': 100},
+    default='media/tmp_pre6_uenvE9N.jpg'
+    )
     #소개말
     introduce = models.CharField(max_length=100)
     #생년월일

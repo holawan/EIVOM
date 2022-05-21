@@ -5,6 +5,8 @@ from imagekit.processors import Thumbnail
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+
+from movies.models import Genre
 from .managers import CustomUserManager
 
 # Create your models here.
@@ -17,8 +19,6 @@ class User(AbstractUser) :
 
     objects = CustomUserManager()
     spouse_name = models.CharField(blank=True, max_length=100)
-    date_of_birth = models.DateField(blank=True, null=True)
-
 
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
 

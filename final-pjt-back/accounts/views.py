@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_list_or_404, redirect, render
 from django.conf import settings
 from accounts.models import Profile, User
 from allauth.socialaccount.models import SocialAccount
@@ -10,8 +10,10 @@ from django.http import JsonResponse
 import requests
 from rest_framework import status
 from json.decoder import JSONDecodeError
+from rest_framework import status
 
 from accounts import managers, serializers
+from movies.models import Genre
 # Create your views here.
 
 # 구글 
@@ -199,21 +201,55 @@ from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProfileSerializer
+from .serializers import GenreListSerializer, ProfileSerializer
 
 @api_view(['POST'])
-def profile_create(request,user_pk) :
-    user = User(pk=user_pk)
+def profile_create(request) :
+    user = request.user
     serializer = ProfileSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True) :
         serializer.save(user=user)
         return Response(serializer.data,status=status.HTTP_201_CREATED)
 
+@api_view(['GET','PUT'])
+def profile_datail_or_update(request) :
+    user = request.user
+    profile =get_object_or_404(Profile,user=user)
+    
+    def profile_detail() :
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+    def profile_update() :
+        if request.user == profile.user :
+            serializer = ProfileSerializer(instance=profile,data=request.data)
+            if serializer.is_valid(raise_exception=True) :
+                serializer.save(user=user)
+                return Response(serializer.data)
+                
+    if request.method == 'GET' :
+        return profile_detail()
+    elif request.method == 'PUT' :
+        return profile_update()
 
 
 @api_view(['GET'])
-def profile(request,nickname) :
-    profile =get_object_or_404(Profile,nickname=nickname)
-    serializer = ProfileSerializer(profile)
+def genre_list(request):
+    # comment 개수 추가
+    genres = get_list_or_404(Genre)
+    serializer = GenreListSerializer(genres,many=True)
     return Response(serializer.data)
-   
+    
+
+
+@api_view(['POST'])
+def genre_add(request,genre1,genre2,genre3):
+    genre1 = get_object_or_404(Genre,pk=genre1) 
+    genre2 = get_object_or_404(Genre,pk=genre2) 
+    genre3 = get_object_or_404(Genre,pk=genre3) 
+    user = request.user 
+    user.like_genres.add(genre1)
+    user.like_genres.add(genre2)
+    user.like_genres.add(genre3)
+    return Response(status=status.HTTP_201_CREATED)
+
+    

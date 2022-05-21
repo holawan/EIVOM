@@ -15,9 +15,9 @@ class Movie(models.Model):
     #원제목
     original_title = models.CharField(max_length=100)
     #영화포스터
-    poster_path = models.CharField(max_length=200)
+    poster_path = models.CharField(max_length=200,null=True)
     #영화배경
-    backdrop_path = models.CharField(max_length=200)
+    backdrop_path = models.CharField(max_length=200,null=True)
     #개요
     overview = models.TextField()
     #개봉일
@@ -29,9 +29,9 @@ class Movie(models.Model):
     #인기도
     popularity = models.FloatField()
     #상영시간
-    runtime = models.IntegerField()
+    runtime = models.IntegerField(null=True)
     #한줄소개
-    tagline = models.CharField(max_length=100),
+    tagline = models.CharField(max_length=300,null=True)
     #배우
     actor_id = models.JSONField(null=True)
     actors = models.JSONField(null=True)
@@ -41,7 +41,7 @@ class Movie(models.Model):
     #조회수
     view_count = models.IntegerField(default=0)
     #장르참조
-    genres = models.ManyToManyField(Genre, related_name='movie_genres',blank=True)
+    genres = models.JSONField(null=True)
     #영화를 좋아하는 유저
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='like_movies',blank=True)
 
@@ -63,9 +63,10 @@ class Review(models.Model) :
    #리뷰내용
    content = models.CharField(max_length=100)
    #평점
-   rate = models.IntegerField(choices=zip(range(1,6),range(1,6)))
+   rate = models.IntegerField()
    #작성시간
    created_at = models.DateTimeField(auto_now=True)
+   updated_at = models.DateTimeField(auto_now_add=True)
    #리뷰를 좋아하는 유저
    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='like_reviews',blank=True)
 

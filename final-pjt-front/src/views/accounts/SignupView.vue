@@ -6,8 +6,8 @@
 
     <form @submit.prevent="signup(credentials)">
       <div>
-        <label for="useremail">아이디: </label>
-        <input v-model="credentials.useremail" type="text" email="useremail"  required/>
+        <label for="email">아이디: </label>
+        <input v-model="credentials.email" type="email" id="email"  required/>
         <!-- <span class="badge badge-danger mt-1" v-if="!availableEmail">이미 사용중인 이메일입니다.</span>
         <span class="badge badge-danger mt-1" v-if="!availableEmailForm">이메일 형식이 다릅니다.</span> -->
       </div>
@@ -38,7 +38,7 @@ export default {
   data(){
     return{
       credentials: {
-        useremail: '',
+        email: '',
         password1: '',
         password2: '',
       }

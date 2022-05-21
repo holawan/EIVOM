@@ -5,29 +5,29 @@
 // import _ from 'lodash'
 
 export default{
-  // state: {
-  //   currentCrew: {},
+  state: {
+    // currentCrew: {},
 
-  // },
+  },
 
-  // getters:{
-  //   isResisterdIn: {},
+  getters:{
+    // isResisterdIn: {},
 
-  // },
+  },
 
-  // mutations:{
+  mutations:{
 
-  // },
+  },
 
-  // actions:{
-  //   // register({ }, crewId){
-  //   //   axios({
-  //   //     url : drf.crews.register(crewId),
-  //   //     method: 'post',
-  //   //   })
-  //   //   .then(res => {
-  //   //     router.push({ name: 'crew', params: {crewId: crewId}})
-  //   //   })
-  //   // }
-  // },
+  actions:{
+    // register({ }, crewId){
+    //   axios({
+    //     url : drf.crews.register(crewId),
+    //     method: 'post',
+    //   })
+    //   .then(res => {
+    //     router.push({ name: 'crew', params: {crewId: crewId}})
+    //   })
+    // }
+  },
 }

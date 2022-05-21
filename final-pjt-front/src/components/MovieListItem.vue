@@ -2,13 +2,16 @@
   <div>
     <h1>MovielistItem</h1>
     <section @click="clickMovie">
-      {{ movieTitle }}
+      {{ movieItem.title }}
     </section>
 
   </div>
 </template>
 
 <script>
+
+import router from '@/router'
+
 import { mapGetters } from 'vuex'
 export default {
   name: 'MovieListItem',
@@ -19,15 +22,13 @@ export default {
   },
   methods:{
     clickMovie(){
+      const movie = this.movieItem
       router.push({ name: 'MovieDetail', parmas:{ movieId:movie.id }})
     },
   },
   computed: {
     ...mapGetters(['selectedMovie']),
-    movieTitle(){
-      const title = _.unescape(this.movieItem.snippet.title)
-      return title
-    },
+
   }
 
 }

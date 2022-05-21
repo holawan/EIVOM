@@ -7,7 +7,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'Logout',
+  name: 'LogoutView',
   methods: {
     ...mapActions(['logout'])
   },

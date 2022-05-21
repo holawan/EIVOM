@@ -1,15 +1,14 @@
 <template>
   <div>
     <h1>Select Genre</h1>
-    {{genres}}
-    <p v-for="genre in genres" :key="genre.id">
-      {{genre.name}}
-    </p>
+    <div v-for="genre in genres" :key="genre.pk">
+      {{ genre.name }}
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'SelectGenre',
   // data(){
@@ -17,7 +16,6 @@ export default {
   // },
   computed:{
     ...mapGetters(['genres']),
-    ...mapState(['genres'])
   },
   methods:{
     ...mapActions(['loadGenre']),

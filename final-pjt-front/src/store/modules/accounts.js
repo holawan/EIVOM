@@ -25,7 +25,7 @@ export default {
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
-    SET_GENRELIST: (state, genres) => state.genres = genres,
+    SET_GENRELIST:(state, genres) => state.genres = genres,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -166,9 +166,9 @@ export default {
       })
       .then(res => {
         console.log(res.data)
-        commit('SET_GENRELIST', res.date)
+        commit('SET_GENRELIST', res.data)
       })
     },
   },
-
 }
+

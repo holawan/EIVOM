@@ -3,11 +3,11 @@
     <h1>프로필 초기 설정</h1>
     <div>
       
-      <form @submit.prevent="createProfile(credentials)" enctype="multipart/form-data">
+      <form @submit.prevent="sendImageToServer" enctype="multipart/form-data">
         <label for="image">프로필사진 입력: </label>
-        <input multiple @change="onInputImage()" ref="image" type="file" id="image">
+        <input multiple @change="onGetFile()" ref="image" type="file" id="image">
         <label for="backdrop">배경사진 입력: </label>
-        <input multiple @change="onInputImage2()" ref="backdrop" type="file" id="backdrop">
+        <input multiple @change="onGetFile2()" ref="backdrop" type="file" id="backdrop">
         <div>
           <label for="nickname">닉네임 입력: </label>
           <input  v-model="credentials.nickname" type="text" id="nickname" required/>
@@ -59,16 +59,37 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['createProfile']),
-    onInputImage() {
-      this.image = this.$refs.image.files
-
+    initModal: function () {
+      this.credentials.image = ''
+      this.credentials.backdrop = ''
+      this.credentials.nickname = ''
+      this.credentials.birth = ''
+      this.credentials.introduce = ''
+      this.credentials.gender = ''
+      this.credentials.location1 = ''
+      this.credentials.location2 = ''
     },
-    onInputImage2() {
-      this.backdrop = this.$refs.backdrop.files
-
-    }
-  }
+    onGetFile() {
+      this.credentials.image = this.$refs.image.files[0]
+      console.log(this.credentials.image)
+    },
+    onGetFile2() {
+      this.credentials.backdrop =this.$refs.image.files[0]
+    },
+    sendImageToServer(){
+      const formData = new FormData()
+        formData.append('image', this.credentials.image)
+        formData.append('backdrop', this.credentials.backdrop)
+        formData.append('nickname', this.credentials.nickname)
+        formData.append('birth', this.credentials.birth)
+        formData.append('introduce', this.credentials.introduce)
+        formData.append('gender', this.credentials.gender)
+        formData.append('location1', this.credentials.location1)
+        formData.append('location2', this.credentials.location2)
+        this.createProfile(formData)
+      },
+      ...mapActions(['createProfile']),
+    },
 
 }
 </script>

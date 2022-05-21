@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:8000/'
+const HOST = 'http://127.0.0.1:8000/'
 
 const ACCOUNTS = 'accounts/'
 const MOVIES = 'movies/'
@@ -9,10 +9,10 @@ const ARTICLES = 'articles/'
 
 export default {
   accounts: {
-    login: () => HOST + ACCOUNTS + 'login/',
+    login: () => HOST + 'api-jwt-auth/',
     logout: () => HOST + ACCOUNTS + 'logout/',
     signup: () => HOST + ACCOUNTS + 'signup/',
-    createProfile: () => HOST + ACCOUNTS + 'create_profile/',
+    createProfile: () => HOST + ACCOUNTS + 'profile_create/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
   },

@@ -5,7 +5,7 @@ import drf from '@/api/drf'
 export default {
 
   state: {
-    token: localStorage.getItem('token') || '',
+    token: localStorage.getItem('jwt') || '',
     currentUser: {},
     profile: {},
     authError: null,
@@ -15,7 +15,7 @@ export default {
     currentUser: state => state.currentUser,
     profile: state => state.profile,
     authError: state => state.authError,
-    authHeader: state => ({ Authorization: `Token ${state.token}`}),
+    authHeader: state => ({ Authorization: `JWT ${state.token}`}),
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -26,25 +26,27 @@ export default {
   actions: {
     saveToken({ commit }, token) {
       commit('SET_TOKEN', token)
-      localStorage.setItem('token', token)
+      localStorage.setItem('jwt', token)
     },
 
     removeToken({ commit }) {
       commit('SET_TOKEN', '')
-      localStorage.setItem('token', '')
+      localStorage.setItem('jwt', '')
     },
 
-    login({ commit, dispatch }, credentials) {
+    login({ commit,dispatch }, credentials) {
       axios({
         url: drf.accounts.login(),
         method: 'post',
         data: credentials
       })
         .then(res => {
-          const token = res.data.key
+          const token = res.data.token
           dispatch('saveToken', token)
-          dispatch('fetchCurrentUser')
-          router.push({ name: 'articles' })
+          // dispatch('fetchCurrentUser')
+          console.log(token)
+          console.log(res)
+          router.push({name: 'CreateProfile'})
         })
         .catch(err => {
           console.error(err.response.data)
@@ -59,9 +61,15 @@ export default {
         data: credentials
       })
         .then(res => {
-          const token = res.data.key
+          console.log(res)
+          const token = res.data.token
           dispatch('saveToken', token)
-          dispatch('fetchCurrentUser')
+          const credential = {
+            'email' : credentials.email,
+            'password' : credentials.password1
+          }
+          dispatch('login',credential)
+          console.log('login!!!')
           router.push({name: 'CreateProfile'})
         })
         .catch(err => {
@@ -70,15 +78,34 @@ export default {
         })
     },
     
-    createProfile(credentials){
+    createProfile({commit,getters},credentials){
       axios({
         url: drf.accounts.createProfile(),
         method:'post',
-        data: credentials
+        data: credentials,
+        headers: getters.authHeader,
       })
-      .then(
+      .then((res)=>{
+        console.log(res)
+        // const image = 'http://127.0.0.1:8000/'+res.data.image
+        // const backdrop =  'http://127.0.0.1:8000/'+res.data.backdrop
+        // const nickname = res.data.nickname
+        // const birth = res.data.birth
+        // const introduce = res.data.introduce
+        // const gender = res.data.gender
+        // const location1 = res.data.location1
+        // const location2 = res.data.location2
         router.push({name:'SelectGenre'})
-      )  
+
+      }
+        
+      )
+      .catch(err => {
+        console.log(credentials)
+        console.error(err.response)
+        commit('SET_AUTH_ERROR',err.response.data)
+      }
+      )
 
     },
 

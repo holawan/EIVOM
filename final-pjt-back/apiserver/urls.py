@@ -27,7 +27,4 @@ urlpatterns = [
     path('accounts/signup/',include('dj_rest_auth.registration.urls')),
     path('accounts/',include('allauth.urls')),
     path('accounts/',include('accounts.urls')),
-    path('api-jwt-auth/', obtain_jwt_token),          # JWT 토큰 획득
-    path('api-jwt-auth/refresh/', refresh_jwt_token), # JWT 토큰 갱신
-    path('api-jwt-auth/verify/', verify_jwt_token),   # JWT 토큰 확인
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

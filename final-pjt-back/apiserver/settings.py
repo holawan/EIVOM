@@ -191,8 +191,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     ),
 }
 import datetime
@@ -242,13 +240,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #JWT 환경 세팅 
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'your-auth-cookie-name'
-from datetime import timedelta
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-}
+
 
 SITE_ID = 2
 LOGIN_REDIRECT_URL = '/'

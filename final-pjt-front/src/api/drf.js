@@ -15,7 +15,7 @@ export default {
     createProfile: () => HOST + ACCOUNTS + 'profile_create/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     getJwtToken: () => HOST + ACCOUNTS + 'jwt/',
-    profile: username => HOST + ACCOUNTS + 'profile/' + username,
+    profile: user_pk => HOST + ACCOUNTS + 'profile/' + `${user_pk}/`,
     genrelist: () => HOST + ACCOUNTS + 'genrelist/',
     selectGenre: (genre1, genre2, genre3) => HOST + ACCOUNTS + 'selectgenre/' + `${genre1}/` + `${genre2}/` + `${genre3}/`,
   },

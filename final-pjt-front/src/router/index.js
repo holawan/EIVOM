@@ -50,7 +50,7 @@ const routes = [
     component: MainView
   },
   {
-    path: '/profile/:nickname',
+    path: '/profile/:user_pk',
     name: 'Profile',
     component: ProfileView
   },

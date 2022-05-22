@@ -32,20 +32,32 @@ def like_movie(request, movie_pk):
         return Response(serializer.data)
 
 
-@api_view(['POST'])
-def create_review(request, movie_pk):
-    user = request.user
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    
-    serializer = ReviewSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie, user=user)
+@api_view(['GET','POST'])
+def create_or_list_review(request,movie_pk) :
+    def create_review():
+        user = request.user
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(movie=movie, user=user)
 
-        # 기존 serializer 가 return 되면, 단일 review 만 응답으로 받게됨.
-        # 사용자가 댓글을 입력하는 사이에 업데이트된 review 확인 불가 => 업데이트된 전체 목록 return 
-        reviews = movie.reviews.all()
-        serializer = ReviewSerializer(reviews, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+            # 기존 serializer 가 return 되면, 단일 review 만 응답으로 받게됨.
+            # 사용자가 댓글을 입력하는 사이에 업데이트된 review 확인 불가 => 업데이트된 전체 목록 return 
+            reviews = movie.reviews.all()
+            serializer = ReviewSerializer(reviews, many=True)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def review_list() :
+        reviews = Review.objects.filter(movie_id=movie_pk)
+        serializer = ReviewSerializer(reviews,many=True) 
+        return Response(serializer.data)
+        
+
+
+    if request.method == 'GET':
+        return review_list()
+    elif request.method == 'POST':
+        return create_review()
 
 
 @api_view(['PUT', 'DELETE'])

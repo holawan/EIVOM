@@ -13,7 +13,8 @@
       </button></div>
     <div v-else>
       <button
-        @click="goalert()"  
+        @click="goalert()"
+        disabled="disabled"
       ></button>
     </div>
   </div>

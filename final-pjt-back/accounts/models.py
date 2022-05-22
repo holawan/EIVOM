@@ -25,14 +25,16 @@ class User(AbstractUser) :
 
     def __str__(self) :
         return self.email
+
+
 class Profile(models.Model) :
     #Profle과 user는 1대1 관계 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='profile')
     #닉네임 
-    nickname = models.CharField(max_length=10,unique=True)
+    nickname = models.CharField(max_length=10,unique=True,null=True,blank=True,)
     #프사
     image = ProcessedImageField(
-    null=True,
+    null=True,blank=True,
     upload_to='thumbnails/',
     # processors=[Thumbnail(300, 300)],
     format='JPEG',
@@ -40,7 +42,7 @@ class Profile(models.Model) :
     default='media/김태리.jpg')
     #배경사진
     backdrop = ProcessedImageField(
-    null=True,
+    null=True,blank=True,
     upload_to='thumbnails/',
     # processors=[Thumbnail(1200, 800)],
     format='JPEG',
@@ -48,15 +50,15 @@ class Profile(models.Model) :
     default='media/tmp_pre6_uenvE9N.jpg'
     )
     #소개말
-    introduce = models.CharField(max_length=100)
+    introduce = models.CharField(max_length=100,null=True,blank=True)
     #생년월일
-    birth = models.DateField()
+    birth = models.DateField(null=True,blank=True,)
     #성별
     GENDER_CHOICES = (
         (0,'남성'),
         (1,'여성')
     )
-    gender = models.CharField(max_length=2,choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=2,choices=GENDER_CHOICES,null=True,blank=True)
     #도/특별시/광역시
     LOCATION_COHICES = (
         (11,'서울특별시'),
@@ -78,8 +80,8 @@ class Profile(models.Model) :
         (39,'제주특별자치도'),
 
     )
-    location1 = models.CharField(max_length=10,choices=LOCATION_COHICES)
+    location1 = models.CharField(max_length=10,choices=LOCATION_COHICES,null=True,blank=True)
     #시/군/구
-    location2 = models.CharField(max_length=5)
+    location2 = models.CharField(max_length=5,null=True,blank=True)
     def __str__(self) :
         return self.nickname

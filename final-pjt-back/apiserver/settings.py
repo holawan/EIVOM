@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     #provider 구글 페이스북 카톡 깃허브 등 소셜로그인 제공 
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.kakao',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.kakao',
     #cors
     'corsheaders',
     #local

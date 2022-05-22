@@ -6,8 +6,8 @@
 
     <form @submit.prevent="login(credentials)">
       <div>
-        <label for="userid">userid: </label>
-        <input v-model="credentials.userid" type="text" id="userid" required />
+        <label for="email">userid: </label>
+        <input v-model="credentials.email" type="email" id="email" required />
       </div>
 
       <div>
@@ -34,7 +34,7 @@ export default {
   data() {
     return{
       credentials: {
-        userid: '',
+        email: '',
         password: '',
       }
     }

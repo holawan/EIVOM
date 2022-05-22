@@ -46,10 +46,10 @@ export default {
         .then(res => {
           const token = res.data.token
           dispatch('saveToken', token)
-          // dispatch('fetchCurrentUser')
+          dispatch('fetchCurrentUser')
           console.log(token)
           console.log(res)
-          router.push({name: 'CreateProfile'})
+          router.push({name: 'Main'})
         })
         .catch(err => {
           console.error(err.response.data)
@@ -67,11 +67,7 @@ export default {
           console.log(res)
           const token = res.data.token
           dispatch('saveToken', token)
-          const credential = {
-            'email' : credentials.email,
-            'password' : credentials.password1
-          }
-          dispatch('login',credential)
+          dispatch('fetchCurrnetUser')
           console.log('login!!!')
           router.push({name: 'CreateProfile'})
         })

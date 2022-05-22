@@ -9,11 +9,11 @@ const ARTICLES = 'articles/'
 
 export default {
   accounts: {
-    login: () => HOST + ACCOUNTS + 'jwt/',
+    login: () => HOST + ACCOUNTS + 'login/',
     logout: () => HOST + ACCOUNTS + 'logout/',
     signup: () => HOST + ACCOUNTS + 'signup/',
     createProfile: () => HOST + ACCOUNTS + 'profile_create/',
-    currentUserInfo: () => HOST + ACCOUNTS + 'user/',
+    currentUserInfo: () => HOST + ACCOUNTS + 'jwt/',
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
     genrelist: () => HOST + ACCOUNTS + 'genrelist/',
     selectGenre: (genre1, genre2, genre3) => HOST + ACCOUNTS + 'selectgenre/' + `${genre1}/` + `${genre2}/` + `${genre3}/`,

@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from ..models import Review
+
 User = get_user_model()
 
 # CUD => validation
@@ -13,8 +14,9 @@ class ReviewSerializer(serializers.ModelSerializer):
             fields = ('pk',)
 
     user = UserSerializer(read_only=True)
-
+    # like_users = UserSerializer(read_only=True, many=True)
+    like_user_count = serializers.IntegerField(source='like_users.count', read_only=True)
     class Meta:
         model = Review
-        fields = ('pk', 'user', 'content', 'movie','rate')
+        fields = ('pk', 'user', 'content', 'movie','created_at','rate','like_user_count')
         read_only_fields = ('movie', )

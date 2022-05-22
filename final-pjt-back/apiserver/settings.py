@@ -243,4 +243,8 @@ JWT_AUTH_COOKIE = 'your-auth-cookie-name'
 
 
 SITE_ID = 2
+# from ..accounts.models import User
+# import requests 
+# print(requests.user)
+# print(AUTH_USER_MODEL)
 LOGIN_REDIRECT_URL = '/'

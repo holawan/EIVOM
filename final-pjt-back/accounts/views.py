@@ -2,7 +2,6 @@ from allauth.socialaccount.providers.kakao.views import KakaoOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 import requests
-import requests
 
 from accounts.models import User
 

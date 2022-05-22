@@ -95,8 +95,7 @@ export default {
         
       )
       .catch(err => {
-        console.log(credentials)
-        console.error(err.response)
+        console.error(err.response.data)
         commit('SET_AUTH_ERROR',err.response.data)
       }
       )

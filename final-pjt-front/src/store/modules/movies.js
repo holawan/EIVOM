@@ -37,7 +37,7 @@ export default{
   mutations: {
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie= movie,
-    SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews.push(reviews)),
+    SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
     
@@ -92,6 +92,7 @@ export default{
         headers: getters.authHeader,
       })
       .then(res => {
+        console.log(res.data)
         commit('SET_MOVIE_REVIEWS', res.data)
       })
       .catch(err => console.error(err.response))

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>프로필 초기 설정</h1>
+    <account-error-list v-if="authError"></account-error-list>
     <div>
       
       <form @submit.prevent="sendImageToServer" enctype="multipart/form-data">
@@ -42,8 +43,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import AccountErrorList from '@/components/AccountErrorList.vue'
+import { mapActions,mapGetters } from 'vuex'
 export default {
+  components: {
+    AccountErrorList,
+  },
   data(){
     return {
       credentials: {
@@ -90,6 +95,9 @@ export default {
       },
       ...mapActions(['createProfile']),
     },
+    computed: {
+    ...mapGetters(['authError'])
+  },
 
 }
 </script>

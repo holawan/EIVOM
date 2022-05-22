@@ -9,14 +9,14 @@ const ARTICLES = 'articles/'
 
 export default {
   accounts: {
-    login: () => HOST + 'api-jwt-auth/',
+    login: () => HOST + ACCOUNTS + 'jwt/',
     logout: () => HOST + ACCOUNTS + 'logout/',
     signup: () => HOST + ACCOUNTS + 'signup/',
     createProfile: () => HOST + ACCOUNTS + 'profile_create/',
     currentUserInfo: () => HOST + ACCOUNTS + 'user/',
     profile: username => HOST + ACCOUNTS + 'profile/' + username,
     genrelist: () => HOST + ACCOUNTS + 'genrelist/',
-    // selectedGenre: () => HOST + ACCOUNTS + 'selectgenre/' + `${genre1}` + `${genre2}` + `${genre3}/`
+    selectGenre: (genre1, genre2, genre3) => HOST + ACCOUNTS + 'selectgenre/' + `${genre1}/` + `${genre2}/` + `${genre3}/`,
   },
   movies: {
     movies: () => HOST + MOVIES,

@@ -1,7 +1,6 @@
 import router from "@/router"
 import axios from "axios"
 import drf from '@/api/drf'
-
 export default {
 
   state: {
@@ -168,6 +167,17 @@ export default {
         console.log(res.data)
         commit('SET_GENRELIST', res.data)
       })
+    },
+
+    selectGenre({getters}, genres){
+      console.log(genres.genre3)
+      axios({
+        url: drf.accounts.selectGenre(genres.genre1, genres.genre2, genres.genre3),
+        method: 'post',
+        headers: getters.authHeader,
+      })
+      .then(router.push({name:'Main'}))
+
     },
   },
 }

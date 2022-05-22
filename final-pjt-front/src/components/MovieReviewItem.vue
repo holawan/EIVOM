@@ -40,6 +40,7 @@ export default {
   created(){
     this.fetchProfile(this.review.user.pk)
   },
+
 }
 </script>
 

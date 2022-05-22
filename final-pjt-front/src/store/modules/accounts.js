@@ -62,10 +62,8 @@ export default {
         data: credentials
       })
         .then(res => {
-          console.log(res)
-          const token = res.data.token
-          dispatch('saveToken', token)
-          dispatch('getJwt',credentials)
+          res
+          dispatch('getJwt',{email:credentials.email,password:credentials.password1})
           router.push({name: 'CreateProfile'})
         })
         .catch(err => {

@@ -16,7 +16,6 @@ import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 
-
 Vue.use(VueRouter)
 
 const routes = [

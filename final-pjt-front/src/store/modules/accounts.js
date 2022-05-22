@@ -6,7 +6,7 @@ export default {
   state: {
     token: localStorage.getItem('jwt') || '',
     currentUser: {},
-    profile: {},
+    profile: '',
     genres: [],
     authError: null,
     
@@ -165,7 +165,7 @@ export default {
         headers: getters.authHeader,
       })
       .then(res => {
-        console.log(res)
+        console.log(res.data,'success')
         commit('SET_PROFILE', res.data)
         
       })

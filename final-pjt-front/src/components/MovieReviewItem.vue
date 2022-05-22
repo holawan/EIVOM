@@ -7,7 +7,7 @@
     </div>
     <div>
       <p>{{ payload.content }} {{ payload.rate }} </p>
-      
+      <p>{{profile}}</p>
     </div>
   </div>
 </template>
@@ -31,16 +31,15 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['profile'])
     
+    ...mapGetters(['profile'])
   },
   methods:{
     ...mapActions(['fetchProfile'])
   },
   created(){
     this.fetchProfile(this.review.user.pk)
-    console.log(profile)
-  }
+  },
 }
 </script>
 

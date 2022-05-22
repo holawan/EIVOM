@@ -17,15 +17,12 @@
       > </button>
     </div>
 
-
-    <movie-cast></movie-cast>
     <movie-review-list :reviews="movie.reviews"></movie-review-list>
     <movie-rec-similar></movie-rec-similar>
   </div>
 </template>
 
 <script>
-import MovieCast from '@/components/MovieCast.vue'
 import MovieReviewList from '@/components/MovieReviewList.vue'
 import MovieRecSimilar from '@/components/MovieRecSimilar.vue'
 import { mapActions, mapGetters } from 'vuex'
@@ -34,13 +31,12 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'MovieDetailView',
   components:{
-    MovieCast,
     MovieReviewList,
     MovieRecSimilar,
   },
   data(){
     return {
-      movieId: this.$route.params.movieId
+      movieId: this.$route.params.movie_pk
     }
   },
   computed: {

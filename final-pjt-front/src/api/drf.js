@@ -20,11 +20,11 @@ export default {
   },
   movies: {
     movies: () => HOST + MOVIES,
-    movie: movieId => HOST + MOVIES + `${movieId}/`,
-    likeMovie: movieId => HOST + MOVIES + `${movieId}/` + 'like/',
-    addMovie: (movieId, crewId) => HOST + MOVIES+ `${movieId}` + `${crewId}` + 'add/',
-    reviews: movieId => HOST + MOVIES + `${movieId}/` + REVIEWS,
-    review: (movieId, reviewId) => HOST + MOVIES + `${movieId}/` + REVIEWS + `${reviewId}/`,
+    movie: movie_pk => HOST + MOVIES + `${movie_pk}/`,
+    likeMovie: movie_pk => HOST + MOVIES + `${movie_pk}/` + 'like/',
+    addMovie: (movie_pk, crewId) => HOST + MOVIES+ `${movie_pk}` + `${crewId}` + 'add/',
+    reviews: movie_pk => HOST + MOVIES + `${movie_pk}/` + REVIEWS,
+    review: (movie_pk, review_pk) => HOST + MOVIES + `${movie_pk}/` + REVIEWS + `${review_pk}/`,
   },
   crews:{
     create: ()=> HOST + CREWS + 'create/',

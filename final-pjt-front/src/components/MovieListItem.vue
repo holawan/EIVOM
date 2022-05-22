@@ -1,9 +1,9 @@
 <template>
   <div>
     <h1>MovielistItem</h1>
-    <section @click="clickMovie">
-      {{ movieItem.title }}
-    </section>
+    <div @click="clickMovie()">
+      {{ movie.title }}
+    </div>
 
   </div>
 </template>
@@ -12,24 +12,20 @@
 
 import router from '@/router'
 
-import { mapGetters } from 'vuex'
+
 export default {
   name: 'MovieListItem',
   props:{
-    movieItem:{
+    movie:{
       type:Object
     }
   },
   methods:{
     clickMovie(){
-      const movie = this.movieItem
-      router.push({ name: 'MovieDetail', parmas:{ movieId:movie.id }})
+      const movie = this.movie
+      router.push({ name: 'MovieDetail', params:{ movie_pk:movie.id }})
     },
   },
-  computed: {
-    ...mapGetters(['selectedMovie']),
-
-  }
 
 }
 </script>

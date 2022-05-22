@@ -71,7 +71,7 @@ const routes = [
     component: CastDetailView
   },
   {
-    path: '/moviedetail/:movieId',
+    path: '/moviedetail/:movie_pk',
     name: 'MovieDetail',
     component: MovieDetailView
   },

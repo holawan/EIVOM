@@ -39,7 +39,7 @@ export default {
   },
   created(){
     this.fetchProfile(this.review.user.pk)
-    console.log(profile)
+    // console.log(this.profile)
   }
 }
 </script>

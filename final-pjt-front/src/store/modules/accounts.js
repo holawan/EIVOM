@@ -44,10 +44,8 @@ export default {
         data: credentials
       })
         .then(res => {
-          const token = res.data.token
-          dispatch('saveToken', token)
-          dispatch('fetchCurrentUser')
-          console.log(token)
+          dispatch('getJwt',credentials)
+          console.log('jwt로 보내기 ! ')
           console.log(res)
           router.push({name: 'Main'})
         })
@@ -67,8 +65,7 @@ export default {
           console.log(res)
           const token = res.data.token
           dispatch('saveToken', token)
-          dispatch('fetchCurrnetUser')
-          console.log('login!!!')
+          dispatch('getJwt',credentials)
           router.push({name: 'CreateProfile'})
         })
         .catch(err => {
@@ -125,6 +122,25 @@ export default {
         })
     },
 
+    getJwt({dispatch },credentials) {
+      axios({
+        url: drf.accounts.getJwtToken(),
+        method: 'post',
+        data: credentials,
+      })
+        .then(res => {
+          console.log('jwt에서 토큰 받기 !')
+          const token = res.data.token
+          console.log(token)
+          dispatch('saveToken', token)
+        })
+        .catch(err => {
+          if (err.response.status === 401) {
+            dispatch('removeToken')
+            router.push({ name: 'login' })
+          }
+        })
+    },
     fetchCurrentUser({ commit, getters, dispatch }) {
       if (getters.isLoggedIn) {
         axios({
@@ -132,7 +148,10 @@ export default {
           method: 'get',
           headers: getters.authHeader,
         })
-          .then(res => commit('SET_CURRENT_USER', res.data))
+          .then(res => {
+            commit('SET_CURRENT_USER',res.data)
+
+          })
           .catch(err => {
             if (err.response.status === 401) {
               dispatch('removeToken')

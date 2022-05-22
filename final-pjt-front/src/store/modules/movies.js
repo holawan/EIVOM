@@ -1,12 +1,12 @@
 import axios from 'axios'
 import drf from '@/api/drf'
 import router from '@/router'
-import accounts from './accounts'
 
 // import _ from 'lodash'
 
 export default{
   state: {
+    token: localStorage.getItem('jwt') || '',
     topRatedMovies:[],
     myMovies: [],
     crewMovies: [],
@@ -28,6 +28,7 @@ export default{
     movies: state => state.movies,
     movie: state => state.movie,
     topRatedMovies: state => state.topRatedMovies,
+    authHeader2: state => ({ Authorization: `JWT ${state.token}`}),
    
   },
 
@@ -40,11 +41,12 @@ export default{
   },
 
   actions: {
-    fetchMovie({commit}, movieId){
+    fetchMovie({commit,getters}, movieId){
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
-        headers: accounts.getters.authHeader,
+        headers: getters.authHeader,
+        
       })
       .then(res => {
         console.log(res)

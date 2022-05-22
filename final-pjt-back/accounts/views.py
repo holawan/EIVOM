@@ -49,9 +49,9 @@ def profile_create(request) :
         return Response(serializer.data,status=status.HTTP_201_CREATED)
 
 @api_view(['GET','PUT'])
-def profile_datail_or_update(request,nickname) :
-    user = request.user
-    profile =get_object_or_404(Profile,nickname=nickname)
+def profile_datail_or_update(request,user_pk) :
+    user = User(pk=user_pk)
+    profile =get_object_or_404(Profile,user=user)
     
     def profile_detail() :
         serializer = ProfileSerializer(profile)

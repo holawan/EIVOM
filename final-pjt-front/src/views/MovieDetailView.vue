@@ -17,7 +17,7 @@
       > </button>
     </div>
 
-    <movie-review-list :reviews="movie.reviews"></movie-review-list>
+    <movie-review-list :reviews="this.reviews"></movie-review-list>
     <movie-rec-similar></movie-rec-similar>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['movie']),
+    ...mapGetters(['movie', 'reviews']),
     likeCount(){
       return this.movie.like_users?.length
     }
@@ -50,11 +50,12 @@ export default {
       'likeMovie',
       'fetchMovie',
       'addMovie',
-
+      'readReviews'
     ])
   },
   created(){
     this.fetchMovie(this.movieId)
+    this.readReviews(this.movieId)
   }
 }
 </script>

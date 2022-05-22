@@ -159,15 +159,17 @@ export default {
       }
     },
 
-    fetchProfile({ commit, getters }, { username }) {
+    fetchProfile({ commit, getters }, user_pk) {
       axios({
-        url: drf.accounts.profile(username),
+        url: drf.accounts.profile(user_pk),
         method: 'get',
         headers: getters.authHeader,
       })
-        .then(res => {
-          commit('SET_PROFILE', res.data)
-        })
+      .then(res => {
+        console.log(res)
+        commit('SET_PROFILE', res.data)
+        
+      })
     },
 
     loadGenre({getters, commit}){

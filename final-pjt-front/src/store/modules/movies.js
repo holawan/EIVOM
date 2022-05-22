@@ -22,6 +22,7 @@ export default{
     movies: [],
     movie: {},
     selectedMovie: null,
+    reviews:[],
   },
 
   getters: {
@@ -29,13 +30,15 @@ export default{
     movie: state => state.movie,
     topRatedMovies: state => state.topRatedMovies,
     authHeader2: state => ({ Authorization: `JWT ${state.token}`}),
+    reviews: state => state.reviews
    
   },
 
   mutations: {
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie= movie,
-    SET_MOVIE_REVIEWS: (state, reviews) => (state.movie.reviews = reviews),
+    SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews.push(reviews)),
+    GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
     
   },
@@ -49,7 +52,6 @@ export default{
         
       })
       .then(res => {
-        console.log(res)
         commit('SET_MOVIE', res.data)
 
       })
@@ -81,8 +83,8 @@ export default{
       .catch(err => console.err(err.response))
     },
 
-    createReview({commit, getters}, {movieId, content}) {
-      const review = {content}
+    createReview({commit, getters}, {movieId, content, rate}) {
+      const review = {content, rate}
       axios({
         url: drf.movies.reviews(movieId),
         method: 'post',
@@ -90,7 +92,19 @@ export default{
         headers: getters.authHeader,
       })
       .then(res => {
-        commit('SET_MOVIE_REVIEW', res.data)
+        commit('SET_MOVIE_REVIEWS', res.data)
+      })
+      .catch(err => console.error(err.response))
+    },
+
+    readReviews({ commit, getters}, movieId) {
+      axios({
+        url: drf.movies.reviews(movieId),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('GET_MOVIE_REVIEWS', res.data)
       })
       .catch(err => console.error(err.response))
     },

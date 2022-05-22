@@ -57,9 +57,9 @@ class Movie(models.Model):
 
 class Review(models.Model) :
     #리뷰작성자
-   user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+   user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='reviews')
    #리뷰를 작성하려는 영화
-   movie = models.ForeignKey(Movie,on_delete=models.CASCADE)
+   movie = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='reviews')
    #리뷰내용
    content = models.CharField(max_length=100)
    #평점

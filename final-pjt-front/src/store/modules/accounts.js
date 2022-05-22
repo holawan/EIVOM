@@ -8,7 +8,9 @@ export default {
     token: localStorage.getItem('jwt') || '',
     currentUser: {},
     profile: {},
+    genres: [],
     authError: null,
+    
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -16,12 +18,14 @@ export default {
     profile: state => state.profile,
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `JWT ${state.token}`}),
+    genres: state => state.genres,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_PROFILE: (state, profile) => state.profile = profile,
-    SET_AUTH_ERROR: (state, error) => state.authError = error
+    SET_AUTH_ERROR: (state, error) => state.authError = error,
+    SET_GENRELIST:(state, genres) => state.genres = genres,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -153,6 +157,18 @@ export default {
           commit('SET_PROFILE', res.data)
         })
     },
-  },
 
+    loadGenre({getters, commit}){
+      axios({
+        url: drf.accounts.genrelist(),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        console.log(res.data)
+        commit('SET_GENRELIST', res.data)
+      })
+    },
+  },
 }
+

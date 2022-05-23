@@ -12,7 +12,8 @@ class Crew(models.Model) :
         upload_to='thumbnails/',
         processors=[Thumbnail(300, 300)],
         format='JPEG',
-        options={'quality': 60}
+        options={'quality': 60},
+         default='media/김태리.jpg'
     ),
     crew_backdrop = ProcessedImageField(
         blank=True,null=True,

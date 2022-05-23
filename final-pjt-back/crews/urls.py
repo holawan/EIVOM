@@ -12,6 +12,6 @@ urlpatterns = [
     path('articles/<int:crew_pk>/', views.article_list_or_create),
     path('articles/<int:crew_pk>/<int:article_pk>/', views.article_detail_or_update_or_delete),
     # comments
-    path('articles/<int:crew_pk>/<int:article_pk>/comments/', views.create_comment),
-    path('articles/<int:crew_pk>/<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete)
+    path('articles/<int:crew_pk>/<int:article_pk>/comments/', views.comment_create_or_list),
+    path('articles/<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete)
 ]

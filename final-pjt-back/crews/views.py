@@ -115,27 +115,38 @@ def article_detail_or_update_or_delete(request, crew_pk,article_pk):
         if request.user == article.user:
             return delete_article()
 
-@api_view(['POST'])
-def create_comment(request, crew_pk,article_pk):
-    user = request.user
-    crew = get_object_or_404(Crew,pk=crew_pk)
-    article = get_object_or_404(CrewArticle, pk=article_pk,crew=crew)
-    
-    serializer = CommentSerializer(data=request.data)
-    if serializer.is_valid(raise_exception=True):
-        serializer.save(article=article, user=user)
+@api_view(['GET','POST'])
+def comment_create_or_list(request, crew_pk,article_pk) :
+    def create_comment():
+        user = request.user
+        crew = get_object_or_404(Crew,pk=crew_pk)
+        article = get_object_or_404(CrewArticle, pk=article_pk,crew=crew)
+        
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(article=article, user=user)
 
-        # 기존 serializer 가 return 되면, 단일 comment 만 응답으로 받게됨.
-        # 사용자가 댓글을 입력하는 사이에 업데이트된 comment 확인 불가 => 업데이트된 전체 목록 return 
-        comments = article.comments.all()
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+            # 기존 serializer 가 return 되면, 단일 comment 만 응답으로 받게됨.
+            # 사용자가 댓글을 입력하는 사이에 업데이트된 comment 확인 불가 => 업데이트된 전체 목록 return 
+            comments = article.comments.all()
+            serializer = CommentSerializer(comments, many=True)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    def comment_list():
+        comments = get_list_or_404(CrewReview,article=article_pk)
+        serializer = CommentSerializer(comments,many=True)
+        return Response(serializer.data)
+
+
+    if request.method == 'POST':
+        return create_comment()
+    elif request.method == 'GET':
+        return comment_list()
 
 @api_view(['PUT', 'DELETE'])
 def comment_update_or_delete(request, article_pk, comment_pk):
-    article = get_object_or_404(Article, pk=article_pk)
-    comment = get_object_or_404(Comment, pk=comment_pk)
+    article = get_object_or_404(CrewArticle, pk=article_pk)
+    comment = get_object_or_404(CrewReview, pk=comment_pk)
 
     def update_comment():
         if request.user == comment.user:
@@ -149,9 +160,7 @@ def comment_update_or_delete(request, article_pk, comment_pk):
     def delete_comment():
         if request.user == comment.user:
             comment.delete()
-            comments = article.comments.all()
-            serializer = CommentSerializer(comments, many=True)
-            return Response(serializer.data)
+            return Response(status=status.HTTP_204_NO_CONTENT)
     
     if request.method == 'PUT':
         return update_comment()

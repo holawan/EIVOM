@@ -14,11 +14,10 @@ from .serializers.movie import MovieListSerializer, MovieSerializer
 from .serializers.review import Review, ReviewSerializer
 
 @api_view(['GET'])
-def genre_recommend(request,genre_pk) :
-    # movies  =get_list_or_404(Movie)
-    movies = Movie.objects.filter(genres__in=[80,35])
-    # print(movies.genres)
-    # print(movie)
+def genre_recommend(request) :
+    user = request.user 
+    genres = user.like_genres.all()
+    movies = Movie.objects.filter(genres__in=genres).order_by('-vote_count').distinct()
     serializer = MovieListSerializer(movies,many=True)
     return Response(serializer.data)
 

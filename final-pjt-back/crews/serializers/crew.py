@@ -11,6 +11,7 @@ class Creweserializer(serializers.ModelSerializer) :
             fields = ('pk',)
     crew_leader = UserSerializer(read_only=True)
     crew_image = serializers.ImageField()
+    crew_backdrop = serializers.ImageField()
     class Meta :
         model = Crew 
         fields = '__all__'

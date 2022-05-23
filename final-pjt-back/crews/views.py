@@ -115,27 +115,11 @@ def article_detail_or_update_or_delete(request, crew_pk,article_pk):
         if request.user == article.user:
             return delete_article()
 
-
-
 @api_view(['POST'])
-def like_article(request, article_pk,crew_pk):
-    crew = get_object_or_404(Crew,crew_pk)
+def create_comment(request, crew_pk,article_pk):
+    user = request.user
+    crew = get_object_or_404(Crew,pk=crew_pk)
     article = get_object_or_404(CrewArticle, pk=article_pk,crew=crew)
-    user = request.user
-    if article.like_users.filter(pk=user.pk).exists():
-        article.like_users.remove(user)
-        serializer = ArticleSerializer(article)
-        return Response(serializer.data)
-    else:
-        article.like_users.add(user)
-        serializer = ArticleSerializer(article)
-        return Response(serializer.data)
-
-
-@api_view(['POST'])
-def create_comment(request, article_pk):
-    user = request.user
-    article = get_object_or_404(Article, pk=article_pk)
     
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):

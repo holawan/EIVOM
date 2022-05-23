@@ -14,7 +14,7 @@ class Crew(models.Model) :
         format='JPEG',
         options={'quality': 60},
          default='media/김태리.jpg'
-    ),
+    )
     crew_backdrop = ProcessedImageField(
         blank=True,null=True,
         upload_to='thumbnails/',
@@ -22,7 +22,7 @@ class Crew(models.Model) :
         format='JPEG',
         options={'quality': 60},
         default='media/김태리.jpg'
-    ),
+    )
     
     LOCATION_COHICES = (
         (11,'서울특별시'),
@@ -69,7 +69,7 @@ class CrewReview(models.Model) :
     #리뷰작성자
    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
    #리뷰를 작성하려는 영화
-   article = models.ForeignKey(CrewArticle,on_delete=models.CASCADE)
+   article = models.ForeignKey(CrewArticle,on_delete=models.CASCADE,related_name='comments')
    #리뷰내용
    content = models.CharField(max_length=100)
    #작성시간

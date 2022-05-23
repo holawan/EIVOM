@@ -3,7 +3,7 @@ from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers.crew import  CrewListSerializer, Creweserializer
+from .serializers.crew import  CrewListSerializer, CrewSerializer, UserSerializer
 from accounts.models import User
 from .models import Crew
 
@@ -17,7 +17,7 @@ def crew_list(request):
 @api_view(['POST'])
 def crew_create(request) :
     user = request.user
-    serializer = Creweserializer(data=request.data)
+    serializer = CrewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True) :
         serializer.save(crew_leader=user)
         return Response(serializer.data,status=status.HTTP_201_CREATED)
@@ -31,11 +31,11 @@ def crew_datail_or_update_or_signup(request,crew_pk) :
     print(crew)
     
     def crew_detail() :
-        serializer = Creweserializer(crew)
+        serializer = CrewSerializer(crew)
         return Response(serializer.data)
     def crew_update() :
         if request.user == crew.crew_leader :
-            serializer = Creweserializer(instance=crew,data=request.data)
+            serializer = CrewSerializer(instance=crew,data=request.data)
             if serializer.is_valid(raise_exception=True) :
                 serializer.save(crew_leader=user)
                 return Response(serializer.data)
@@ -45,11 +45,11 @@ def crew_datail_or_update_or_signup(request,crew_pk) :
     def crew_signup():
         if crew.crew_users.filter(pk=user.pk).exists():
             crew.crew_users.remove(user)
-            serializer = Creweserializer(crew)
+            serializer = CrewSerializer(crew)
             return Response(serializer.data)
         else:
             crew.crew_users.add(user)
-            serializer = Creweserializer(crew)
+            serializer = CrewSerializer(crew)
             return Response(serializer.data)
                 
     if request.method == 'GET' :
@@ -83,8 +83,10 @@ def article_list_or_create(request,crew_pk):
         return article_list()
     elif request.method == 'POST':
         return create_article()
-
-
+@api_view(['GET'])
+def test(reqeust,user_pk) :
+    user = get_object_or_404(User,pk=user_pk) 
+    return Response(UserSerializer(user).data)
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail_or_update_or_delete(request, crew_pk,article_pk):
     crew = get_object_or_404(Crew,pk=crew_pk)

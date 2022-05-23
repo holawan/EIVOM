@@ -9,7 +9,7 @@ class Crew(models.Model) :
     crewintro = models.CharField(max_length=30)
     crew_image = ProcessedImageField(
         blank=True,null=True,
-        upload_to='thumbnails/',
+        upload_to='thumbnails/crew/image/',
         processors=[Thumbnail(300, 300)],
         format='JPEG',
         options={'quality': 60},
@@ -17,7 +17,7 @@ class Crew(models.Model) :
     )
     crew_backdrop = ProcessedImageField(
         blank=True,null=True,
-        upload_to='thumbnails/',
+        upload_to='thumbnails/crew/backdrop/',
         processors=[Thumbnail(300, 300)],
         format='JPEG',
         options={'quality': 60},

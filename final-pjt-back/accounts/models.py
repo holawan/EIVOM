@@ -35,7 +35,7 @@ class Profile(models.Model) :
     #프사
     image = ProcessedImageField(
     null=True,blank=True,
-    upload_to='thumbnails/',
+    upload_to='thumbnails/user/image/',
     # processors=[Thumbnail(300, 300)],
     format='JPEG',
     options={'quality': 100},
@@ -43,7 +43,7 @@ class Profile(models.Model) :
     #배경사진
     backdrop = ProcessedImageField(
     null=True,blank=True,
-    upload_to='thumbnails/',
+    upload_to='thumbnails/user/backdrop/',
     # processors=[Thumbnail(1200, 800)],
     format='JPEG',
     options={'quality': 100},

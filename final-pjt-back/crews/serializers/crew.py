@@ -1,14 +1,24 @@
+from accounts.models import Profile
 from rest_framework import serializers
 
 from ..models import Crew
 
 from accounts.models import User
 
-class Creweserializer(serializers.ModelSerializer) :
-    class UserSerializer(serializers.ModelSerializer) :
-        class Meta :
-            model = User 
-            fields = ('pk',)
+class UserSerializer(serializers.ModelSerializer) :
+
+    class ProfileSerilizer(serializers.ModelSerializer) :
+        class Meta : 
+            model = Profile
+            fields = ('nickname',)
+
+    profile = ProfileSerilizer(read_only=True)
+
+    class Meta : 
+        model = User
+        fields = ('pk','profile',)
+
+class CrewSerializer(serializers.ModelSerializer) :
     crew_leader = UserSerializer(read_only=True)
     crew_image = serializers.ImageField()
     crew_backdrop = serializers.ImageField()

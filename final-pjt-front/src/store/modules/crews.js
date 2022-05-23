@@ -9,6 +9,8 @@ export default{
     currentUser: {},
     crews: [],
     crew: {},
+    article:{},
+    articles:[],
 
   },
 
@@ -22,7 +24,8 @@ export default{
       return state.crew.crew_leader?.email === getters.currentUser.email
     },
     authHeader1: state => ({ Authorization: `JWT ${state.token}`}),
-    
+    article: state=> state.article,
+    articles: state => state.articles,
 
   },
 
@@ -30,7 +33,9 @@ export default{
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
     SET_CREW: (state, crew) => state.crew = crew,
-    SET_CREWS: (state, crews) => state.crews = crews
+    SET_CREWS: (state, crews) => state.crews = crews,
+    SET_ARTICLE: (state, article) => state.article = article,
+    SET_ARTICLES: (state, articles) => state.articles = articles,
 
   },
 
@@ -65,6 +70,31 @@ export default{
         console.error(err.response)
       })
     },
+
+    createArticle({getters, commit}, payload){
+      axios({
+        url: drf.crews.articles(payload.crewId),
+        method: 'post',
+        data: payload.article,
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_ARTICLE', res.data)
+        router.push({ name:'ArticleDetail', params:{article_pk:getters.article.pk}})
+      })
+    },
+
+    fetchArticles({commit, getters}, crewId){
+      axios({
+        url:drf.crews.articles(crewId),
+        method: 'get',
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_ARTICLES', res.data)
+      })
+      .catch(err => console.error(err.resoponse))
+    }
 
   },
 }

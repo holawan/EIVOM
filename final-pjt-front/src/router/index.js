@@ -86,12 +86,12 @@ const routes = [
     component: CrewCreateView
   },
   {
-    path: '/articlecreate',
+    path: '/:crewId/articlecreate',
     name: 'ArticleCreate',
     component: ArticleCreateView
   },
   {
-    path: '/articledetail/:articlePk',
+    path: '/articles/:articleId',
     name: 'ArticleDetail',
     component: ArticleDetailView
   },

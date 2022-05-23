@@ -23,7 +23,7 @@ export default {
     movies: () => HOST + MOVIES,
     movie: movie_pk => HOST + MOVIES + `${movie_pk}/`,
     likeMovie: movie_pk => HOST + MOVIES + `${movie_pk}/` + 'like/',
-    addMovie: (movie_pk, crewId) => HOST + MOVIES+ `${movie_pk}` + `${crewId}` + 'add/',
+    addMovie: (movie_pk, crewId) => HOST + MOVIES+ `${movie_pk}/` + `${crewId}/` + 'add/',
     reviews: movie_pk => HOST + MOVIES + `${movie_pk}/` + REVIEWS,
     review: (movie_pk, review_pk) => HOST + MOVIES + `${movie_pk}/` + REVIEWS + `${review_pk}/`,
   },
@@ -33,9 +33,9 @@ export default {
     crews: () => HOST + CREWS,
     crew: crewId => HOST + CREWS + `${crewId}/`,
     withMovie: movieId => HOST + MOVIES + `${movieId}/` + `with/`,
-    articles: crewId => HOST + CREWS + `${crewId}` + ARTICLES,
+    articles: crewId => HOST + CREWS + `${crewId}/` + ARTICLES,
     article : (crewId, articleId) => HOST + CREWS + `${crewId}` + ARTICLES + `${articleId}/`,
-    reviews: (crewId, articleId) => HOST + ARTICLES + `${articleId}` + REVIEWS,
-    review: (crewId, articleId, reviewId) => HOST + ARTICLES + `${articleId}` + REVIEWS + `${reviewId}/`,
+    reviews: articleId => HOST + ARTICLES + `${articleId}` + REVIEWS,
+    review: (articleId, reviewId) => HOST + ARTICLES + `${articleId}` + REVIEWS + `${reviewId}/`,
   }
 }

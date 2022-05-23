@@ -6,8 +6,15 @@
       <img :src="`http://127.0.0.1:8000${crew.crew_image}`" alt="">
       {{ crew.crewname }}
       <p> {{ crew.crew_location1 }}  {{ crew.crew_location2 }} </p>
-      {{ crew.crew_leader.profile.nickname }}
+      {{ crew.crew_leader.profile.nickname }} <br>
       {{ crew.crewintro }}
+    </div>
+
+    <!-- article 만들기 -->
+    <div>
+       <router-link :to="{ name: 'ArticleCreate', params:{ crewId:crew.id } }">
+         <button>new Article</button>
+        </router-link>
     </div>
 
     <!-- CREW MOVIE LIST -->
@@ -16,15 +23,19 @@
       :key="movie.id"
       :movie="movie"
     ></movie-list-item>
-    <article-list
-    
-    ></article-list>
+
+    <!-- article list -->
+    <article-list-item
+      v-for="article in articles"
+      :key="article.pk"
+      :article="article"
+    ></article-list-item>
   </div>
 </template>
 
 <script>
 
-import ArticleList from '@/components/ArticleList.vue'
+import ArticleListItem from '@/components/ArticleListItem.vue'
 import MovieListItem from '@/components/MovieListItem.vue'
 
 import { mapActions, mapGetters } from 'vuex'
@@ -32,7 +43,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'CrewDetailView',
   components:{
-    ArticleList,
+    ArticleListItem,
     MovieListItem,
   },
   data(){
@@ -41,13 +52,14 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['crew', 'isLeader'])
+    ...mapGetters(['crew', 'isLeader', 'articles'])
   },
   methods:{
-    ...mapActions(['fetchCrew', 'fetchProfile'])
+    ...mapActions(['fetchCrew', 'fetchProfile', 'fetchArticles'])
   },
   created(){
     this.fetchCrew(this.crewId)
+    this.fetchArticles(this.crewId)
   }
 
 }

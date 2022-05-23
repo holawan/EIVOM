@@ -23,7 +23,18 @@ export default{
     selectedMovie: null,
     reviews:[],
     filmos:[],
-    actorInfo:{}
+    actorInfo:{},
+    weather:'',
+    weatherMovies: [],
+    Thunderstorm:[274855,435,216282,745881,30497,674,397837,293670,430040],
+    Clear:[448491,43949,460668,277834,212778,84111,467909,269149,16859,398818],
+    Snow:[79680,38,47002,578209,336026,1581,24,38142,4550,109445,330457,321612],
+    Rain:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
+    Clouds:[313369,568160,579188,640,205596,20342,581390,8966],
+    Drizzle:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
+    unknown:[37280,128881,605193]
+
+
   },
 
   getters: {
@@ -34,6 +45,8 @@ export default{
     reviews: state => state.reviews,
     filmos: state => state.filmos,
     actorInfo: state=> state.actorInfo,
+    weather: state => state.weather,
+    weatherMovies: state => state.weatherMovies,
    
   },
 
@@ -45,6 +58,12 @@ export default{
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
     SET_FILMOS: (state, filmos) => (state.filmos = filmos),
     SET_ACTOR_INFO: (state, info) => (state.actorInfo= info),
+    SET_WEATHER: (state, weather) => (state.weather = weather),
+    SET_WEATHER_MOVIES: (state, movies) => (state.weatherMovies = movies),
+    ADD_WEATHER_MOVIES: (state, movie) => {
+      (state.weatherMovies.push(movie))
+    }
+      
   
     
   },
@@ -98,7 +117,7 @@ export default{
         headers: getters.authHeader,
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         commit('SET_MOVIE_REVIEWS', res.data)
       })
       .catch(err => console.error(err.response))
@@ -129,7 +148,7 @@ export default{
         params
       })
       .then(res => {
-        console.log(res)
+        // console.log(res)
         commit ('SET_TOP_RATED_MOVIES', res.data.results)
       })
     },
@@ -147,9 +166,8 @@ export default{
       })
       .then(res => {
         commit('SET_ACTOR_INFO', res.data)
-        console.log(res.data)
+        // console.log(res.data)
       })
-
     },
 
     getCastDetail({commit},castId){
@@ -165,8 +183,76 @@ export default{
       })
       .then(res => {
         commit('SET_FILMOS', res.data)
-        console.log(res.data)
+        // console.log(res.data)
       })
+    },
+
+    fetchWeatherMovie({commit,getters}, movieId){
+      axios({
+        url: drf.movies.movie(movieId),
+        method: 'get',
+        headers: getters.authHeader2,
+      })
+      .then(res => {
+        commit('ADD_WEATHER_MOVIES', res.data)
+      })
+      .catch(err => {
+        console.error(err.response)
+      })
+    },
+
+    removeMovies({commit}){
+      commit('SET_WEATHER_MOVIES', '')
+    },
+
+    getWeather({commit, state, dispatch}, location){
+      const API_KEY = '343c1608f7c4aa62ef8a1d76113b002d'
+      const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=kr&appid=${API_KEY}`
+      axios({
+        method:'get',
+        url: API_URL,
+      })
+      .then(res => {
+        dispatch('removeMovies')
+        // console.log(res.data.weather[0].main)
+        commit('SET_WEATHER', res.data.weather[0].main)
+        const nowweather = state.weather
+        if (nowweather==='Thunderstorm'){
+          const movieids = state.Thunderstorm
+          for (let index = 0; index < movieids.length; index++) {
+            this.fetchWeatherMovie(movieids[index])
+          }
+        } else if (nowweather==='Rain'){
+          const movieids = state.Rain
+          for (let index = 0; index < movieids.length; index++) {
+            this.fetchWeatherMovie(movieids[index])
+          }
+        } else if (nowweather==='Clear'){
+          const movieids = state.Clear
+          for (let index = 0; index < movieids.length; index++) {
+            this.fetchWeatherMovie(movieids[index])
+          }
+        } else if (nowweather==='Snow'){
+          const movieids = state.Snow
+          for (let index = 0; index < movieids.length; index++) {
+            this.fetchWeatherMovie(movieids[index])
+          }
+        } else if (nowweather==='Drizzle'){
+          const movieids = state.Drizzle
+          for (let index = 0; index < movieids.length; index++) {
+            this.fetchWeatherMovie(movieids[index])
+          }
+        } else if (nowweather==='Clouds'){
+          const movieids = state.Clouds
+          for (let index = 0; index < movieids.length; index++) {
+            dispatch('fetchWeatherMovie', movieids[index])
+          }
+        }
+        
+      })
+      .catch(err => console.error(err.response))
+
+
     },
 
 

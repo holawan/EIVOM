@@ -25,3 +25,11 @@ class MovieSerializer(serializers.ModelSerializer):
         'poster_path', 'backdrop_path','overview','release_date',
         'runtime','tagline','actor_id','actors','actors_path',
         'director','view_count','genres','review', 'like_users','like_user_count')
+
+from crews.models import Crew
+# Article List Read
+class CrewMovieListSerializer(serializers.ModelSerializer):
+
+    class Meta :
+        model = Crew 
+        fields = ('pk','crewname','movies',)

@@ -23,4 +23,4 @@ class CrewListSerializer(serializers.ModelSerializer):
     class Meta :
         crew_image = serializers.ImageField()
         model = Crew 
-        fields = ('crewname','crew_image')
+        fields = ('crewname','crew_image',)

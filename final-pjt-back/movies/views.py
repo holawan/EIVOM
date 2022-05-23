@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Movie,Review
 from crews.models import Crew
@@ -87,16 +88,23 @@ def review_update_delete(request, movie_pk, review_pk):
     elif request.method == 'DELETE':
         return delete_review()
 
-from crews.serializers import Creweserializer
-api_view(['POST'])
+from .serializers.movie import CrewMovieListSerializer
+
+@api_view(['POST'])
 def crew_add_movie(request,movie_pk,crew_pk) :
     crew = get_object_or_404(Crew,pk=crew_pk)
     movie = get_object_or_404(Movie,pk=movie_pk)
     if crew.movies.filter(pk=movie.pk).exists():
         crew.movies.remove(movie)
-        serializer = Creweserializer(crew)
+        serializer = CrewMovieListSerializer(crew)
         return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
     else:
         crew.movies.add(movie)
-        serializer = Creweserializer(crew)
+        serializer = CrewMovieListSerializer(crew)
         return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def crew_movie_list(request,crew_pk) :
+    crew = get_object_or_404(Crew,pk=crew_pk) 
+    serializer = CrewMovieListSerializer(crew)
+    return Response(serializer.data)

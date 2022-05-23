@@ -18,7 +18,7 @@ class Movie(models.Model):
     poster_path = models.CharField(max_length=200,null=True)
     #영화배경
     backdrop_path = models.CharField(max_length=200,null=True)
-    #개요
+    #개요S
     overview = models.TextField()
     #개봉일
     release_date = models.DateField()
@@ -41,7 +41,7 @@ class Movie(models.Model):
     #조회수
     view_count = models.IntegerField(default=0)
     #장르참조
-    genres = models.JSONField(null=True)
+    genres = models.ManyToManyField(Genre,related_name='movie_genres')
     #영화를 좋아하는 유저
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='like_movies',blank=True)
 

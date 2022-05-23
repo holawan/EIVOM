@@ -8,8 +8,8 @@ from accounts.models import User
 from .models import Crew
 
 @api_view(['GET'])
-def crew_list(request):
-    crews = get_list_or_404(Crew)
+def crew_list(request,genre_pk):
+    crews = get_list_or_404(Crew,pk=genre_pk)
     print(crews)
     serializer = CrewListSerializer(crews, many=True)
     return Response(serializer.data)
@@ -83,10 +83,10 @@ def article_list_or_create(request,crew_pk):
         return article_list()
     elif request.method == 'POST':
         return create_article()
-@api_view(['GET'])
-def test(reqeust,user_pk) :
-    user = get_object_or_404(User,pk=user_pk) 
-    return Response(UserSerializer(user).data)
+# @api_view(['GET'])
+# def test(reqeust,user_pk) :
+#     user = get_object_or_404(User,pk=user_pk) 
+#     return Response(UserSerializer(user).data)
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail_or_update_or_delete(request, crew_pk,article_pk):
     crew = get_object_or_404(Crew,pk=crew_pk)
@@ -167,3 +167,4 @@ def comment_update_or_delete(request, article_pk, comment_pk):
         return update_comment()
     elif request.method == 'DELETE':
         return delete_comment()
+

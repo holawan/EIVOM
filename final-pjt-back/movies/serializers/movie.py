@@ -6,6 +6,12 @@ from .review import ReviewSerializer
 
 User = get_user_model()
 
+class MovieListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fields = ('pk', 'title', 'poster_path',)
+
 
 class MovieSerializer(serializers.ModelSerializer):
     

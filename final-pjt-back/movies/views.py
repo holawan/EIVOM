@@ -1,3 +1,4 @@
+from operator import contains
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Movie,Review
@@ -9,8 +10,20 @@ from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers.movie import MovieSerializer
+from .serializers.movie import MovieListSerializer, MovieSerializer
 from .serializers.review import Review, ReviewSerializer
+
+@api_view(['GET'])
+def genre_recommend(request,genre_pk) :
+    # movies  =get_list_or_404(Movie)
+    movies = Movie.objects.filter(genres__in=[80,35])
+    # print(movies.genres)
+    # print(movie)
+    serializer = MovieListSerializer(movies,many=True)
+    return Response(serializer.data)
+
+
+
 @api_view(['GET'])
 def movie_deatil(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)

@@ -118,11 +118,10 @@ def article_detail_or_update_or_delete(request, crew_pk,article_pk):
             return delete_article()
 
 @api_view(['GET','POST'])
-def comment_create_or_list(request, crew_pk,article_pk) :
+def comment_create_or_list(request,article_pk) :
     def create_comment():
         user = request.user
-        crew = get_object_or_404(Crew,pk=crew_pk)
-        article = get_object_or_404(CrewArticle, pk=article_pk,crew=crew)
+        article = get_object_or_404(CrewArticle, pk=article_pk)
         
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):

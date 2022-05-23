@@ -79,7 +79,7 @@ export default {
       console.log(this.credentials.image)
     },
     onGetFile2() {
-      this.credentials.backdrop =this.$refs.image.files[0]
+      this.credentials.backdrop =this.$refs.backdrop.files[0]
     },
     sendImageToServer(){
       const formData = new FormData()

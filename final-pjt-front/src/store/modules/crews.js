@@ -29,6 +29,8 @@ export default{
   mutations:{
     SET_TOKEN: (state, token) => state.token = token,
     SET_CURRENT_USER: (state, user) => state.currentUser = user,
+    SET_CREW: (state, crew) => state.crew = crew,
+    SET_CREWS: (state, crews) => state.crews = crews
 
   },
 
@@ -48,7 +50,21 @@ export default{
       .finally(()=>{
         console.log(credentials)
       })
-    }
+    },
+
+    fetchCrew({commit, getters}, crewId){
+      axios({
+        url: drf.crews.crew(crewId),
+        method: 'get',
+        headers: getters.authHeader1
+      })
+      .then(res => {
+        commit('SET_CREW', res.data)
+      })
+      .catch(err => {
+        console.error(err.response)
+      })
+    },
 
   },
 }

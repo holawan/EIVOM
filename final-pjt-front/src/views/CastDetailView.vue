@@ -11,6 +11,7 @@
     </div>
     
     <!-- filmography -->
+    <!-- filmo movid list item으로 변경 가능? -->
     <div v-for="filmo in filmos.cast" :key="filmo.id">
       <router-link :to="{name: 'MovieDetail', params: { movie_pk:filmo.id } }">
         <div class="col-4 card mx-4 mb-5" style="width: 18rem;padding-left:0px;">

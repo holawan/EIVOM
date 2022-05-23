@@ -15,6 +15,7 @@ import LoginView from '@/views/accounts/LoginView.vue'
 import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
+import ArticleCreateView from '@/views/ArticleCreateView.vue'
 
 Vue.use(VueRouter)
 
@@ -83,6 +84,11 @@ const routes = [
     path: '/crewcreate',
     name: 'CrewCreate',
     component: CrewCreateView
+  },
+  {
+    path: '/articlecreate',
+    name: 'ArticleCreate',
+    component: ArticleCreateView
   },
   {
     path: '/articledetail/:articlePk',

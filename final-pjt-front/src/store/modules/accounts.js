@@ -178,7 +178,6 @@ export default {
         headers: getters.authHeader,
       })
       .then(res => {
-        console.log(res.data)
         commit('SET_GENRELIST', res.data)
       })
     },

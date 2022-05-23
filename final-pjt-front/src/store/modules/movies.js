@@ -9,7 +9,6 @@ export default{
     token: localStorage.getItem('jwt') || '',
     topRatedMovies:[],
     myMovies: [],
-    crewMovies: [],
     boxOfficeMovies:[],
     RecActorMovies:[],
     RecForYouMovies:[],

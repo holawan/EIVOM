@@ -4,7 +4,7 @@
     <movie-list-item
       v-for="movie in movies"
       :key="movie.id"
-      :movie-item="movie"
+      :movie="movie"
     ></movie-list-item>
   </div>
 </template>

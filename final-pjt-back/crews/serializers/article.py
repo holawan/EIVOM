@@ -28,13 +28,11 @@ class ArticleListSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('pk')
+            fields = ('pk',)
     crew = Creweserializer(read_only=True)
     user = UserSerializer(read_only=True)
     # queryset annotate (views에서 채워줄것!)
-    comment_count = serializers.IntegerField()
-    like_count = serializers.IntegerField()
 
     class Meta:
         model = CrewArticle
-        fields = ('pk', 'user', 'title', 'comment_count', 'like_count','crew')
+        fields = ('pk', 'user', 'title', 'crew',)

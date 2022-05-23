@@ -8,12 +8,21 @@ class Crew(models.Model) :
     crewname = models.CharField(max_length=10,unique=True)
     crewintro = models.CharField(max_length=30)
     crew_image = ProcessedImageField(
-        blank=True,
+        blank=True,null=True,
         upload_to='thumbnails/',
         processors=[Thumbnail(300, 300)],
         format='JPEG',
         options={'quality': 60}
-    )
+    ),
+    crew_backdrop = ProcessedImageField(
+        blank=True,null=True,
+        upload_to='thumbnails/',
+        processors=[Thumbnail(300, 300)],
+        format='JPEG',
+        options={'quality': 60},
+        default='media/김태리.jpg'
+    ),
+    
     LOCATION_COHICES = (
         (11,'서울특별시'),
         (21,'부산광역시'),

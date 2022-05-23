@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Crew
+from ..models import Crew
 
 from accounts.models import User
 
@@ -24,3 +24,6 @@ class CrewListSerializer(serializers.ModelSerializer):
         crew_image = serializers.ImageField()
         model = Crew 
         fields = ('crewname','crew_image',)
+
+
+    

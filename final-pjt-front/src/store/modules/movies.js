@@ -23,6 +23,8 @@ export default{
     movie: {},
     selectedMovie: null,
     reviews:[],
+    filmos:[],
+    actorInfo:{}
   },
 
   getters: {
@@ -30,7 +32,9 @@ export default{
     movie: state => state.movie,
     topRatedMovies: state => state.topRatedMovies,
     authHeader2: state => ({ Authorization: `JWT ${state.token}`}),
-    reviews: state => state.reviews
+    reviews: state => state.reviews,
+    filmos: state => state.filmos,
+    actorInfo: state=> state.actorInfo,
    
   },
 
@@ -40,6 +44,9 @@ export default{
     SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
+    SET_FILMOS: (state, filmos) => (state.filmos = filmos),
+    SET_ACTOR_INFO: (state, info) => (state.actorInfo= info),
+  
     
   },
 
@@ -127,5 +134,42 @@ export default{
         commit ('SET_TOP_RATED_MOVIES', res.data.results)
       })
     },
+
+    getActorInfo({commit}, castId){
+      const API_URL = `https://api.themoviedb.org/3/person/${castId}`
+      const params = {
+        api_key: '473836c79a1fc815410e8bc162e748cd',
+        language: 'ko-KR',
+      }
+      axios({
+        mehtod: 'get',
+        url: API_URL,
+        params
+      })
+      .then(res => {
+        commit('SET_ACTOR_INFO', res.data)
+        console.log(res.data)
+      })
+
+    },
+
+    getCastDetail({commit},castId){
+      const API_URL = `https://api.themoviedb.org/3/person/${castId}/movie_credits`
+      const params = {
+        api_key: '473836c79a1fc815410e8bc162e748cd',
+        language: 'ko-KR',
+      }
+      axios({
+        mehtod: 'get',
+        url: API_URL,
+        params
+      })
+      .then(res => {
+        commit('SET_FILMOS', res.data)
+        console.log(res.data)
+      })
+    },
+
+
   },
 }

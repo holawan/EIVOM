@@ -23,8 +23,11 @@
       :idx="idx"
     >
       <router-link :to="{name: 'CastDetail', params: { castId:movie.actor_id[idx] } }">
-        <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.actors_path[idx]" alt="">
-        <h5>{{ movie.actors[idx] }}</h5>
+        <div class="col-4 card mx-4 mb-5" style="width: 18rem;padding-left:0px;">
+          <img class="card-img-top " :src="'https://image.tmdb.org/t/p/w400/'+ movie.actors_path[idx]" alt="Card image cap" style="width:10rem; height:15rem; box-sizing:content-box;">
+          <br>
+            <h5>{{ movie.actors[idx] }}</h5>
+        </div>
       </router-link>
       
 

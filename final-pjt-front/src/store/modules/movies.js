@@ -24,7 +24,7 @@ export default{
     selectedMovie: null,
     reviews:[],
     filmos:[],
-    actorInfo:[]
+    actorInfo:{}
   },
 
   getters: {
@@ -147,8 +147,8 @@ export default{
         params
       })
       .then(res => {
-        commit('SET_ACTOR_INFO', res)
-        console.log(res)
+        commit('SET_ACTOR_INFO', res.data)
+        console.log(res.data)
       })
 
     },
@@ -165,8 +165,8 @@ export default{
         params
       })
       .then(res => {
-        commit('SET_FILMOS', res)
-        console.log(res)
+        commit('SET_FILMOS', res.data)
+        console.log(res.data)
       })
     },
 

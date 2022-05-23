@@ -2,8 +2,6 @@
   <div>
     <h1>로그인</h1>
     <account-error-list v-if="authError"></account-error-list>
-
-    <google-vue></google-vue>
     <form @submit.prevent="login(credentials)">
       <div>
         <label for="email">userid: </label>
@@ -23,7 +21,6 @@
 
 <script>
 import AccountErrorList from '@/components/AccountErrorList.vue'
-import GoogleVue from '@/components/GoogleVue.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 

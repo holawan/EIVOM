@@ -28,7 +28,7 @@ export default {
     review: (movie_pk, review_pk) => HOST + MOVIES + `${movie_pk}/` + REVIEWS + `${review_pk}/`,
   },
   crews:{
-    create: ()=> HOST + CREWS + 'create/',
+    create: ()=> HOST + CREWS + 'crew_create/',
     register: crewId => HOST + CREWS + `${crewId}`+ 'register/',
     crews: () => HOST + CREWS,
     crew: crewId => HOST + CREWS + `${crewId}/`,

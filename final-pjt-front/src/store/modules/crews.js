@@ -1,5 +1,5 @@
 import drf from "@/api/drf"
-// import router from "@/router"
+import router from "@/router"
 import axios from "axios"
 
 
@@ -39,11 +39,14 @@ export default{
         url: drf.crews.create(),
         method: 'post',
         data: credentials,
-        geaders: getters.authHeader,
+        headers: getters.authHeader1,
       })
       .then(res => {
         console.log(res)
-        // router.push({name:CrewDetail, params:{crewId:}})
+        router.push({name:'CrewDetail', params:{crewId: res.data.id}})
+      })
+      .finally(()=>{
+        console.log(credentials)
       })
     }
 

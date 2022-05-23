@@ -62,9 +62,9 @@ def genre_add(request,genre1,genre2,genre3):
 
 
 # from allauth.socialaccount.providers.kakao.views import KakaoOAuth2Adapter
-# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-# from rest_auth.registration.views import SocialLoginView
-# import requests
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+import requests
 
 # from accounts.models import User
 
@@ -91,5 +91,5 @@ def genre_add(request,genre1,genre2,genre3):
 #             user.save()
 #     adapter_class = KakaoOAuth2Adapter
     
-# class GoogleLogin(SocialLoginView):
-#     adapter_class = GoogleOAuth2Adapter
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter

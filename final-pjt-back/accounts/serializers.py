@@ -1,5 +1,3 @@
-from dataclasses import fields
-from pickletools import read_floatnl
 from rest_framework import serializers
 
 from .models import User,Profile

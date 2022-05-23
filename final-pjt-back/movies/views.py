@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Movie,Review
+from crews.models import Crew
 # Create your views here.
 from django.shortcuts import get_object_or_404,get_list_or_404
 from django.db.models import Count
@@ -85,3 +86,17 @@ def review_update_delete(request, movie_pk, review_pk):
         return update_review()
     elif request.method == 'DELETE':
         return delete_review()
+
+from crews.serializers import Creweserializer
+api_view(['POST'])
+def crew_add_movie(request,movie_pk,crew_pk) :
+    crew = get_object_or_404(Crew,pk=crew_pk)
+    movie = get_object_or_404(Movie,pk=movie_pk)
+    if crew.movies.filter(pk=movie.pk).exists():
+        crew.movies.remove(movie)
+        serializer = Creweserializer(crew)
+        return Response(serializer.data,status=status.HTTP_202_ACCEPTED)
+    else:
+        crew.movies.add(movie)
+        serializer = Creweserializer(crew)
+        return Response(serializer.data,status=status.HTTP_202_ACCEPTED)

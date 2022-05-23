@@ -28,7 +28,6 @@ export default {
   name: 'LoginView',
   components: {
     AccountErrorList,
-    GoogleVue,
   },
   data() {
     return{

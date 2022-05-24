@@ -22,7 +22,7 @@ export default {
     ...mapActions(['getWeather']),
   },
   created(){
-    this.getWeather('seoul')
+    this.getWeather('daejeon')
   }
 
 }

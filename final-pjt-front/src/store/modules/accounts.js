@@ -58,7 +58,6 @@ export default {
       })
         .then(res => {
           dispatch('getJwt',credentials)
-          commit('SET_REFRESH', res.data.refresh_token)
           dispatch('saveRefresh', res.data.refresh_token)
           router.push({name: 'Main'})
         })

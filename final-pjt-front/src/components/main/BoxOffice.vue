@@ -6,22 +6,33 @@
       <h1>BoxOffice</h1>
     </head>
 
-    <movie-list
-      :movies="nowPlayingMovies.slice(0, 6)"
-    ></movie-list>
+    <!-- movies -->
+    <div
+      v-for="movie in nowPlayingMovies"
+      :key="movie.id"
+      :movie="movie"
+    >
+      <div>
+        <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }">
+          <div class="card card-block pr-3" style="width: 18rem;">
+            <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{ movie.title }}</p>
+            </div>
+          </div>
+        </router-link>
+      </div>
+    </div>
 
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieList from '../MovieList.vue'
 
 export default {
   name: 'BoxOffice',
-  components: {
-    MovieList,
-  },
+
   computed:{
     ...mapGetters(['nowPlayingMovies'])
   },

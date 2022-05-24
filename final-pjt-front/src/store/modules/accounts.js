@@ -64,7 +64,7 @@ export default {
         })
         .then((res)=>{
           console.log(res.data)
-          router.push({name: 'Main'})
+          router.push({name: 'Intro'})
         })
         .catch(err => {
           console.error(err.response.data)

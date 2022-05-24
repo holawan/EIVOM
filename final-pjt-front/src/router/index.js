@@ -16,11 +16,17 @@ import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
-// import accounts from '@/store/modules/accounts'
+import IntroView from '@/views/IntroView.vue'
+// import accounts from '@/modules/accounts'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/intro',
+    name:'Intro',
+    component: IntroView,
+  },
   {
     path: '/login',
     name: 'Login',

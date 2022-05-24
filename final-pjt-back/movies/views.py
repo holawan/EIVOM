@@ -12,16 +12,17 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers.movie import MovieListSerializer, MovieSerializer
 from .serializers.review import Review, ReviewSerializer
+import random 
 
 @api_view(['GET'])
 def genre_recommend(request) :
     user = request.user 
     genres = user.like_genres.all()
-    movies = Movie.objects.filter(genres__in=genres).order_by('-vote_count').distinct()
+    movies = list(Movie.objects.filter(genres__in=genres).order_by('-vote_count').distinct()[:50])
+    movies = random.sample(movies,15)
     serializer = MovieListSerializer(movies,many=True)
     return Response(serializer.data)
-
-
+    
 
 @api_view(['GET'])
 def movie_deatil(request, movie_pk):

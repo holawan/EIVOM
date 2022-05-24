@@ -32,7 +32,7 @@ export default {
     ...mapActions(['getWeather', 'fetchWeatherMovie']),
   },
   created(){
-    this.getWeather('seoul')
+    this.getWeather('daejeon')
   }
 
 }

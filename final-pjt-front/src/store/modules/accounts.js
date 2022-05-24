@@ -50,8 +50,8 @@ export default {
       localStorage.setItem('jwt', '')
     },
 
-    login({ commit,dispatch,state }, credentials) {
-      axios({
+     login({ commit,dispatch }, credentials) {
+       axios({
         url: drf.accounts.login(),
         method: 'post',
         data: credentials
@@ -59,9 +59,11 @@ export default {
         .then(res => {
           dispatch('getJwt',credentials)
           dispatch('saveRefresh', res.data.refresh_token)
-          while (true) {
-            if (state.token) {break}
-          }
+          // router.push({name: 'Main'})
+          return res
+        })
+        .then((res)=>{
+          console.log(res.data)
           router.push({name: 'Main'})
         })
         .catch(err => {

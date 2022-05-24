@@ -1,10 +1,12 @@
 <template>
   <div>
-    <input v-model="searchvalue"
-      type="text" 
-      @input="onInputText" 
-      @keyup.enter="onResetText"
-    >
+    <div>
+      <input :value="searchValue"
+        type="text" 
+        @input="onInputText" 
+        @keyup.enter="onResetText"
+        >
+    </div>
   </div>
 </template>
 
@@ -15,14 +17,14 @@ export default {
     return {searchvalue:''}
   },
   methods: {
-    onInputText () {
-      const searchKeyword = this.searchvalue.trim()
+    onInputText (event) {
+      const searchKeyword = event.target.value.trim()
       if (searchKeyword) {
         this.$emit('text-input', searchKeyword)
         }
     },
-    onResetText () {
-      this.searchvalue=''
+    onResetText (event) {
+      event.target.value=''
     }
   }
 }

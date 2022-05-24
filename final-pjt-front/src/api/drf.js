@@ -27,6 +27,7 @@ export default {
     addMovie: (movie_pk, crew_pk) => HOST + MOVIES+ `${movie_pk}/` + `${crew_pk}/` + 'add/',
     reviews: movie_pk => HOST + MOVIES + `${movie_pk}/` + REVIEWS,
     review: (movie_pk, review_pk) => HOST + MOVIES + `${movie_pk}/` + REVIEWS + `${review_pk}/`,
+    cluster: cluster => HOST + MOVIES + 'cluster_recommend/' +`${cluster}/`,
   },
   crews:{
     create: ()=> HOST + CREWS + 'crew_create/',

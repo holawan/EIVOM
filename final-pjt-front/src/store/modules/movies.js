@@ -33,7 +33,8 @@ export default{
     Clouds:[313369,568160,579188,640,205596,20342,581390,8966],
     Drizzle:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
     unknown:[37280,128881,605193],
-    groupMovies: [],
+    clusterMovies: [],
+    cmTitle: '',
 
 
   },
@@ -48,7 +49,8 @@ export default{
     actorInfo: state=> state.actorInfo,
     weather: state => state.weather,
     weatherMovies: state => state.weatherMovies,
-    groupMovies: state=> state.groupMovies,
+    clusterMovies: state=> state.clusterMovies,
+    cmTitle: state => state.cmTitle,
    
   },
 
@@ -65,7 +67,8 @@ export default{
     ADD_WEATHER_MOVIES: (state, movie) => {
       (state.weatherMovies.push(movie))
     },
-    SET_GROUP_MOVIES: (state, movies) => (state.groupMovies = movies),      
+    SET_CLUSTER_MOVIES: (state, movies) => (state.clusterMovies = movies), 
+    SET_CM_TITLE: (state, cmTitle) => (state.cmTitle = cmTitle),     
   
     
   },
@@ -259,15 +262,32 @@ export default{
       .catch(err => console.error(err.response))
     },
 
-    getGroupMovies({commit, getters}){
-      const num = _.random(1,6)
+    getClusterMovies({commit, getters}){
+      const cluster = _.random(1,5)
+      
       axios({
-        url: drf.movie(num),
+        url: drf.movies.cluster(cluster),
         method: 'get',
         headers: getters.authHeader2
       })
       .then(res => {
-        commit('SET_GROUP_MOVIES', res.data)
+        if (cluster === 1) {
+          const CMtitle = '카타르시스를 폭발시킬 영화'
+          commit('SET_CM_TITLE', CMtitle)
+        } else if (cluster === 2) {
+          const CMtitle = '동심을 되찾고 싶다면 이 영화 어때요?'
+          commit('SET_CM_TITLE', CMtitle)
+        } else if (cluster === 3) {
+          const CMtitle = '무더위 대비 등골 오싹 영화'
+          commit('SET_CM_TITLE', CMtitle)
+        } else if (cluster === 4) {
+          const CMtitle = '박진감 넘치는 흥미진진 영화 추천'
+          commit('SET_CM_TITLE', CMtitle)
+        } else {
+          const CMtitle = '순수하거나 치명적이거나 달콤한 영화'
+          commit('SET_CM_TITLE', CMtitle)
+        }
+        commit('SET_CLUSTER_MOVIES', res.data)      
       })
       .catch(err => console.error(err.response))
       

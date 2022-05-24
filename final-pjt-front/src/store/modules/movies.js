@@ -51,6 +51,13 @@ export default{
     weatherMovies: state => state.weatherMovies,
     clusterMovies: state=> state.clusterMovies,
     cmTitle: state => state.cmTitle,
+    Rain: state=> state.Rain,
+    Thunderstorm: state=> state.Thunderstorm,
+    Clear: state=> state.Clear,
+    Drizzle: state=> state.Drizzle,
+    Snow: state=> state.Snow,
+    Clouds: state=> state.Clouds,
+
    
   },
 

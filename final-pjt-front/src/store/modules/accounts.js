@@ -50,7 +50,7 @@ export default {
       localStorage.setItem('jwt', '')
     },
 
-    login({ commit,dispatch }, credentials) {
+    login({ commit,dispatch,state }, credentials) {
       axios({
         url: drf.accounts.login(),
         method: 'post',
@@ -59,6 +59,9 @@ export default {
         .then(res => {
           dispatch('getJwt',credentials)
           dispatch('saveRefresh', res.data.refresh_token)
+          while (true) {
+            if (state.token) {break}
+          }
           router.push({name: 'Main'})
         })
         .catch(err => {
@@ -102,16 +105,11 @@ export default {
         // const location1 = res.data.location1
         // const location2 = res.data.location2
         router.push({name:'SelectGenre'})
-
-      }
-        
-      )
+      })
       .catch(err => {
         console.error(err.response.data)
         commit('SET_AUTH_ERROR',err.response.data)
-      }
-      )
-
+      })
     },
 
     logout({ getters, dispatch, commit }) {

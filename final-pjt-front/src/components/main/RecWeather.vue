@@ -6,23 +6,33 @@
   <div>
     <h1>RecWeather</h1>
     <h2>{{ weather }}</h2>
-    <h2>{{ weatherMovies }}</h2>
+    <movie-list-item
+      v-for="movie in weatherMovies"
+      :key="movie.pk"
+      :movie="movie"
+    >
+    </movie-list-item>
+    
 
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import MovieListItem from '../MovieListItem.vue'
 export default { 
   name: 'RecWeather',
+  components:{
+    MovieListItem,
+  },
   computed:{
     ...mapGetters(['weather', 'weatherMovies']),
   },
   methods:{
-    ...mapActions(['getWeather']),
+    ...mapActions(['getWeather', 'fetchWeatherMovie']),
   },
   created(){
-    this.getWeather('daejeon')
+    this.getWeather('seoul')
   }
 
 }

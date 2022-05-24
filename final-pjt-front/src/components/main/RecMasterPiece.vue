@@ -5,11 +5,18 @@
     <h1>
       RecMasterPiece
     </h1>
-    <movie-list-item
-      v-for="movie in topRatedMovies"
-      :key="movie.id"
-      :movie="movie"
-    ></movie-list-item>
+    <div class="container-fluid">
+        <div class="row flex-row flex-nowrap">
+            <movie-list-item
+              v-for="movie in topRatedMovies"
+              :key="movie.id"
+              :movie="movie"
+            ></movie-list-item>
+            
+      </div>
+    </div>
+    
+    
   </div>
 </template>
 

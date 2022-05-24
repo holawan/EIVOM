@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchVar
+    <SearchBar
       @text-input="onTextInput"
       @search-text="onSearchText"
     />
@@ -14,7 +14,7 @@
 <script>
 import axios from 'axios'
 
-import SearchVar from '@/components/search/SearchVar.vue'
+import SearchBar from '@/components/search/SearchBar.vue'
 import SearchMovieList from '@/components/search/SearchMovieList.vue'
 import { mapGetters } from 'vuex'
 
@@ -31,7 +31,7 @@ export default {
     }
   },
   components: {
-    SearchVar,
+    SearchBar,
     SearchMovieList
   },
   computed:{

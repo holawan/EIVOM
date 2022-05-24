@@ -21,7 +21,7 @@ export default{
     Clear:[448491,43949,460668,277834,212778,84111,467909,269149,16859,398818],
     Snow:[79680,38,47002,578209,336026,1581,24,38142,4550,109445,330457,321612],
     Rain:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
-    Clouds:[313369,568160,579188,640,205596,20342,581390,8966],
+    Clouds:[313369,568160,579188,640,205596,20342,581390,8966,605193],
     Drizzle:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
     unknown:[37280,128881,605193],
     clusterMovies: [],
@@ -208,7 +208,7 @@ export default{
       })
     },
 
-    fetchWeatherMovie({commit}, {movieId,header}){
+    fetchWeatherMovie({commit, dispatch}, {movieId,header}){
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
@@ -218,7 +218,25 @@ export default{
         commit('ADD_WEATHER_MOVIES', res.data)
       })
       .catch(err => {
-        console.error(err.response)
+        if (err.response.status === 404) {
+          dispatch('fetchUnkownMovie', movieId)
+        }
+      })
+    },
+
+    fetchUnkownMovie({commit}, movieId){
+      const API_URL = `https://api.themoviedb.org/3/movie/${movieId}`
+      const params = {
+        api_key: '473836c79a1fc815410e8bc162e748cd',
+        language: 'ko-KR',
+      }
+      axios({
+        url: API_URL,
+        method:'get',
+        params
+      })
+      .then(res => {
+        commit('ADD_WEATHER_MOVIES', res.data)
       })
     },
 
@@ -264,7 +282,9 @@ export default{
             dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else {console.log('else')}
       })
-      .catch(err => console.error(err.response))
+      .catch(err => {
+        console.error(err.response)
+      })
     },
 
     getClusterMovies({commit, getters},authHeader){

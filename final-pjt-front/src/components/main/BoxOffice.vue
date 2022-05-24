@@ -30,7 +30,7 @@ export default {
     ...mapActions(['getNowPlaying'])
   },
   created(){
-    this.nowPlayingMovies()
+    this.getNowPlaying()
   }
 }
 </script>

@@ -227,7 +227,7 @@ export default{
         headers: getters.authHeader2,
       })
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         commit('ADD_WEATHER_MOVIES', res.data)
       })
       .catch(err => {

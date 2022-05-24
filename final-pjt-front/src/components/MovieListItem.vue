@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{name: 'MovieDetail', params: {movie_pk:movie.pk} }">
+    <router-link :to="{name: 'MovieDetail', params: {movie_pk:`${movie.id}`} }">
       <div class="card" style="width: 18rem;">
         <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top" alt="...">
         <div class="card-body">

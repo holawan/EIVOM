@@ -17,14 +17,19 @@
         :movie="movie"
       ></movie-list-item>
     </div>
-    
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import MovieListItem from '../MovieListItem.vue'
+
 export default {
   name: 'RecForYou',
+  components:{
+    MovieListItem
+  },
   methods:{
     ...mapActions(['getClusterMovies'])
   },

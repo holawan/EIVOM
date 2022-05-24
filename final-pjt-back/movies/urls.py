@@ -6,6 +6,7 @@ app_name='movies'
 
 urlpatterns = [
     path('genre_recommend/',views.genre_recommend),
+    # path('weather_recommend/',views.weather_recommend),
     #영화 디테일
     path('<int:movie_pk>/',views.movie_deatil),
     #영화 좋아요 누르기 

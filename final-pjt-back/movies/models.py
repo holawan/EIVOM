@@ -36,15 +36,14 @@ class Movie(models.Model):
     actor_id = models.JSONField(null=True)
     actors = models.JSONField(null=True)
     actors_path = models.JSONField(null=True)
-    #감독
-    director = models.CharField(max_length=100, null=True)
     #조회수
     view_count = models.IntegerField(default=0)
     #장르참조
     genres = models.ManyToManyField(Genre,related_name='movie_genres')
+    director = models.TextField()
     #영화를 좋아하는 유저
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='like_movies',blank=True)
-
+    cluster=  models.IntegerField(default=0)
     def __str__(self) :
         return self.title
         

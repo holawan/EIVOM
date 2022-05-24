@@ -6,22 +6,21 @@
       <h1>BoxOffice</h1>
     </head>
 
-    <movie-list-item
-      v-for="movie in nowPlayingMovies"
-      :key="movie.pk"
-      :movie="movie"
-    ></movie-list-item>
+    <movie-list
+      :movies="nowPlayingMovies.slice(0, 6)"
+    ></movie-list>
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
 
 export default {
   name: 'BoxOffice',
   components: {
-    MovieListItem,
+    MovieList,
   },
   computed:{
     ...mapGetters(['nowPlayingMovies'])

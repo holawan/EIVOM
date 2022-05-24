@@ -4,22 +4,22 @@
 <template>
   <div>
     <h1>Rec Genre</h1>
-    <movie-list-item
-      v-for="movie in recGenreMovies"
-      :key="movie.id"
-      :movie="movie"
-    ></movie-list-item> 
+
+    <movie-list
+      :movies="recGenreMovies"
+    ></movie-list>
+
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
 
 export default {
   name: 'RecGenre',
   components:{
-    MovieListItem,
+    MovieList,
   },
   methods:{
     ...mapActions(['getGenreRecMovies',])

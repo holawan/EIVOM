@@ -6,12 +6,9 @@
   <div>
     <h1>RecWeather</h1>
     <h2>{{ weather }}</h2>
-    <movie-list-item
-      v-for="movie in weatherMovies"
-      :key="movie.pk"
-      :movie="movie"
-    >
-    </movie-list-item>
+    <movie-list
+      :movies="weatherMovies"
+    ></movie-list>
     
 
   </div>
@@ -19,11 +16,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
+
 export default { 
   name: 'RecWeather',
   components:{
-    MovieListItem,
+    MovieList,
   },
 
   computed:{

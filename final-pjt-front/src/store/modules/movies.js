@@ -241,36 +241,27 @@ export default{
         if (nowweather==='Thunderstorm'){
           const movieids = state.Thunderstorm
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Rain'){
           const movieids = state.Rain
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Clear'){
           const movieids = state.Clear
           for (let index = 0; index < movieids.length; index++) {
-            console.log(movieids[index])
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Snow'){
           const movieids = state.Snow
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Drizzle'){
           const movieids = state.Drizzle
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Clouds'){
           const movieids = state.Clouds
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', {
-              movieId : movieids[index],
-              header : header})
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else {console.log('else')}
       })
       .catch(err => console.error(err.response))

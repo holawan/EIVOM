@@ -3,23 +3,22 @@
 <template>
   <div>
     <h1>Rec Highly View Movie</h1>
+    
+    <movie-list
+      :movies="recViewCountsMovies"
+    ></movie-list>
 
-    <movie-list-item
-      v-for="movie in recViewCountsMovies"
-      :key="movie.id"
-      :movie="movie"
-    ></movie-list-item>
   </div>
 </template>
 
 <script>
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'RecHighlyView',
   components:{
-    MovieListItem,
+    MovieList,
   },
   methods:{
     ...mapActions(['getViewCountMovies',])

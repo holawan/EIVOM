@@ -2,33 +2,27 @@
 // 클러스터링 / ML
 
 <template>
-  <div class="home container">
+  <div>
     <div>
-      <h1 class="d-flex justify-content-center">RecForYou</h1>
+      <h1>RecForYou</h1><br><hr>
+      <h2>{{ cmTitle }}</h2><hr>
     </div>
-    <div class="d-flex justify-content-center">
-      <h2>{{ cmTitle }}</h2>
-    </div>
-    
-    <div class="row justify-content-center">
-      <movie-list-item
-        v-for="movie in this.clusterMovies"
-        :key="movie.pk"
-        :movie="movie"
-      ></movie-list-item>
-    </div>
+
+      <movie-list
+        :movies="clusterMovies"
+      ></movie-list>
 
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
 
 export default {
   name: 'RecForYou',
   components:{
-    MovieListItem
+    MovieList
   },
   methods:{
     ...mapActions(['getClusterMovies']),
@@ -46,10 +40,5 @@ export default {
 </script>
 
 <style>
-
-.home{
-  display: flex;
-
-}
 
 </style>

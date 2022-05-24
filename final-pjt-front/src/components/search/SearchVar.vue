@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input 
+    <input v-model="searchvalue"
       type="text" 
       @input="onInputText" 
       @keyup.enter="onResetText"
@@ -11,15 +11,18 @@
 <script>
 export default {
   name: 'SearchBar',
+    data(){
+    return {searchvalue:''}
+  },
   methods: {
-    onInputText (event) {
-      const searchKeyword = event.target.value.trim()
+    onInputText () {
+      const searchKeyword = this.searchvalue.trim()
       if (searchKeyword) {
         this.$emit('text-input', searchKeyword)
-      }
+        }
     },
-    onResetText (event) {
-      event.target.value = ''
+    onResetText () {
+      this.searchvalue=''
     }
   }
 }

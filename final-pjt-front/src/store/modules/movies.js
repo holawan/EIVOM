@@ -222,6 +222,7 @@ export default{
         dispatch('removeMovies')
         commit('SET_WEATHER', res.data.weather[0].main)
         const nowweather = state.weather
+        
         if (nowweather==='Thunderstorm'){
           const movieids = state.Thunderstorm
           for (let index = 0; index < movieids.length; index++) {

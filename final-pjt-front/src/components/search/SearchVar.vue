@@ -1,14 +1,27 @@
 <template>
   <div>
-    <h1>SearchVar</h1>
+    <input 
+      type="text" 
+      @input="onInputText" 
+      @keyup.enter="onResetText"
+    >
   </div>
 </template>
 
 <script>
 export default {
-  name:'SearchVar',
-  
-
+  name: 'SearchBar',
+  methods: {
+    onInputText (event) {
+      const searchKeyword = event.target.value.trim()
+      if (searchKeyword) {
+        this.$emit('text-input', searchKeyword)
+      }
+    },
+    onResetText (event) {
+      event.target.value = ''
+    }
+  }
 }
 </script>
 

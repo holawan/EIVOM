@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer) :
     class ProfileSerilizer(serializers.ModelSerializer) :
         class Meta : 
             model = Profile
-            fields = ('nickname',)
+            fields = ('nickname','image')
 
     profile = ProfileSerilizer(read_only=True)
 

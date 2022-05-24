@@ -1,27 +1,29 @@
 <template>
   <div>
-    <h1>SearchList</h1>
-    <movie-list-item
-      v-for="movie in searchMovies"
-      :key="movie.movieid"
-      :movie-item="movie"
-    ></movie-list-item>
+    <SearchListItem
+      v-for="(movie, idx) in movieList"
+      :movie=movie
+      :key=idx
+      @on-click-item="onClickItem"
+    />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
-
+import SearchListItem from '@/components/search/SearchListItem'
 export default {
-  name:'SearchList',
-  components:{
-    MovieListItem,
+  name: 'SearchList',
+  components: {
+    SearchListItem
   },
-  computed:{
-    ...mapGetters(['searchMovies'])
+  props: {
+    movieList: {}
+  },
+  methods: {
+    onClickItem (movie) {
+      this.$emit('on-click-item', movie)
+    }
   }
-
 }
 </script>
 

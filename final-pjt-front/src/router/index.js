@@ -17,8 +17,15 @@ import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
 import IntroView from '@/views/IntroView.vue'
-
+// import store from '@/store'
 Vue.use(VueRouter)
+
+// const requireAuth = () => (to,from,next) =>{
+//   if (store.accounts.state.token !== '') {
+//     return next('/login');
+//   }
+//   next();
+// }
 
 const routes = [
   {
@@ -54,7 +61,10 @@ const routes = [
   {
     path: '/movie',
     name: 'Main',
-    component: MainView
+
+    component: MainView,
+    // beforeEnter : requireAuth
+
   },
   {
     path: '/profile/:user_pk',
@@ -139,7 +149,7 @@ const router = new VueRouter({
 //   }
 
 //   if (!isAuthRequired && isLoggedIn) {
-//     next({ name: 'Movie' })
+//     next({ name: 'Main' })
 //   }
 // })
 

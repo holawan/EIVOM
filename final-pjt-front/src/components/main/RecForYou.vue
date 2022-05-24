@@ -31,13 +31,15 @@ export default {
     MovieListItem
   },
   methods:{
-    ...mapActions(['getClusterMovies'])
+    ...mapActions(['getClusterMovies']),
   },
   computed:{
-    ...mapGetters(['clusterMovies', 'cmTitle'])
+    ...mapGetters(['clusterMovies', 'cmTitle','authHeader2'])
   },
-  created(){
-    this.getClusterMovies()
+  watch :{
+    authHeader2 : function(){
+      this.getClusterMovies
+    }
   }
 }
 </script>

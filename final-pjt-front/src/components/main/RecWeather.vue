@@ -27,15 +27,22 @@ export default {
   },
   computed:{
     ...mapGetters(['weather', 'weatherMovies']),
+    authHeader() {
+      return this.$store.state.accounts.authHeader
+    },
+    
   },
   methods:{
     ...mapActions(['getWeather', 'fetchWeatherMovie']),
   },
-  created(){
-    this.getWeather('daejeon')
+  watch :{
+    authHeader (){
+      console.log(this.authHeader)
+      this.getWeather('seoul')
+    }
   }
-
 }
+
 </script>
 
 <style>

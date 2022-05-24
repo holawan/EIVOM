@@ -2,7 +2,7 @@ import axios from 'axios'
 import drf from '@/api/drf'
 import router from '@/router'
 
-// import _ from 'lodash'
+import _ from 'lodash'
 
 export default{
   state: {
@@ -32,7 +32,8 @@ export default{
     Rain:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
     Clouds:[313369,568160,579188,640,205596,20342,581390,8966],
     Drizzle:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
-    unknown:[37280,128881,605193]
+    unknown:[37280,128881,605193],
+    groupMovies: [],
 
 
   },
@@ -47,6 +48,7 @@ export default{
     actorInfo: state=> state.actorInfo,
     weather: state => state.weather,
     weatherMovies: state => state.weatherMovies,
+    groupMovies: state=> state.groupMovies,
    
   },
 
@@ -62,8 +64,8 @@ export default{
     SET_WEATHER_MOVIES: (state, movies) => (state.weatherMovies = movies),
     ADD_WEATHER_MOVIES: (state, movie) => {
       (state.weatherMovies.push(movie))
-    }
-      
+    },
+    SET_GROUP_MOVIES: (state, movies) => (state.groupMovies = movies),      
   
     
   },
@@ -194,6 +196,7 @@ export default{
         headers: getters.authHeader2,
       })
       .then(res => {
+        console.log(res.data)
         commit('ADD_WEATHER_MOVIES', res.data)
       })
       .catch(err => {
@@ -202,7 +205,7 @@ export default{
     },
 
     removeMovies({commit}){
-      commit('SET_WEATHER_MOVIES', '')
+      commit('SET_WEATHER_MOVIES', [])
     },
 
     getWeather({commit, state, dispatch}, location){
@@ -214,7 +217,6 @@ export default{
       })
       .then(res => {
         dispatch('removeMovies')
-        // console.log(res.data.weather[0].main)
         commit('SET_WEATHER', res.data.weather[0].main)
         const nowweather = state.weather
         if (nowweather==='Thunderstorm'){
@@ -229,8 +231,10 @@ export default{
           }
         } else if (nowweather==='Clear'){
           const movieids = state.Clear
+          console.log(movieids)
           for (let index = 0; index < movieids.length; index++) {
             this.fetchWeatherMovie(movieids[index])
+            console.log(movieids[index])
           }
         } else if (nowweather==='Snow'){
           const movieids = state.Snow
@@ -247,12 +251,26 @@ export default{
           for (let index = 0; index < movieids.length; index++) {
             dispatch('fetchWeatherMovie', movieids[index])
           }
+        } else {
+          console.log('else')
         }
         
       })
       .catch(err => console.error(err.response))
+    },
 
-
+    getGroupMovies({commit, getters}){
+      const num = _.random(1,6)
+      axios({
+        url: drf.movie(num),
+        method: 'get',
+        headers: getters.authHeader2
+      })
+      .then(res => {
+        commit('SET_GROUP_MOVIES', res.data)
+      })
+      .catch(err => console.error(err.response))
+      
     },
 
 

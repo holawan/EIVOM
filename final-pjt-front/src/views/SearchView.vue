@@ -6,6 +6,7 @@
     />
     <SearchMovieList
       :movieList="movieList"
+      :movieListMain="movieListMain"
     />
   </div>
 </template>
@@ -39,11 +40,9 @@ export default {
   methods: {
     onTextInput (textInput) {
       const params = textInput
-      console.log(params)
       this.searchPreview(params)
         .then(res => {
           this.movieList = res.data
-          console.log(res.data,'프리뷰')
         })
     },
       async searchPreview(params) {
@@ -64,11 +63,8 @@ export default {
       this.searchMain(params)
         .then( res => {
           this.movieListMain = res.data
-          console.log(res.data,'사진까지')
         })
-        .catch( err => {
-          console.log(err)
-        })
+
     },
     async searchMain(params) {
       // url 확인

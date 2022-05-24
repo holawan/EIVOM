@@ -4,10 +4,12 @@
       v-for="(movie, idx) in movieList"
       :movie=movie
       :key=idx></SearchListItemPreview>
+
+
     <SearchListItem
       v-for="(movie2) in movieListMain"
       :movie=movie2
-      :key=movie2.pk
+      :key=movie2.title
       @on-click-item="onClickItem"
     ></SearchListItem>
   </div>
@@ -30,6 +32,8 @@ export default {
     onClickItem (movie) {
       this.$emit('on-click-item', movie)
     }
+  },
+  mounted(){
   }
 }
 </script>

@@ -16,7 +16,6 @@ import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
-// import accounts from '@/store/modules/accounts'
 
 Vue.use(VueRouter)
 
@@ -116,11 +115,11 @@ const router = new VueRouter({
 
 
 
-
 // router.beforeEach((to, from, next) => {
 //   // 이전 페이지에서 발생한 에러메시지 삭제
+//   store.commit('SET_AUTH_ERROR', null)
 
-//   const { isLoggedIn } = accounts.getters
+//   const { isLoggedIn } = store.getters
 
 //   const noAuthPages = ['login', 'signup']
 
@@ -128,14 +127,13 @@ const router = new VueRouter({
 
 //   if (isAuthRequired && !isLoggedIn) {
 //     alert('Require Login. Redirecting..')
-//     next({ name: 'login' })
+//     next({ name: 'Login' })
 //   } else {
 //     next()
 //   }
 
 //   if (!isAuthRequired && isLoggedIn) {
-    
-//     next({ name: 'main' })
+//     next({ name: 'Movie' })
 //   }
 // })
 

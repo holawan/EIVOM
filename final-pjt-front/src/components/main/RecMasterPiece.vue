@@ -5,29 +5,22 @@
     <h1>
       RecMasterPiece
     </h1>
-    <div class="container-fluid">
-        <div class="row flex-row flex-nowrap">
-            <movie-list-item
-              v-for="movie in topRatedMovies"
-              :key="movie.id"
-              :movie="movie"
-            ></movie-list-item>
-            
-      </div>
-    </div>
-    
+
+    <movie-list
+      :movies="topRatedMovies"
+    ></movie-list>
     
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../MovieListItem.vue'
+import MovieList from '../MovieList.vue'
 
 export default {
   name: 'RecMasterPiece',
   components:{
-    MovieListItem,
+    MovieList,
   },
   computed:{
     ...mapGetters(['topRatedMovies'])

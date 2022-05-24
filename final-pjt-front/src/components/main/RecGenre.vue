@@ -4,12 +4,32 @@
 <template>
   <div>
     <h1>Rec Genre</h1>
+
+    <movie-list
+      :movies="recGenreMovies"
+    ></movie-list>
+
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+import MovieList from '../MovieList.vue'
+
 export default {
   name: 'RecGenre',
+  components:{
+    MovieList,
+  },
+  methods:{
+    ...mapActions(['getGenreRecMovies',])
+  },
+  computed:{
+    ...mapGetters(['authHeader', 'recGenreMovies'])
+  },
+  created(){
+    this.getGenreRecMovies(this.authHeader)
+  }
 
 }
 </script>

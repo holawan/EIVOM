@@ -9,15 +9,6 @@ export default{
     topRatedMovies:[],
     nowPlayingMovies:[],
     myMovies: [],
-    boxOfficeMovies:[],
-    RecActorMovies:[],
-    RecForYouMovies:[],
-    RecGenreMovies:[],
-    RecHighlyViewMovies:[],
-    RecMasterPieceMovies:[],
-    RecSimilarMovies:[],
-    RecWeatherMovies:[],
-    RecWeeklyMovies:[],
     movies: [],
     movie: {},
     selectedMovie: null,
@@ -35,6 +26,8 @@ export default{
     unknown:[37280,128881,605193],
     clusterMovies: [],
     cmTitle: '',
+    recGenreMovies: [],
+    recViewCountsMovies: [],
 
 
   },
@@ -58,8 +51,8 @@ export default{
     Drizzle: state=> state.Drizzle,
     Snow: state=> state.Snow,
     Clouds: state=> state.Clouds,
-
-   
+    recGenreMovies: state=> state.recGenreMovies,
+    recViewCountsMovies: state=> state.recViewCountsMovies,
   },
 
   mutations: {
@@ -77,9 +70,9 @@ export default{
       (state.weatherMovies.push(movie))
     },
     SET_CLUSTER_MOVIES: (state, movies) => (state.clusterMovies = movies), 
-    SET_CM_TITLE: (state, cmTitle) => (state.cmTitle = cmTitle),     
-  
-    
+    SET_CM_TITLE: (state, cmTitle) => (state.cmTitle = cmTitle),    
+    SET_GENRE_MOVIES: (state, movies) => (state.recGenreMovies = movies),
+    SET_VIEW_COUNT_MOVIES: (state, movies) => (state.recViewCountsMovies = movies),
   },
 
   actions: {
@@ -88,11 +81,9 @@ export default{
         url: drf.movies.movie(movieId),
         method: 'get',
         headers: authHeader,
-        
       })
       .then(res => {
         commit('SET_MOVIE', res.data)
-
       })
       .catch(err => {
         console.error(err.response)
@@ -133,7 +124,6 @@ export default{
         headers: getters.authHeader,
       })
       .then(res => {
-        // console.log(res.data)
         commit('SET_MOVIE_REVIEWS', res.data)
       })
       .catch(err => console.error(err.response))
@@ -164,7 +154,6 @@ export default{
         params
       })
       .then(res => {
-        // console.log(res)
         commit ('SET_TOP_RATED_MOVIES', res.data.results)
       })
     },
@@ -200,7 +189,6 @@ export default{
       })
       .then(res => {
         commit('SET_ACTOR_INFO', res.data)
-        // console.log(res.data)
       })
     },
 
@@ -217,7 +205,6 @@ export default{
       })
       .then(res => {
         commit('SET_FILMOS', res.data)
-        // console.log(res.data)
       })
     },
 
@@ -228,7 +215,6 @@ export default{
         headers: header,
       })
       .then(res => {
-        // console.log(res.data)
         commit('ADD_WEATHER_MOVIES', res.data)
       })
       .catch(err => {
@@ -255,47 +241,31 @@ export default{
         if (nowweather==='Thunderstorm'){
           const movieids = state.Thunderstorm
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Rain'){
           const movieids = state.Rain
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Clear'){
           const movieids = state.Clear
           for (let index = 0; index < movieids.length; index++) {
-            console.log(movieids[index])
-            dispatch('fetchWeatherMovie', movieids[index],header)
-            
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Snow'){
           const movieids = state.Snow
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Drizzle'){
           const movieids = state.Drizzle
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index],header)
-          }
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
         } else if (nowweather==='Clouds'){
           const movieids = state.Clouds
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', {
-              movieId : movieids[index],
-              header : header})
-          }
-        } else {
-          console.log('else')
-        }
-      
-        
+            dispatch('fetchWeatherMovie', {movieId : movieids[index], header : header})}
+        } else {console.log('else')}
       })
       .catch(err => console.error(err.response))
-    }
-    
-    ,
+    },
 
     getClusterMovies({commit, getters},authHeader){
       const cluster = _.random(1,5)
@@ -328,11 +298,30 @@ export default{
       .finally(()=>{
         console.log(getters.authHeader2)
       })
-      
     },
 
-    
+    getGenreRecMovies({commit}, authHeader){
+      axios({
+        url: drf.movies.genreRec(),
+        method: 'get',
+        headers: authHeader,
+      })
+      .then(res => {
+        commit('SET_GENRE_MOVIES', res.data)
+      })
+      .catch(err => console.error(err.response))
+    },
 
-
+    getViewCountMovies({commit}, authHeader){
+      axios({
+        url: drf.movies.viewCount(),
+        method: 'get',
+        headers: authHeader,
+      })
+      .then(res => {
+        commit('SET_VIEW_COUNT_MOVIES', res.data)
+      })
+      .catch(err => console.error(err.response))
+    },
   },
 }

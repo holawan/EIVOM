@@ -56,7 +56,7 @@ class Profile(models.Model) :
     #성별
     GENDER_CHOICES = (
         ('남성','남성'),
-        ('남성','여성')
+        ('여성','여성')
     )
     gender = models.CharField(max_length=2,choices=GENDER_CHOICES,null=True,blank=True)
     #도/특별시/광역시

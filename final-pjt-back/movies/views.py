@@ -19,6 +19,19 @@ def genre_recommend(request) :
     user = request.user 
     genres = user.like_genres.all()
     movies = list(Movie.objects.filter(genres__in=genres).order_by('-vote_count').distinct()[:50])
+    movies = random.sample(movies,15) 
+    serializer = MovieListSerializer(movies,many=True)
+    return Response(serializer.data)
+@api_view(['GET'])
+def cluster_recommend(request,cluster) :
+    movies = list(Movie.objects.filter(cluster=cluster).order_by('-vote_count')[:50])
+    movies = random.sample(movies,15)
+    serializer = MovieListSerializer(movies,many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def view_count_recommend(request) :
+    movies = list(Movie.objects.order_by('-view_count')[:50])
     movies = random.sample(movies,15)
     serializer = MovieListSerializer(movies,many=True)
     return Response(serializer.data)

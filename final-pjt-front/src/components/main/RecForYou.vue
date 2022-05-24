@@ -11,25 +11,13 @@
     </div>
     
     <div class="row justify-content-center">
-
-    
-      <div
-      v-for="movie in this.clusterMovies"
-      :key="movie.pk"
-      >
-        <div>
-          <router-link :to="{name: 'MovieDetail', params: {movie_pk:movie.pk} }">
-              <div class="col-3 card mx-4 mb-5" style="width: 18rem;padding-left:0px;">
-                <img class="card-img-top " :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" alt="Card image cap" style="width:18rem; height:25rem; box-sizing:content-box;">
-                <br>
-                <div class="card-body">
-                  <h4 class="card-text">{{movie.title}}</h4>
-                </div>
-              </div>
-          </router-link>
-        </div>
-      </div>
+      <movie-list-item
+        v-for="movie in this.clusterMovies"
+        :key="movie.pk"
+        :movie="movie"
+      ></movie-list-item>
     </div>
+    
   </div>
 </template>
 

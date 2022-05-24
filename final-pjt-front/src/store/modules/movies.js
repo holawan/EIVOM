@@ -8,6 +8,7 @@ export default{
   state: {
     token: localStorage.getItem('jwt') || '',
     topRatedMovies:[],
+    nowPlayingMovies:[],
     myMovies: [],
     boxOfficeMovies:[],
     RecActorMovies:[],
@@ -43,6 +44,7 @@ export default{
     movies: state => state.movies,
     movie: state => state.movie,
     topRatedMovies: state => state.topRatedMovies,
+    nowPlayingMovies:state => state.nowPlayingMovies,
     authHeader2: state => ({ Authorization: `JWT ${state.token}`}),
     reviews: state => state.reviews,
     filmos: state => state.filmos,
@@ -67,6 +69,7 @@ export default{
     SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
+    SET_NOW_PLAYING_MOVIES: (state, movies) => (state.nowPlayingMovies = movies),
     SET_FILMOS: (state, filmos) => (state.filmos = filmos),
     SET_ACTOR_INFO: (state, info) => (state.actorInfo= info),
     SET_WEATHER: (state, weather) => (state.weather = weather),
@@ -163,6 +166,24 @@ export default{
         // console.log(res)
         commit ('SET_TOP_RATED_MOVIES', res.data.results)
       })
+    },
+
+    getNowPlaying({commit}){
+      const API_URL = 'https://api.themoviedb.org/3/movie/now_playing'
+      const params = {
+        api_key: '473836c79a1fc815410e8bc162e748cd',
+        language: 'ko-KR',
+        region: 'KR',
+      }
+      axios({
+        url: API_URL,
+        method: 'get',
+        params,
+      })
+      .then(res => {
+        commit('SET_NOW_PLAYING_MOVIES', res.data.results)
+      })
+      .catch(err => console.error(err.response))
     },
 
     getActorInfo({commit}, castId){
@@ -300,6 +321,8 @@ export default{
       .catch(err => console.error(err.response))
       
     },
+
+    
 
 
   },

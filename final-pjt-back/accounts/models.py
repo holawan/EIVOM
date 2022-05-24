@@ -85,3 +85,23 @@ class Profile(models.Model) :
     location2 = models.CharField(max_length=5,null=True,blank=True)
     def __str__(self) :
         return self.nickname
+
+from django.conf import settings
+from django.db import models
+
+
+
+
+
+from django.contrib.auth.signals import user_logged_in
+
+class UserSession(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, editable=False)
+    session_key = models.CharField(max_length=40, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+def on_user_logged_in(sender, request, user, **kwargs):
+    user.is_user_logged_in = True
+
+user_logged_in.connect(on_user_logged_in)

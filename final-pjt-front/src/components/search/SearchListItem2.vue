@@ -6,22 +6,13 @@
 
 <script>
 export default {
-  name: 'SearchListItem',
+  name: 'SearchListItemPreview',
   props: {
     movie: Object
   },
   methods: {
     onClickItem () {
       this.$emit('on-click-item', this.movie)
-    }
-  },
-  computed: {
-    poster_path () {
-      if (this.movie.poster_path) {
-        return `https://www.themoviedb.org/t/p/w92${this.movie.poster_path}`
-      } else {
-        return ''
-      }
     }
   }
 }

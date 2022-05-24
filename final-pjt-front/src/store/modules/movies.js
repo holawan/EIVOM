@@ -231,10 +231,10 @@ export default{
           }
         } else if (nowweather==='Clear'){
           const movieids = state.Clear
-          console.log(movieids)
           for (let index = 0; index < movieids.length; index++) {
-            this.fetchWeatherMovie(movieids[index])
             console.log(movieids[index])
+            this.fetchWeatherMovie(movieids[index])
+            
           }
         } else if (nowweather==='Snow'){
           const movieids = state.Snow

@@ -11,6 +11,8 @@ export default{
     crew: {},
     article:{},
     articles:[],
+    comment: {},
+    comments: [],
 
   },
 
@@ -26,6 +28,8 @@ export default{
     authHeader1: state => ({ Authorization: `JWT ${state.token}`}),
     article: state=> state.article,
     articles: state => state.articles,
+    comment: state => state.comment,
+    comments: state => state.comments,
 
   },
 
@@ -36,6 +40,8 @@ export default{
     SET_CREWS: (state, crews) => state.crews = crews,
     SET_ARTICLE: (state, article) => state.article = article,
     SET_ARTICLES: (state, articles) => state.articles = articles,
+    SET_COMMENT: (state, comment) => state.comment = comment,
+    SET_COMMENTS: (state, comments) => state.comments = comments,
 
   },
 
@@ -80,7 +86,7 @@ export default{
       })
       .then(res => {
         commit('SET_ARTICLE', res.data)
-        router.push({ name:'ArticleDetail', params:{article_pk:getters.article.pk}})
+        router.push({ name:'ArticleDetail', params:{crewId:payload.crewId, articleId:getters.article.pk}})
       })
     },
 
@@ -94,7 +100,44 @@ export default{
         commit('SET_ARTICLES', res.data)
       })
       .catch(err => console.error(err.resoponse))
-    }
+    },
 
+    fetchArticle({commit, getters}, {crew_pk, article_pk}){
+      axios({
+        url: drf.crews.article(crew_pk, article_pk),
+        method: 'get',
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_ARTICLE', res.data)
+      })
+      .catch(err => console.error(err.resoponse))
+    },
+
+    commentCreate({commit, getters}, {article_pk, crew_pk, content}){
+      axios({
+        url: drf.crews.comments(article_pk),
+        method: 'post',
+        data: content,
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_COMMENT', res.data)
+        router.push({ name:'ArticleDetail', params:{crewId:crew_pk, articleId:article_pk}})
+      })
+      .catch(err => console.error(err.resoponse))
+    },
+
+    fetchComments({commit, getters}, article_pk){
+      axios({
+        url: drf.crews.comments(article_pk),
+        method: 'get',
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_COMMENTS', res.date)
+      })
+      .catch(err => console.error(err.response))
+    }
   },
 }

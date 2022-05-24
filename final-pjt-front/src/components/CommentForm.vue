@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name:'ReviewForm',
+  name:'CommentForm',
   data(){
     return {review:''}
   },

@@ -5,6 +5,7 @@ const MOVIES = 'movies/'
 const REVIEWS = 'reviews/'
 const CREWS = 'crews/'
 const ARTICLES = 'articles/'
+const COMMENTS = 'comments/'
 
 
 export default {
@@ -23,19 +24,19 @@ export default {
     movies: () => HOST + MOVIES,
     movie: movie_pk => HOST + MOVIES + `${movie_pk}/`,
     likeMovie: movie_pk => HOST + MOVIES + `${movie_pk}/` + 'like/',
-    addMovie: (movie_pk, crewId) => HOST + MOVIES+ `${movie_pk}/` + `${crewId}/` + 'add/',
+    addMovie: (movie_pk, crew_pk) => HOST + MOVIES+ `${movie_pk}/` + `${crew_pk}/` + 'add/',
     reviews: movie_pk => HOST + MOVIES + `${movie_pk}/` + REVIEWS,
     review: (movie_pk, review_pk) => HOST + MOVIES + `${movie_pk}/` + REVIEWS + `${review_pk}/`,
   },
   crews:{
     create: ()=> HOST + CREWS + 'crew_create/',
-    register: crewId => HOST + CREWS + `${crewId}`+ 'register/',
+    register: crew_pk => HOST + CREWS + `${crew_pk}`+ 'register/',
     crews: () => HOST + CREWS,
-    crew: crewId => HOST + CREWS + `${crewId}/`,
+    crew: crew_pk => HOST + CREWS + `${crew_pk}/`,
     withMovie: movieId => HOST + MOVIES + `${movieId}/` + `with/`,
-    articles: crewId => HOST + CREWS + `${crewId}/` + ARTICLES,
-    article : (crewId, articleId) => HOST + CREWS + `${crewId}` + ARTICLES + `${articleId}/`,
-    reviews: articleId => HOST + ARTICLES + `${articleId}` + REVIEWS,
-    review: (articleId, reviewId) => HOST + ARTICLES + `${articleId}` + REVIEWS + `${reviewId}/`,
+    articles: crew_pk => HOST + CREWS + `${crew_pk}/` + ARTICLES,
+    article : (crew_pk, article_pk) => HOST + CREWS + `${crew_pk}/` + ARTICLES + `${article_pk}/`,
+    comments: article_pk => HOST + ARTICLES + `${article_pk}` + COMMENTS,
+    comment: (article_pk, comment_pk) => HOST + ARTICLES + `${article_pk}` + COMMENTS + `${comment_pk}/`,
   }
 }

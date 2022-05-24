@@ -9,6 +9,7 @@ export default {
     profile: '',
     genres: [],
     authError: null,
+    refresh: localStorage.getItem('refresh') || '',
     
   },
   getters: {
@@ -18,6 +19,7 @@ export default {
     authError: state => state.authError,
     authHeader: state => ({ Authorization: `JWT ${state.token}`}),
     genres: state => state.genres,
+    refresh: state => state.refresh,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -25,11 +27,22 @@ export default {
     SET_PROFILE: (state, profile) => state.profile = profile,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
     SET_GENRELIST:(state, genres) => state.genres = genres,
+    SET_REFRESH: (state, refresh) => state.refresh = refresh
   },
   actions: {
     saveToken({ commit }, token) {
       commit('SET_TOKEN', token)
       localStorage.setItem('jwt', token)
+    },
+
+    saveRefresh({commit}, refresh) {
+      commit('SET_REFRESH', refresh)
+      localStorage.setItem('refresh', refresh)
+    },
+
+    removeRefresh({ commit }) {
+      commit('SET_REFRESH', '')
+      localStorage.setItem('refresh', '')
     },
 
     removeToken({ commit }) {
@@ -45,8 +58,8 @@ export default {
       })
         .then(res => {
           dispatch('getJwt',credentials)
-          console.log('jwt로 보내기 ! ')
-          console.log(res)
+          commit('SET_REFRESH', res.data.refresh_token)
+          dispatch('saveRefresh', res.data.refresh_token)
           router.push({name: 'Main'})
         })
         .catch(err => {
@@ -102,21 +115,26 @@ export default {
 
     },
 
-    logout({ getters, dispatch }) {
+    logout({ getters, dispatch, commit }) {
       axios({
         url: drf.accounts.logout(),
         method: 'post',
-        // data: {},
+        data: {refresh: getters.refresh},
         headers: getters.authHeader,
       })
         .then(() => {
           dispatch('removeToken')
           alert('성공적으로 logout!')
+          commit('SET_REFRESH', '')
+          dispatch('removeRefresh')
           router.push({ name: 'login' })
         })
-        .error(err => {
+        .catch(err => {
           console.error(err.response)
         })
+        .finally(
+          console.log(getters.refresh)
+        )
     },
 
     getJwt({dispatch },credentials) {
@@ -138,6 +156,8 @@ export default {
           }
         })
     },
+
+
     fetchCurrentUser({ commit, getters, dispatch }) {
       if (getters.isLoggedIn) {
         axios({

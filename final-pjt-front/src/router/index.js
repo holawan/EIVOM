@@ -91,7 +91,7 @@ const routes = [
     component: ArticleCreateView
   },
   {
-    path: '/articles/:articleId',
+    path: '/:crewId/articles/:articleId',
     name: 'ArticleDetail',
     component: ArticleDetailView
   },

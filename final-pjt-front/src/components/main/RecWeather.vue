@@ -25,22 +25,29 @@ export default {
   components:{
     MovieListItem,
   },
+
   computed:{
-    ...mapGetters(['weather', 'weatherMovies']),
-    authHeader() {
-      return this.$store.state.accounts.authHeader
-    },
+    ...mapGetters(['weather', 'weatherMovies','authHeader']),
     
   },
   methods:{
     ...mapActions(['getWeather', 'fetchWeatherMovie']),
+    // authHeader : function(){
+    //   this.$store.state.accounts.authHeader
+    // }
   },
-  watch :{
-    authHeader (){
-      console.log(this.authHeader)
-      this.getWeather('seoul')
-    }
+  created(){
+    this.getWeather({
+      location : 'daejeon',
+      header : this.authHeader
+  })
   }
+  // watch :{
+  //   authHeader(value){
+  //     console.log(value)
+  //     this.getWeather('seoul')
+  //   }
+  // }
 }
 
 </script>

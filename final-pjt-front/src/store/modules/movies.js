@@ -3,7 +3,6 @@ import drf from '@/api/drf'
 import router from '@/router'
 
 import _ from 'lodash'
-
 export default{
   state: {
     token: localStorage.getItem('jwt') || '',
@@ -84,11 +83,11 @@ export default{
   },
 
   actions: {
-    fetchMovie({commit,getters}, movieId){
+    fetchMovie({commit}, movieId,authHeader){
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
-        headers: getters.authHeader,
+        headers: authHeader,
         
       })
       .then(res => {
@@ -97,6 +96,8 @@ export default{
       })
       .catch(err => {
         console.error(err.response)
+        console.log(authHeader)
+        console.log(1123)
         if (err.response.status === 404){
           router.push({name:'NotFound404'})
         }
@@ -220,11 +221,11 @@ export default{
       })
     },
 
-    fetchWeatherMovie({commit,getters}, movieId){
+    fetchWeatherMovie({commit}, {movieId,header}){
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
-        headers: getters.authHeader2,
+        headers: header,
       })
       .then(res => {
         // console.log(res.data)
@@ -239,7 +240,7 @@ export default{
       commit('SET_WEATHER_MOVIES', [])
     },
 
-    getWeather({commit, state, dispatch}, location){
+    getWeather({commit, state, dispatch}, {location,header}){
       const API_KEY = '343c1608f7c4aa62ef8a1d76113b002d'
       const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&lang=kr&appid=${API_KEY}`
       axios({
@@ -254,50 +255,55 @@ export default{
         if (nowweather==='Thunderstorm'){
           const movieids = state.Thunderstorm
           for (let index = 0; index < movieids.length; index++) {
-            this.fetchWeatherMovie(movieids[index])
+            dispatch('fetchWeatherMovie', movieids[index],header)
           }
         } else if (nowweather==='Rain'){
           const movieids = state.Rain
           for (let index = 0; index < movieids.length; index++) {
-            this.fetchWeatherMovie(movieids[index])
+            dispatch('fetchWeatherMovie', movieids[index],header)
           }
         } else if (nowweather==='Clear'){
           const movieids = state.Clear
           for (let index = 0; index < movieids.length; index++) {
             console.log(movieids[index])
-            this.fetchWeatherMovie(movieids[index])
+            dispatch('fetchWeatherMovie', movieids[index],header)
             
           }
         } else if (nowweather==='Snow'){
           const movieids = state.Snow
           for (let index = 0; index < movieids.length; index++) {
-            this.fetchWeatherMovie(movieids[index])
+            dispatch('fetchWeatherMovie', movieids[index],header)
           }
         } else if (nowweather==='Drizzle'){
           const movieids = state.Drizzle
           for (let index = 0; index < movieids.length; index++) {
-            this.fetchWeatherMovie(movieids[index])
+            dispatch('fetchWeatherMovie', movieids[index],header)
           }
         } else if (nowweather==='Clouds'){
           const movieids = state.Clouds
           for (let index = 0; index < movieids.length; index++) {
-            dispatch('fetchWeatherMovie', movieids[index])
+            dispatch('fetchWeatherMovie', {
+              movieId : movieids[index],
+              header : header})
           }
         } else {
           console.log('else')
         }
+      
         
       })
       .catch(err => console.error(err.response))
-    },
+    }
+    
+    ,
 
-    getClusterMovies({commit, getters}){
+    getClusterMovies({commit, getters},authHeader){
       const cluster = _.random(1,5)
       
       axios({
         url: drf.movies.cluster(cluster),
         method: 'get',
-        headers: getters.authHeader2
+        headers: authHeader
       })
       .then(res => {
         if (cluster === 1) {
@@ -319,6 +325,9 @@ export default{
         commit('SET_CLUSTER_MOVIES', res.data)      
       })
       .catch(err => console.error(err.response))
+      .finally(()=>{
+        console.log(getters.authHeader2)
+      })
       
     },
 

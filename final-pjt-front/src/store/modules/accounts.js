@@ -33,6 +33,7 @@ export default {
     saveToken({ commit }, token) {
       commit('SET_TOKEN', token)
       localStorage.setItem('jwt', token)
+      console.log('토큰 로컬에 저장')
     },
 
     saveRefresh({commit}, refresh) {

@@ -34,14 +34,15 @@ export default {
     ...mapActions(['getClusterMovies']),
   },
   computed:{
-    ...mapGetters(['clusterMovies', 'cmTitle','authHeader2'])
+    ...mapGetters(['clusterMovies', 'cmTitle','authHeader'])
   },
-  watch :{
-    authHeader2 : function(){
-      this.getClusterMovies
-    }
-  }
+  created(){
+    this.getClusterMovies(this.authHeader)
+
+  },
+    
 }
+
 </script>
 
 <style>

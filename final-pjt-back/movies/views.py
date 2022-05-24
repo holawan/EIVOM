@@ -47,7 +47,7 @@ def movie_deatil(request, movie_pk):
     return Response(serializer.data)
 @api_view(['GET'])
 def movie_search(request, movie_title):
-    movies=Movie.objects.filter(title__contains=movie_title).order_by('-vote_count')
+    movies=Movie.objects.filter(title__contains=movie_title).order_by('-vote_count')[:10]
     # movie.view_count += 1
 
     serializer = MovieListSerializer(movies,many=True)

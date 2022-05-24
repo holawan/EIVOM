@@ -5,14 +5,23 @@
     <h1>
       RecMasterPiece
     </h1>
-    <div class="container-fluid">
-        <div class="row flex-row flex-nowrap">
-            <movie-list-item
-              v-for="movie in topRatedMovies"
-              :key="movie.id"
-              :movie="movie"
-            ></movie-list-item>
-            
+    <div class="box">
+      <!-- <div class="row flex-row flex-nowrap">
+          <movie-list-item
+            v-for="movie in topRatedMovies"
+            :key="movie.id"
+            :movie="movie"
+          ></movie-list-item>
+          
+      </div> -->
+
+      <div class="tab">
+          <movie-list-item
+            v-for="movie in topRatedMovies"
+            :key="movie.id"
+            :movie="movie"
+          ></movie-list-item>
+          
       </div>
     </div>
     
@@ -42,5 +51,7 @@ export default {
 </script>
 
 <style>
-
+.box{max-width:960px; width:100%; height:800px; border:1px solid #ccc; margin:0 auto;}
+#tab movie-list-item{white-space:nowrap; 
+    overflow-x: auto; text-align:center}
 </style>

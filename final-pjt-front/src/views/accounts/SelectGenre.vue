@@ -1,32 +1,50 @@
 <template>
   <div>
-    <h1>Select Genre</h1>
-    <div v-for="genre in genres" :key="genre.pk">
-      <button
-        @click="select(genre.pk)"
-      >{{ genre.name }}</button>
-    </div>
-    <div v-if="selectedGenre.length >= 3">
-      <router-link :to="{name: 'Main'}">
-        <button>
-          제출
-        </button>
-      </router-link>
-    </div>
-    <div v-else>
-      <button
-        @click="goalert()"
-        disabled="disabled"
-      >제출</button>
-    </div>
+      <div class="gerneBackground">
+        <br>
+        <h1>선호하는 장르를 골라주세요</h1>
+        <h3>회원님을 위한 추천영화 데이터로 사용됩니다.</h3>
+        <br>
+        <div class="container">
 
-    <!-- 선택한 장르 ui -->
-    <div
-      v-for="genre, idx in selectedGenres"
-      :key="idx"
-      :genre="genre"
-    >
-      <button @click="select(genre.pk)">{{ genre.name }}</button>
+          <div class="row">
+
+            <div v-for="genre in genres" :key="genre.pk" class="col-3 d-flex justify-content-center align-items-center my-3">
+              <button
+              class="btn btn-secondary  btn-lg rounded-pill text-black"
+              style="background-color: white ; border-width: 6px; width: 150px; height: 60px;"
+              :style="{borderColor : colors}"
+                @click="select(genre.pk)"
+              >{{ genre.name }}</button><br>
+            </div>
+          </div>
+        </div>
+        <div v-if="selectedGenre.length >= 3">
+          <router-link :to="{name: 'Main'}">
+            <button class="btn btn-primary">
+              제출
+            </button>
+          </router-link>
+        </div>
+        <div v-else>
+          <button
+            @click="goalert()"
+            disabled="disabled"
+          >제출</button>
+        </div>
+      <br>
+      <!-- 선택한 장르 ui -->
+      <div class="d-flex justify-content-center">
+
+        <div
+          v-for="genre, idx in selectedGenres"
+          :key="idx"
+          :genre="genre"
+          
+        >
+          <button class=" btn btn-secondary rounded-pill mx-2" @click="select(genre.pk)" >{{ genre.name }}</button>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -38,7 +56,8 @@ export default {
   name: 'SelectGenre',
   data(){
     return{
-      selectedGenre : []
+      selectedGenre : [],
+      colors : `hsl(${parseInt(Math.random() * 24, 10) * 15}, 16%, 57%)`
     }
   },
   computed:{
@@ -76,5 +95,15 @@ export default {
 </script>
 
 <style>
+.gerneBackground{
+  filter: brightness(110%);
+  height: 100vh;
+  margin:0;
+  background-image: url("@/assets/genreselect_bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* position: sticky; */
+}
 
 </style>

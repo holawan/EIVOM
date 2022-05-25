@@ -201,13 +201,15 @@ export default {
       })
     },
 
-    selectGenre({getters, dispatch}, genre){
+    selectGenre({getters}, genre){
       axios({
         url: drf.accounts.selectGenre(genre),
         method: 'post',
         headers: getters.authHeader,
       })
-      .then(dispatch('loadGenre'))
+      .then(res => {
+        console.log(res)
+      })
 
     },
   },

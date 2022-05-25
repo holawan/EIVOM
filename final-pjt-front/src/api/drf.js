@@ -18,7 +18,7 @@ export default {
     getJwtToken: () => HOST + ACCOUNTS + 'jwt/',
     profile: user_pk => HOST + ACCOUNTS + 'profile/' + `${user_pk}/`,
     genrelist: () => HOST + ACCOUNTS + 'genrelist/',
-    selectGenre: (genre1, genre2, genre3) => HOST + ACCOUNTS + 'selectgenre/' + `${genre1}/` + `${genre2}/` + `${genre3}/`,
+    selectGenre: (genre) => HOST + ACCOUNTS + 'selectgenre/' + `${genre}/`,
   },
   movies: {
     movies: () => HOST + MOVIES,

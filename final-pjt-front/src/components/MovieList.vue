@@ -15,7 +15,8 @@
     >
       <vue-glide-slide
         v-for = "(movie, idx) in movies"
-        :key="idx">
+        :key="idx"
+        :movie="movie">
         
         <movie-list-item-2
           :movie="movie"

@@ -8,10 +8,10 @@
     <h2>{{ weather }}</h2>
     <div>
       <movie-list
-      :movies="weatherMovies"
-    ></movie-list>
+        :movies="weatherMovies"
+      ></movie-list>
     </div>
-    
+
   </div>
 </template>
 

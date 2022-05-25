@@ -11,7 +11,7 @@
       <movie-list
         :movies="clusterMovies"
       ></movie-list>
-
+    {{clusterMovies}}
   </div>
 </template>
 

@@ -7,7 +7,7 @@
     ></movie-list-item> -->
 
     <!-- <movie-list-item></movie-list-item> -->
-    <vue-glide v-if="movies.length"
+    <vue-glide v-if="movies.length >= 10"
       class="glide__track m-4"
       data-glide-el="track"
       ref="slider"

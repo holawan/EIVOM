@@ -10,7 +10,6 @@ export default {
     genres: [],
     authError: null,
     refresh: localStorage.getItem('refresh') || '',
-    
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -202,14 +201,13 @@ export default {
       })
     },
 
-    selectGenre({getters}, genres){
-      console.log(genres.genre3)
+    selectGenre({getters, dispatch}, genre){
       axios({
-        url: drf.accounts.selectGenre(genres.genre1, genres.genre2, genres.genre3),
+        url: drf.accounts.selectGenre(genre),
         method: 'post',
         headers: getters.authHeader,
       })
-      .then(router.push({name:'Main'}))
+      .then(dispatch('loadGenre'))
 
     },
   },

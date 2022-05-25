@@ -70,7 +70,7 @@ export default {
         })
         .then((res)=>{
           console.log(res.data)
-          router.push({name: 'Intro'})
+          router.push({name: 'Wating'})
         })
         .catch(err => {
           console.error(err.response.data)

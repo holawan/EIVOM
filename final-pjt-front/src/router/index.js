@@ -16,7 +16,8 @@ import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
-import IntroView from '@/views/IntroView.vue'
+import WatingView from '@/views/WatingView.vue'
+import IntroView from '@/views/IntroView'
 // import store from '@/store'
 Vue.use(VueRouter)
 
@@ -29,9 +30,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path:'/intro',
+    path:'/',
     name:'Intro',
     component: IntroView,
+  },
+  {
+    path:'/wating',
+    name:'Wating',
+    component: WatingView,
   },
   {
     path: '/login',

@@ -1,19 +1,17 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <hr />
     <router-view></router-view>
-    <div class="jb-image"><img src="@/assets/main_bg.jpg" alt=""></div>
   </div>
 </template>
 
 
 <script>
-import NavBar from '@/components/NavBar.vue'
+// import NavBar from '@/components/NavBar.vue'
 
 export default {
   name: 'App',
-  components: { NavBar },
+  // components: { NavBar },
   methods: {
 
   },
@@ -37,12 +35,12 @@ nav {
   padding: 30px;
 }
 
-nav a {
+/* nav a {
   font-weight: bold;
   color: #2c3e50;
-}
+} */
 
-nav a.router-link-exact-active {
+/* nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 </style>

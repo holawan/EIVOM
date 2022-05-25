@@ -218,8 +218,11 @@ export default{
         commit('ADD_WEATHER_MOVIES', res.data)
       })
       .catch(err => {
+        console.error(err)
         if (err.response.status === 404) {
           dispatch('fetchUnkownMovie', movieId)
+        } else {
+          console.error(err.response)
         }
       })
     },

@@ -5,8 +5,9 @@
       :key="movie.id"
       :movie="movie"
     ></movie-list-item> -->
+
     <!-- <movie-list-item></movie-list-item> -->
-      <vue-glide v-if="movies.length"
+    <vue-glide v-if="movies.length"
       class="glide__track m-4"
       data-glide-el="track"
       ref="slider"
@@ -14,8 +15,8 @@
       :breakpoints="{3000: {perView: 5}, 1100: {perView: 4}, 600: {perView: 3}}"
     >
       <vue-glide-slide
-        v-for = "(movie, idx) in movies"
-        :key="idx"
+        v-for="movie in movies"
+        :key="movie.title"
         :movie="movie">
         
         <movie-list-item-2

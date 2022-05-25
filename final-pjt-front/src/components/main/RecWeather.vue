@@ -6,11 +6,12 @@
   <div>
     <h1>RecWeather</h1>
     <h2>{{ weather }}</h2>
-    <movie-list
+    <div>
+      <movie-list
       :movies="weatherMovies"
     ></movie-list>
+    </div>
     
-
   </div>
 </template>
 
@@ -38,7 +39,7 @@ export default {
     this.getWeather({
       location : 'daejeon',
       header : this.authHeader
-  })
+    })
   }
   // watch :{
   //   authHeader(value){

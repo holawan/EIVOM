@@ -6,24 +6,21 @@
   
     <div class="row" style="width:100vw">
       <div class="col-8 mx-0 my-0 px-0 py-0" style=" height:100vh">
-        <img src="@/assets/signup.png" class="img-fluid" alt="signup background" style=" height:100%">
+        <img src="@/assets/signup.png" class="img-fluid" alt="signup background" style=" height:100%; filter:brightness(90%); opacity:90%">
         
       </div>
   
       <div id="content" class="col-4" style="height:100%">
 
-      <!-- 사진 자리 -->
-      
-        <h1>회원가입</h1>
+        <h1 class="my-5"> </h1>
+        <h1 class="d-flex justify-content-start" style="font-weight:600">회원가입</h1>
         <!-- 회원가입 폼 -->
         <div>
         <form @submit.prevent="signup(credentials)">
           
           <!-- email -->
           <div>
-            <h3>
-              <label for="email"></label>
-            </h3>
+            <label for="email"></label>
             <span class="box int_id">
               <input @input="onInputText" class="id int" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" required/>
             </span>
@@ -31,7 +28,7 @@
 
           <!-- password1 -->
           <div>
-            <h3 class="join_title"><label for="password1"></label></h3>
+            <label for="password1"></label>
             <span class="box int_pass">
                 <input @input="onInputText" class="int pw1" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" required/>
                 <span id="alertTxt">사용불가</span>
@@ -41,7 +38,7 @@
 
           <!-- password2 -->
           <div>
-            <h3 class="join_title"><label for="password2"></label></h3>
+            <label for="password2"></label>
             <span class="box int_pass_check">
                 <input @input="onInputText" class="int pw2" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 입력" required/>
                 <span id="alertTxt">사용불가</span>
@@ -118,12 +115,6 @@ export default {
 
 input:focus {
     outline: none;
-}
-
-h3 {
-    margin: 19px 0 8px;
-    font-size: 14px;
-    font-weight: 700;
 }
 
 .box {

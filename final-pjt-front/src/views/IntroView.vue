@@ -1,7 +1,7 @@
 <template>
   <div>
-      <div class="introBackground">
-        <div class="shooting-stars">
+      <div class="">
+        <!-- <div class="shooting-stars">
           <div class="shooting-star"></div>
           <div class="shooting-star2"></div>
           <div class="shooting-star3"></div>
@@ -13,7 +13,8 @@
           <div class="shooting-star shooting-star--mid2"></div>
           <div class="shooting-star shooting-star--fast2"></div>
           <div class="shooting-star shooting-star--meh2"></div>
-  </div>
+        </div> -->
+        <div id="particles-js"></div>
   </div>
     <div class="d-flex justify-content-center">
       <p class="mainPageTitle">EIVOM</p>
@@ -42,6 +43,13 @@ export default {
 </script>
 
 <style>
+
+body, html {
+	height: 100%;
+	background-repeat: no-repeat;    /*background-image: linear-gradient(rgb(12, 97, 33),rgb(104, 145, 162));*/
+	background:black;
+	position: relative;
+}
 .introBackground{
   filter: brightness(90%);
   height: 100vh;

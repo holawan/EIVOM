@@ -41,5 +41,9 @@ export default {
 
 <style>
 .item{display:inline-block; padding: 10px 20px; background: #ccc; margin-right:10px;}
-
+.card:hover {
+     transform: scale(1.1);
+     z-index: 2000;
+  box-shadow: 0 10px 20px rgba(238, 234, 236, 0.698), 0 4px 8px rgba(0,0,0,.06);
+}
 </style>

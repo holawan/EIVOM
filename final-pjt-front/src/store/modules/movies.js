@@ -76,18 +76,18 @@ export default{
   },
 
   actions: {
-    fetchMovie({commit}, movieId,authHeader){
+    fetchMovie({commit,getters}, movieId){
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
-        headers: authHeader,
+        headers: getters.authHeader2,
       })
       .then(res => {
         commit('SET_MOVIE', res.data)
       })
       .catch(err => {
         console.error(err.response)
-        console.log(authHeader)
+        console.log(getters.authHeader2)
         console.log(1123)
         if (err.response.status === 404){
           router.push({name:'NotFound404'})

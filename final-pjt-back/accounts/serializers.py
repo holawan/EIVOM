@@ -38,7 +38,7 @@ class UserSerilaizer(serializers.ModelSerializer) :
     
         class Meta :
             model = Genre
-            fields = ('name',)
+            fields = ('pk','name',)
     like_genres = GenreListSerializer2(read_only=True,many=True)
     class Meta :
         model = User

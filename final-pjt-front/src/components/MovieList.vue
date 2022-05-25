@@ -1,11 +1,11 @@
 <template>
   <div>
-    <movie-list-item
+    <!-- <movie-list-item
       v-for="movie in movies"
       :key="movie.id"
       :movie="movie"
-    ></movie-list-item>
-<h1>경계 --------------------------경계</h1>
+    ></movie-list-item> -->
+    <!-- <movie-list-item></movie-list-item> -->
       <vue-glide v-if="movies.length"
       class="glide__track m-4"
       data-glide-el="track"
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import MovieListItem from './MovieListItem.vue'
+// import MovieListItem from './MovieListItem.vue'
 import MovieListItem2 from './MovieListItem2.vue'
 
 export default {
   name:'MovieList',
   components:{
-    MovieListItem,
+    // MovieListItem,
     MovieListItem2},
   props:{
     movies:Array,

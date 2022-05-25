@@ -3,6 +3,7 @@
     <nav-bar></nav-bar>
     <hr />
     <router-view></router-view>
+    <div class="jb-image"><img src="@/assets/main_bg.jpg" alt=""></div>
   </div>
 </template>
 

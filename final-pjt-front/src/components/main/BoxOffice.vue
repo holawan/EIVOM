@@ -2,10 +2,7 @@
 
 <template>
   <div>
-    <head>
-      <h1>BoxOffice</h1>
-    </head>
-
+    <h1>BoxOffice</h1>
     <!-- movies -->
     <movie-list
       :movies="nowPlayingMovies"

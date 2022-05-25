@@ -82,7 +82,7 @@ class Profile(models.Model) :
     )
     location1 = models.CharField(max_length=10,choices=LOCATION_COHICES,null=True,blank=True)
     #시/군/구
-    location2 = models.CharField(max_length=5,null=True,blank=True)
+    # location2 = models.CharField(max_length=5,null=True,blank=True)
     def __str__(self) :
         return self.nickname
 

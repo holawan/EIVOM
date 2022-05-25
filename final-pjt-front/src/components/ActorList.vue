@@ -15,7 +15,7 @@
       </router-link>
 
     </div> -->
-
+    
     <div class="row">
       <div class="d-flex justify-content-center col-2"
         v-for="actor,idx in this.movie.actors"

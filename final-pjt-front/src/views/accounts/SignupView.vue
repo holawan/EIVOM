@@ -12,7 +12,7 @@
           <label for="email"></label>
         </h3>
         <span class="box int_id">
-          <input class="id" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" ng-required="true"/>
+          <input @input="onInputText" class="id" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" required/>
         </span>
       </div>
 
@@ -20,7 +20,7 @@
       <div>
         <h3 class="join_title"><label for="password1">비밀번호</label></h3>
         <span class="box int_pass">
-            <input class="int" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" ng-required="true"/>
+            <input @input="onInputText" class="int pw1" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" required/>
             <span id="alertTxt">사용불가</span>
         </span>
         <span class="error_next_box"></span>
@@ -30,7 +30,7 @@
       <div>
         <h3 class="join_title"><label for="password2">비밀번호 확인</label></h3>
         <span class="box int_pass_check">
-            <input class="int" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 입력" ng-required="true"/>
+            <input @input="onInputText" class="int pw2" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 입력" required/>
             <span id="alertTxt">사용불가</span>
         </span>
         <span class="error_next_box"></span>
@@ -38,9 +38,13 @@
 
       <!-- join button -->
       <div class="btn_area">
-        <button type="submit" id="btnJoin">
+        <button id="btnJoin"
+        v-if="count >= 3">
             <span>회원가입</span>
         </button>
+        <button disabled="disabled"
+          v-else id="disbtnJoin"
+        ><span>회원가입</span></button>
       </div>
 
         <!-- <label for="email">
@@ -76,7 +80,8 @@ export default {
         email: '',
         password1: '',
         password2: '',
-      }
+      },
+      count:0,
     }
   },
   computed: {
@@ -84,6 +89,12 @@ export default {
   },
   methods: {
     ...mapActions(['signup']),
+    onInputText (event) {
+      const searchKeyword = event.target.value.trim()
+      if (searchKeyword) {
+        this.count += 1
+        }
+    },
   },
 }
 
@@ -169,12 +180,27 @@ input {
     width: 100%;
     padding: 21px 0 17px;
     border: 0;
+    border-radius: 10px;
     cursor: pointer;
     color: #fff;
-    background-color: #fdfdb1;
+    background-color: rgb(255, 235, 96);
     font-size: 20px;
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+#disbtnJoin {
+    width: 100%;
+    padding: 21px 0 17px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(255, 247, 191);
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    color: rgb(63, 63, 63);
 }
 
 </style>

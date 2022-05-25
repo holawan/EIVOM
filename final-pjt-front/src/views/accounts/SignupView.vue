@@ -1,16 +1,16 @@
 <template>
-<div style="position:absolute width:100%" class="px-0 py-0">
+<div style="width:100vw ; height:100vh" class="px-0 py-0">
+<account-error-list v-if="authError"></account-error-list>
 
-
-<div class="container mx-0 my-0">
-  <account-error-list v-if="authError"></account-error-list>
-    <div class="row">
-      <div class="col-8 mx-0 my-0 px-0 py-0">
-        <img src="@/assets/signup.png" class="img-fluid" alt="signup background" style="height:100%">
+<!-- <div class="container mx-0 my-0" style="width:100vw; height:100vh"> -->
+  
+    <div class="row" style="width:100vw">
+      <div class="col-8 mx-0 my-0 px-0 py-0" style=" height:100vh">
+        <img src="@/assets/signup.png" class="img-fluid" alt="signup background" style=" height:100%">
         
       </div>
   
-      <div id="content" class="col-4">
+      <div id="content" class="col-4" style="height:100%">
 
       <!-- 사진 자리 -->
       
@@ -66,7 +66,7 @@
   
   
 </div>
-</div>
+<!-- </div> -->
 </template>
 
 <script>

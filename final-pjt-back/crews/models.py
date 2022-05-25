@@ -13,7 +13,7 @@ class Crew(models.Model) :
         processors=[Thumbnail(300, 300)],
         format='JPEG',
         options={'quality': 60},
-         default='media/김태리.jpg'
+         default='media/crew/크루기본.png'
     )
     crew_backdrop = ProcessedImageField(
         blank=True,null=True,
@@ -21,7 +21,7 @@ class Crew(models.Model) :
         processors=[Thumbnail(300, 300)],
         format='JPEG',
         options={'quality': 60},
-        default='media/김태리.jpg'
+        default='media/crew/크루배경기본.png'
     )
     
     LOCATION_COHICES = (

@@ -35,11 +35,11 @@ class Profile(models.Model) :
     #프사
     image = ProcessedImageField(
     null=True,blank=True,
-    upload_to='thumbnails/user/image/',
+    upload_to='thumbnails/user/profile/',
     # processors=[Thumbnail(300, 300)],
     format='JPEG',
     options={'quality': 100},
-    default='media/김태리.jpg')
+    default='media/user/프로필기본.png')
     #배경사진
     backdrop = ProcessedImageField(
     null=True,blank=True,
@@ -47,7 +47,7 @@ class Profile(models.Model) :
     # processors=[Thumbnail(1200, 800)],
     format='JPEG',
     options={'quality': 100},
-    default='media/tmp_pre6_uenvE9N.jpg'
+    default='media/user/프로필배경기본.png'
     )
     #소개말
     introduce = models.CharField(max_length=100,null=True,blank=True)

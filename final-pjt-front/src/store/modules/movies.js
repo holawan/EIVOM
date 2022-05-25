@@ -17,11 +17,11 @@ export default{
     actorInfo:{},
     weather:'',
     weatherMovies: [],
-    Thunderstorm:[274855,435,216282,745881,30497,674,397837,293670,430040],
+    Thunderstorm:[274855,435,216282,745881,30497,674,397837,293670,397567],
     Clear:[448491,43949,460668,277834,212778,84111,467909,269149,16859,398818],
-    Snow:[79680,38,47002,578209,336026,1581,24,38142,4550,109445,330457,321612],
+    Snow:[451044,38,47002,578209,336026,449563,24,38142,4550,109445,330457,321612],
     Rain:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
-    Clouds:[313369,568160,579188,640,205596,20342,581390,8966,605193,37280,128881],
+    Clouds:[313369,568160,579188,640,205596,20342,581390,8966,668096,165213,575222],
     Drizzle:[59436,153,26935,42190,381284,489,122906,499028,293670,338729,11036,44632,315846,420817],
     unknown:[37280,128881,605193],
     clusterMovies: [],
@@ -82,15 +82,12 @@ export default{
       axios({
         url: drf.movies.movie(movieId),
         method: 'get',
-        headers: getters.authHeader2,
+        headers: getters.authHeader,
       })
       .then(res => {
         commit('SET_MOVIE', res.data)
       })
       .catch(err => {
-        console.error(err.response)
-        console.log(getters.authHeader2)
-        console.log(1123)
         if (err.response.status === 404){
           router.push({name:'NotFound404'})
         }
@@ -223,6 +220,7 @@ export default{
         console.error(err)
         if (err.response.status === 404) {
           dispatch('fetchUnkownMovie', movieId)
+          console.log(movieId)
         } else {
           console.error(err.response)
         }

@@ -5,7 +5,8 @@
       :key="movie.id"
       :movie="movie"
     ></movie-list-item>
-        <vue-glide v-if="movies.length"
+<h1>경계 --------------------------경계</h1>
+      <vue-glide v-if="movies.length"
       class="glide__track m-4"
       data-glide-el="track"
       ref="slider"
@@ -16,7 +17,7 @@
         v-for = "(movie, idx) in movies"
         :key="idx">
         
-        <movie-list-carousel
+        <movie-list-item-2
           :movie="movie"
         />
         
@@ -26,15 +27,18 @@
 </template>
 
 <script>
-import MovieListCarousel from './MovieListCarousel.vue'
-// import MovieListItem from './MovieListItem.vue'
+import MovieListItem from './MovieListItem.vue'
+import MovieListItem2 from './MovieListItem2.vue'
 
 export default {
   name:'MovieList',
-  components:{MovieListItem, MovieListCarousel},
+  components:{
+    MovieListItem,
+    MovieListItem2},
   props:{
     movies:Array,
   }
+
 }
 </script>
 

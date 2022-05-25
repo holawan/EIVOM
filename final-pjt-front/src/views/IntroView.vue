@@ -13,8 +13,8 @@
           <div class="shooting-star shooting-star--mid2"></div>
           <div class="shooting-star shooting-star--fast2"></div>
           <div class="shooting-star shooting-star--meh2"></div>
-  </div>
-  </div>
+        </div>
+      </div>
     <div class="d-flex justify-content-center">
       <p class="mainPageTitle">EIVOM</p>
       <div class="mainPageContent">

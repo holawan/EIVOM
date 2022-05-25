@@ -1,13 +1,16 @@
 <template>
-<div class="container">
+<div style="position:absolute width:100%" class="px-0 py-0">
+
+
+<div class="container mx-0 my-0">
   <account-error-list v-if="authError"></account-error-list>
-    <div class="row  d-flex justify-content-center">
-      <div class="col-6">
-        <img src="@/assets/signup.png" alt="signup background" style="width:100%">
+    <div class="row">
+      <div class="col-8 mx-0 my-0 px-0 py-0">
+        <img src="@/assets/signup.png" class="img-fluid" alt="signup background" style="height:100%">
         
       </div>
   
-      <div id="content" class="col-6">
+      <div id="content" class="col-4">
 
       <!-- 사진 자리 -->
       
@@ -63,6 +66,7 @@
   
   
 </div>
+</div>
 </template>
 
 <script>
@@ -111,15 +115,6 @@ export default {
   background-position: center;
 } */
 
-#content {
-    /* position: absolute; */
-    left: 80%;
-    transform: translate(-50%);
-    width: 25%;
-
-    position: relative;
-
-}
 
 input:focus {
     outline: none;

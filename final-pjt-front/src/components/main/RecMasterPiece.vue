@@ -29,7 +29,7 @@ export default {
   methods:{
     ...mapActions(['getTopRatedMovie'])
   },
-  created(){
+  mounted(){
     this.getTopRatedMovie()
   },
 }

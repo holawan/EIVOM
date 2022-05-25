@@ -53,6 +53,7 @@ export default{
     Clouds: state=> state.Clouds,
     recGenreMovies: state=> state.recGenreMovies,
     recViewCountsMovies: state=> state.recViewCountsMovies,
+
   },
 
   mutations: {
@@ -73,6 +74,7 @@ export default{
     SET_CM_TITLE: (state, cmTitle) => (state.cmTitle = cmTitle),    
     SET_GENRE_MOVIES: (state, movies) => (state.recGenreMovies = movies),
     SET_VIEW_COUNT_MOVIES: (state, movies) => (state.recViewCountsMovies = movies),
+    removeMovietest : (state,movies) => (state.clusterMovies = movies),
   },
 
   actions: {
@@ -245,6 +247,9 @@ export default{
 
     removeMovies({commit}){
       commit('SET_WEATHER_MOVIES', [])
+    },
+    removeMovietest({commit}){
+      commit('REMOVE_MOVIE', [])
     },
 
     getWeather({commit, state, dispatch}, {location,header}){

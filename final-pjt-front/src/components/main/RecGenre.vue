@@ -27,10 +27,16 @@ export default {
   computed:{
     ...mapGetters(['authHeader', 'recGenreMovies'])
   },
-  created(){
-    this.getGenreRecMovies(this.authHeader)
-  }
+    mounted(){
+    if(this.recGenreMovies.length) {
+      console.log('있어!')
+      console.log(this.recGenreMovies)
+      }else{
+        console.log('없어!받아올게')
+        this.getGenreRecMovies(this.authHeader)
+      }
 
+  },
 }
 </script>
 

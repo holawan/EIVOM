@@ -26,9 +26,10 @@ export default {
   methods:{
     ...mapActions(['getNowPlaying'])
   },
-  created(){
+  mounted(){
     this.getNowPlaying()
-  }
+  },
+
 }
 </script>
 

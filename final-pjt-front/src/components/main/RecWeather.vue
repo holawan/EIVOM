@@ -35,7 +35,7 @@ export default {
     //   this.$store.state.accounts.authHeader
     // }
   },
-  created(){
+  mounted(){
     this.getWeather({
       location : 'daejeon',
       header : this.authHeader

@@ -2,7 +2,7 @@
   <div>
     <h1>MainView</h1>
     <box-office></box-office>
-    <rec-for-you></rec-for-you>
+    <rec-for-you ></rec-for-you>
     <rec-weather></rec-weather>
     <rec-highly-view></rec-highly-view>
     <rec-master-piece></rec-master-piece>
@@ -29,8 +29,7 @@ export default {
     RecHighlyView,
     RecMasterPiece,
     RecWeather,
-  }
-
+  },
 }
 </script>
 

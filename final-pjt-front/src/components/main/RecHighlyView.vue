@@ -26,9 +26,16 @@ export default {
   computed:{
     ...mapGetters(['authHeader', 'recViewCountsMovies'])
   },
-  created(){
-    this.getViewCountMovies(this.authHeader)
-  }
+  mounted(){
+    if(this.recViewCountsMovies.length) {
+      console.log('있어!')
+      console.log(this.recViewCountsMovies)
+      }else{
+        console.log('없어!받아올게')
+       this.getViewCountMovies(this.authHeader)
+      }
+
+  },
 }
 </script>
 

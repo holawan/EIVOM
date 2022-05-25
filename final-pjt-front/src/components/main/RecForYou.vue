@@ -24,16 +24,22 @@ export default {
     MovieList
   },
   methods:{
-    ...mapActions(['getClusterMovies']),
+    ...mapActions(['getClusterMovies','removeMovietest']),
   },
   computed:{
     ...mapGetters(['clusterMovies', 'cmTitle','authHeader'])
+    
   },
-  created(){
-    this.getClusterMovies(this.authHeader)
+  mounted(){
+    if(this.clusterMovies.length) {
+      console.log('있어!')
+      console.log(this.clusterMovies)
+      }else{
+        console.log('없어!받아올게')
+        this.getClusterMovies(this.authHeader)
+      }
 
   },
-    
 }
 
 </script>

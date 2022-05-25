@@ -1,13 +1,13 @@
 <template>
-<div>
+<div class="container">
   <account-error-list v-if="authError"></account-error-list>
-  <div class="container">
-    <div class="row">
-      <div class="col-8">
-        <img src="@/assets/signup.png" alt="signup background">
+    <div class="row  d-flex justify-content-center">
+      <div class="col-6">
+        <img src="@/assets/signup.png" alt="signup background" style="width:100%">
+        
       </div>
   
-      <div id="content" class="col-4">
+      <div id="content" class="col-6">
 
       <!-- 사진 자리 -->
       
@@ -59,11 +59,6 @@
         </form>
         </div>
       </div>
-
-
-
-
-    </div>
   </div>
   
   
@@ -106,18 +101,18 @@ export default {
 </script>
 
 <style>
-.photo{
+/* .photo{
   filter: brightness(90%);
   height: 100vh;
   margin:0;
-  /* background-image: url("@/assets/signup_back.png"); */
+  background-image: url("@/assets/signup_back.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}
+} */
 
 #content {
-    position: absolute;
+    /* position: absolute; */
     left: 80%;
     transform: translate(-50%);
     width: 25%;
@@ -145,7 +140,7 @@ h3 {
     padding: 10px 14px 10px 14px;
     box-sizing: border-box;
     background: #fff;
-    position: relative;
+    /* position: relative; */
 }
 
 .int {

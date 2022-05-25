@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 
 from .models import User,Profile
@@ -31,6 +32,17 @@ class GenreListSerializer(serializers.ModelSerializer) :
     class Meta :
         model = Genre
         fields = ('pk','name',)
+
+class UserSerilaizer(serializers.ModelSerializer) :
+    class GenreListSerializer2(serializers.ModelSerializer) :
+    
+        class Meta :
+            model = Genre
+            fields = ('name',)
+    like_genres = GenreListSerializer2(read_only=True,many=True)
+    class Meta :
+        model = User
+        fields = ('pk','like_genres',)
 
 class GenreSerializer(serializers.ModelSerializer) :
 

@@ -15,7 +15,7 @@ urlpatterns = [
     #장르선택 시 보여줄 리스트 
     path('genrelist/',views.genre_list),
     # 회원가입 시 장르선택 
-    path('selectgenre/<int:genre1>/<int:genre2>/<int:genre3>/',views.genre_add),
+    path('selectgenre/<int:genre>/',views.genre_add),
     path('jwt/', obtain_jwt_token),          # JWT 토큰 획득
     path('jwt/refresh/', refresh_jwt_token), # JWT 토큰 갱신
     path('jwt/verify/', verify_jwt_token),   # JWT 토큰 확인

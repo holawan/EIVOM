@@ -3,7 +3,7 @@ from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import GenreListSerializer, ProfileSerializer
+from .serializers import GenreListSerializer, ProfileSerializer, UserSerilaizer
 from movies.models import Genre
 from .models import Profile
 from accounts.models import User
@@ -48,17 +48,17 @@ def genre_list(request):
 
 
 @api_view(['POST'])
-def genre_add(request,genre1,genre2,genre3):
-    genre1 = get_object_or_404(Genre,pk=genre1) 
-    genre2 = get_object_or_404(Genre,pk=genre2) 
-    genre3 = get_object_or_404(Genre,pk=genre3) 
+def genre_add(request,genre):
+    genre = get_object_or_404(Genre,pk=genre) 
     user = request.user 
-    user.like_genres.add(genre1)
-    user.like_genres.add(genre2)
-    user.like_genres.add(genre3)
-    return Response(status=status.HTTP_201_CREATED)
-
-    
+    if user.like_genres.filter(pk=genre.pk).exists():
+        user.like_genres.remove(genre)
+        serializer = UserSerilaizer(user)
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
+    else :
+        user.like_genres.add(genre)
+        serializer = UserSerilaizer(user)
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
 
 
 # from allauth.socialaccount.providers.kakao.views import KakaoOAuth2Adapter

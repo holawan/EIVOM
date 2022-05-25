@@ -1,0 +1,46 @@
+[
+	{
+		"pk": 44632,
+		"model": "movies.Movie",
+		"fields": {
+			"id": 44632,
+			"title": "Jack O'Lantern",
+			"original_title": "Jack O'Lantern",
+			"poster_path": null,
+			"backdrop_path": null,
+			"overview": "",
+			"release_date": "2004-01-01",
+			"vote_count": 2,
+			"vote_average": 4.0,
+			"popularity": 0.6,
+			"runtime": 94,
+			"tagline": "",
+			"genres": [
+				27
+			],
+			"director": "",
+			"actor_id": [
+				1058210,
+				1496074,
+				1041949,
+				1103567,
+				1084714
+			],
+			"actors": [
+				"Dave R. Watkins",
+				"Tracy Yarkoni",
+				"Cheri Christian",
+				"April Glover",
+				"Brian Avenet-Bradley"
+			],
+			"actors_path": [
+				"",
+				"/mnF5UwqU7pF4tze6BkrrcsxH9FF.jpg",
+				"",
+				"",
+				""
+			]
+		},
+		"director": "Ron McLellen"
+	}
+]

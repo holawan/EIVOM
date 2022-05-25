@@ -1,68 +1,73 @@
 <template>
-  <div id="content">
-    <h1>회원가입</h1>
+<div>
+  <account-error-list v-if="authError"></account-error-list>
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <img src="@/assets/signup.png" alt="signup background">
+      </div>
+  
+      <div id="content" class="col-4">
 
-    <account-error-list v-if="authError"></account-error-list>
-
-    <form @submit.prevent="signup(credentials)">
+      <!-- 사진 자리 -->
       
-      <!-- email -->
-      <div>
-        <h3>
-          <label for="email"></label>
-        </h3>
-        <span class="box int_id">
-          <input @input="onInputText" class="id" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" required/>
-        </span>
+        <h1>회원가입</h1>
+        <!-- 회원가입 폼 -->
+        <div>
+        <form @submit.prevent="signup(credentials)">
+          
+          <!-- email -->
+          <div>
+            <h3>
+              <label for="email"></label>
+            </h3>
+            <span class="box int_id">
+              <input @input="onInputText" class="id int" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" required/>
+            </span>
+          </div>
+
+          <!-- password1 -->
+          <div>
+            <h3 class="join_title"><label for="password1"></label></h3>
+            <span class="box int_pass">
+                <input @input="onInputText" class="int pw1" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" required/>
+                <span id="alertTxt">사용불가</span>
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- password2 -->
+          <div>
+            <h3 class="join_title"><label for="password2"></label></h3>
+            <span class="box int_pass_check">
+                <input @input="onInputText" class="int pw2" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 입력" required/>
+                <span id="alertTxt">사용불가</span>
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- join button -->
+          <div class="btn_area">
+            <button id="btnJoin"
+            v-if="count >= 3">
+                <span>회원가입</span>
+            </button>
+            <button disabled="disabled"
+              v-else id="disbtnJoin"
+            ><span>회원가입</span></button>
+          </div>
+        </form>
+        </div>
       </div>
 
-      <!-- password1 -->
-      <div>
-        <h3 class="join_title"><label for="password1">비밀번호</label></h3>
-        <span class="box int_pass">
-            <input @input="onInputText" class="int pw1" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" required/>
-            <span id="alertTxt">사용불가</span>
-        </span>
-        <span class="error_next_box"></span>
-      </div>
 
-      <!-- password2 -->
-      <div>
-        <h3 class="join_title"><label for="password2">비밀번호 확인</label></h3>
-        <span class="box int_pass_check">
-            <input @input="onInputText" class="int pw2" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 입력" required/>
-            <span id="alertTxt">사용불가</span>
-        </span>
-        <span class="error_next_box"></span>
-      </div>
 
-      <!-- join button -->
-      <div class="btn_area">
-        <button id="btnJoin"
-        v-if="count >= 3">
-            <span>회원가입</span>
-        </button>
-        <button disabled="disabled"
-          v-else id="disbtnJoin"
-        ><span>회원가입</span></button>
-      </div>
 
-        <!-- <label for="email">
-          <input class="input" v-model="credentials.email" type="email" id="email" placeholder="아이디 입력" ng-required="true"/>
-        </label>
-
-        <b-form-group label for="password1">
-          <input class="input" v-model="credentials.password1" type="password" id="password1" placeholder="비밀번호 입력" ng-required="true"/>
-        </b-form-group>
-
-        <b-form-group label for="password2">
-          <b-form-input class="input" v-model="credentials.password2" type="password" id="password2" placeholder="비밀번호 확인" ng-required="true"/>
-        </b-form-group>
-
-        <b-button size="lg" variant="success" type="submit">Signup</b-button> -->
-
-    </form>
+    </div>
   </div>
+  
+  
+</div>
 </template>
 
 <script>
@@ -101,11 +106,24 @@ export default {
 </script>
 
 <style>
+.photo{
+  filter: brightness(90%);
+  height: 100vh;
+  margin:0;
+  /* background-image: url("@/assets/signup_back.png"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 #content {
     position: absolute;
-    left: 50%;
+    left: 80%;
     transform: translate(-50%);
-    width: 460px;
+    width: 25%;
+
+    position: relative;
+
 }
 
 input:focus {

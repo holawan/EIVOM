@@ -36,7 +36,7 @@ export default {
 //   },
 //   created(){
 //     setTimeout(this.onTime, 2000);
-//   }
+//   } 
 
 }
 </script>

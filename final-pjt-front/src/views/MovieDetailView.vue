@@ -58,7 +58,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['movie', 'reviews']),
+    ...mapGetters(['movie', 'reviews','authHeader']),
     likeCount(){
       return this.movie.like_users?.length
     }
@@ -73,7 +73,7 @@ export default {
   },
   created(){
     
-    this.fetchMovie(this.movieId)
+    this.fetchMovie(this.movieId,this.authHeader)
     this.readReviews(this.movieId)
     
   },

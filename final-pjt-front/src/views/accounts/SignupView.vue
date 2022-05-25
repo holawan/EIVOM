@@ -54,7 +54,7 @@
             </button>
             <button disabled="disabled"
               v-else id="disbtnJoin"
-            ><span>회원가입</span></button>
+            ><span style="font-weight:500">회원가입</span></button>
           </div>
         </form>
         </div>

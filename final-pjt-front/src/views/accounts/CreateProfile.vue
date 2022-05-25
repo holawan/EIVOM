@@ -16,19 +16,19 @@
           
           <form @submit.prevent="sendImageToServer" enctype="multipart/form-data">
 
-            <div>
+            <div class="d-flex justify-content-center">
               <!-- profile image -->
-                <label for="image"></label>
-              <div style="border-radius:100%;">
+              <label for="image"></label>
+              <div style="border-radius:100%;" class="mx-3">
                 <input multiple @change="onGetFile()" ref="image" type="file" id="image" class="profile_image">
               </div>
 
 
               <!-- back image -->
-              <!-- <div>
-                <label for="backdrop">배경사진 입력: </label>
-                <input multiple @change="onGetFile2()" ref="backdrop" type="file" id="backdrop">
-              </div> -->
+              <label for="back"></label>
+              <div style="border-radius:100%;" class="mx-3">
+                <input multiple @change="onGetFile2()" ref="backdrop" type="file" id="back" class="back_image">
+              </div>
             </div>
             
             
@@ -36,7 +36,7 @@
             <div>
               <label for="nickname"></label>
               <span class="box int_name">
-                <input @input="onInputText" class="int" v-model="credentials.nickname" placeholder="닉네임 입력" type="text" id="nickname" required/>
+                <input class="int" v-model="credentials.nickname" placeholder="닉네임 입력" type="text" id="nickname" required/>
               </span>
             </div>
 
@@ -110,7 +110,7 @@
             <!-- create profile button -->
             <div class="btn_area">
               <button id="btnJoin">
-                  <span style="font-weight:500">프로필 설정</span>
+                  <span style="font-weight:700">프로필 설정</span>
               </button>
             </div>
 
@@ -132,7 +132,7 @@ export default {
     return {
       credentials: {
         image :'',
-        backdrop :'backdrop',
+        backdrop : require('@/assets/default_back.png'),
         nickname: '',
         birth: '',
         introduce: '',
@@ -173,10 +173,14 @@ export default {
         this.createProfile(formData)
       },
       ...mapActions(['createProfile']),
-    },
-    computed: {
-    ...mapGetters(['authError'])
   },
+  computed: {
+  ...mapGetters(['authError'])
+  },
+  created(){
+    const backimg = 
+    this.credentials.backdrop = backimg
+  }
 
 }
 </script>
@@ -290,7 +294,7 @@ select {
 }
 
 input.profile_image{
-  background-image: url("@/assets/profile_default_small.png");
+  background-image: url("@/assets/profile_default_small_text.png");
   border:none;
   cursor: pointer;
   outline: 0;
@@ -298,7 +302,17 @@ input.profile_image{
   height: 100px;
   background-repeat:no-repeat;
   border-radius: 100%;
+}
 
+input.back_image{
+  background-image: url("@/assets/back_origin_small_text.png");
+  border:none;
+  cursor: pointer;
+  outline: 0;
+  width: 100px;
+  height: 100px;
+  background-repeat:no-repeat;
+  border-radius: 100%;
 }
 
 input::file-selector-button {

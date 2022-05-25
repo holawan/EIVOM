@@ -6,19 +6,30 @@
         @click="select(genre.pk)"
       >{{ genre.name }}</button>
     </div>
-    <div
-      v-if="selectedGenre.length === 3"
-    ><button
-        @click="selectGenre({genre1: selectedGenre[0], genre2: selectedGenre[1], genre3: selectedGenre[2]})">제출
-      </button></div>
+    <div v-if="selectedGenre.length >= 3">
+      <router-link :to="{name: 'Main'}">
+        <button>
+          제출
+        </button>
+      </router-link>
+    </div>
     <div v-else>
       <button
         @click="goalert()"
         disabled="disabled"
-      ></button>
+      >제출</button>
     </div>
-  </div>
 
+    <!-- 선택한 장르 ui -->
+    <div
+      v-for="genre, idx in selectedGenres"
+      :key="idx"
+      :genre="genre"
+    >
+      <button @click="select(genre.pk)">{{ genre.name }}</button>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -31,17 +42,28 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['genres']),
+    ...mapGetters(['genres', 'selectedGenres', 'nowSelectGenrePk']),
   },
   methods:{
     ...mapActions(['loadGenre', 'selectGenre']),
     select(genrePk){
-
-      this.selectedGenre.push(genrePk)
-      console.log(this.selectedGenre)
+      if (genrePk in this.selectedGenre) {
+        console.log('여기')
+        console.log(genrePk)
+        this.selectGenre(genrePk)
+        for(let i = 0; i < this.selectedGenre.length; i++) {
+          if(this.selectedGenre[i] === 'genrePk')  {
+            this.selectedGenre.splice(i, 1);
+            i--;
+          }
+        }
+      } else {
+        this.selectedGenre.push(genrePk)
+        this.selectGenre(genrePk)
+      }     
     },
     goalert(){
-      alert('장르를 3개 선택해주세요')
+      alert('장르를 3개 이상 선택해주세요')
     }
     
   },

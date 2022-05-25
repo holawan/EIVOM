@@ -10,6 +10,8 @@ export default {
     genres: [],
     authError: null,
     refresh: localStorage.getItem('refresh') || '',
+    selectedGenres: [],
+    nowSelectGenrePk : '',
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -19,6 +21,8 @@ export default {
     authHeader: state => ({ Authorization: `JWT ${state.token}`}),
     genres: state => state.genres,
     refresh: state => state.refresh,
+    selectedGenres: state => state.selectedGenres,
+    nowSelectGenrePk: state => state.nowSelectGenrePk,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -26,7 +30,9 @@ export default {
     SET_PROFILE: (state, profile) => state.profile = profile,
     SET_AUTH_ERROR: (state, error) => state.authError = error,
     SET_GENRELIST:(state, genres) => state.genres = genres,
-    SET_REFRESH: (state, refresh) => state.refresh = refresh
+    SET_REFRESH: (state, refresh) => state.refresh = refresh,
+    SET_SELECTED_GENRES:(state, genres) => state.selectedGenres = genres,
+    SET_NOW_GENRE_PK: (state, genrePk) => state.nowSelectGenrePk = genrePk,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -201,14 +207,14 @@ export default {
       })
     },
 
-    selectGenre({getters}, genre){
+    selectGenre({getters, commit}, genre){
       axios({
         url: drf.accounts.selectGenre(genre),
         method: 'post',
         headers: getters.authHeader,
       })
       .then(res => {
-        console.log(res)
+        commit('SET_SELECTED_GENRES', res.data.like_genres)
       })
 
     },

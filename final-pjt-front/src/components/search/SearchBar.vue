@@ -25,7 +25,8 @@ export default {
       this.$emit('search-text',search)
       event.target.value=''
     },
-  }
+  },
+  
 }
 </script>
 

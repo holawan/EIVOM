@@ -21,7 +21,7 @@
           <!-- logo -->
           <div class="col-12">
             <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
-              <img src="@/assets/eivom_logo.png" alt="" style="height:60px; width:100px;">
+              <img src="@/assets/eivom_logo.png" alt="" style="height:120px; width:200px;">
             </router-link>
           </div>
         </div>
@@ -31,17 +31,17 @@
 
             <router-link :to="{ name: 'Crew'}" style="text-decoration:none; color:black;" >
               <h4 style="font-weight:bold">
-                CREW
+                Crew
               </h4> 
             </router-link>
 
-            <router-link :to="{ name: 'Profile', params:{user_pk: currentUser.pk} }" style="text-decoration:none; color:black;">
+            <router-link :to="{ name: 'Profile', params:{user_pk: currentUser.pk} }"  class="mx-3" style="text-decoration:none; color:black;">
               <h4 style="font-weight:bold">
                 Profile
               </h4> 
             </router-link>
 
-            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;" class="mx-3">
+            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;">
               <h4>
                 Logout
               </h4> 

@@ -54,8 +54,5 @@ export default {
 </script>
 
 <style>
-.comment-list-item {
-  border: 1px solid green;
 
-}
 </style>

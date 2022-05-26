@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div >
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>궁금한 영화를 검색해보세요 ! </h1>
     <div>
       <input 
         type="text" 

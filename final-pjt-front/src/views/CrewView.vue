@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="container">
     <nav-bar :now="'Crew'"></nav-bar>
 
     <div class="row">
-      <div class="col-8 offset-2">
-        <div>
-          <img src="@/assets/crew_back.png" alt="crewback" class="crewback">
-        </div>
+      <div class="col-12">
+          <img src="@/assets/crew_back.png" alt="crewback" class="crewback"  style="width: 100%;">
+
 
         <!-- 전체 크루^^! -->
         <div>
@@ -40,18 +39,27 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
+<<<<<<< HEAD
 
 import { mapActions, mapGetters } from 'vuex'
+=======
+import NearCrewList from '@/components/NearCrewList.vue'
+>>>>>>> 724bb67df53fbe6b9d03ff57fe893056d211ece4
 
 
 export default {
   name: 'CrewView',
   components:{
     NavBar,
+<<<<<<< HEAD
   },
   data(){
     return{
     }
+=======
+    
+    NearCrewList,
+>>>>>>> 724bb67df53fbe6b9d03ff57fe893056d211ece4
   },
   methods:{
     ...mapActions(['fetchCrews'])

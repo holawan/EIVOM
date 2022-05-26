@@ -1,12 +1,17 @@
 <template class="row">
+
+
+
+
+
 <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.pk} }">
-    <div @click="onClickItem" class="searchitem col-3 my-1" style="border: solid 3px;">
-      <img  style="width: 16rem; height: 19rem; "
+    <div @click="onClickItem" class="searchitem col-3 my-1" style="border: solid 3px black;width:18rem; height:25rem ">
+      <img style="width: 100%; height: 100%; "
         v-if="poster_path"
         :src="poster_path"
         alt="movie_poster"
       >
-      <p class="my-2" style="color:black; font-size: 1.5rem;">  {{ movie.title }}</p>
+      <p class="my-2" style="color:black; font-size: 1.2rem;" >  {{ movie.title }}</p>
      </div>
     </router-link>
 </template>

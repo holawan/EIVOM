@@ -24,7 +24,7 @@
       </div>
       <br>
       <br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-warning rounded-pill">Submit</button>
           </div>
           </div>
         <div class="form-group">

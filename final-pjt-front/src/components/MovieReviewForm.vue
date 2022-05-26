@@ -20,9 +20,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <div>
-         <mark class="star" :class="index < score ? 'active' : ''" @click="getActiveStar(index)"></mark>
-    </div>
+  
   </div>
 </template>
 
@@ -61,66 +59,5 @@ export default {
 
 <!-- <style lang="scss"> -->
 <style>
-mark {
-  background-color: transparent;
-}
-button {
-  background: none;
-  border: solid 1px;
-  border-radius: 2em;
-  font: inherit;
-  padding: 0.75em 2em;
-}
-  
-  .star {
-    display: inline-block;
-    position: relative;
-    width: 0px;
-    height: 0px;
-    margin: 50px 0;
-    border-right: 100px solid transparent!important;
-    border-bottom: 70px solid lightgray;
-    border-left: 100px solid transparent!important;
-    color: lightgray;
-    transform: rotate(35deg);
-    cursor: pointer;
-    
-    &.active {
-      border-color: yellow;
-      
-      &:after,
-      &:before {
-        border-color: yellow;
-      }
-    }
-    
-    &:before {
-      display: block;
-      position: absolute;
-      top: -45px;
-      left: -65px;
-      width: 0;
-      height: 0;
-      border-bottom: 80px solid lightgray;
-      border-left: 30px solid transparent!important;
-      border-right: 30px solid transparent!important;
-      transform: rotate(-35deg);
-      content: '';
-    }
-    
-    &:after {
-      display: block;
-      position: absolute;
-      top: 3px;
-      left: -105px;
-      width: 0px;
-      height: 0px;
-      border-right: 100px solid transparent!important;
-      border-bottom: 70px solid lightgray;
-      border-left: 100px solid transparent!important;
-      color: lightgray;
-      transform: rotate(-70deg);
-      content: '';
-    }
-  }
+
 </style>

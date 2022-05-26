@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10 offset-1">
       <nav-bar :now="'Profile'"></nav-bar>
-       <img :src="'http://127.0.0.1:8000' + profile.backdrop" id="poster-img"  style="width: 100rem; height:50rem; filter: brightness(100%); opacity: 1;" alt="...">
+       <img :src="'http://127.0.0.1:8000' + profile.backdrop" id="poster-img"   style="width: 50rem; height:25rem; filter: brightness(100%); opacity: 1;" alt="...">
     </div>
     <div class="col-10 d-flex my-5 " >
       <img class="offset-4" :src="'http://127.0.0.1:8000' + profile.image" id="poster-img"  style="width: 7rem; height: 7rem;  filter: brightness(100%); border: solid 3px; border-radius: 100% ; opacity: 1;" alt="...">

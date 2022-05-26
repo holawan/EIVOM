@@ -33,7 +33,7 @@ def cluster_recommend(request,cluster) :
 
 @api_view(['GET'])
 def view_count_recommend(request) :
-    movies = list(Movie.objects.order_by('-view_count')[:50])
+    movies = list(Movie.objects.order_by('-view_count')[:20])
     if len(movies) >11 :
         movies = random.sample(movies,12) 
     serializer = MovieListSerializer(movies,many=True)

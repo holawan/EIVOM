@@ -1,27 +1,27 @@
 <template>
-  <div>
+  <div class="row">
     <nav-bar :now="'CrewDetail'"></nav-bar>
     <br>
     <br>
     <br>
     <br>
     <!-- crew info -->
+    <div class="col-8 offset-2">
     <div>
-      <img :src="`http://127.0.0.1:8000${crew.crew_backdrop}`" alt="">
-      <h3>
+      <img :src="`http://127.0.0.1:8000${crew.crew_backdrop}`" style="width:50rem; height:25rem"  alt="">
+      <h3>크루 이름 :{{ crew.crewname }}</h3>
+      <h4>
          크루 리더 : {{crew.crew_leader.profile.nickname}}
 
-      </h3>
-      <h3>크루 이름 :{{ crew.crewname }}</h3>
+      </h4>
       <h4> 활동 장소 : {{ crew.crew_location1 }}</h4>
       <h4>크루 소개 : {{ crew.crewintro }}</h4>
       <h5>크루 인원 : {{crew.crew_users.length}}</h5>
     </div>
     <hr>
     <!-- Join Crew -->
-    <h3 v-if="currentUser in crew.crew_users">
-      Join this Crew:
-      <button class="btn-lg btn-primary"
+    <h3 v-if="!(currentUser in crew.crew_users)">
+      <button class="btn-lg btn-warning rounded-pill"
         @click="joinCrew(crew_pk)"
       > 가입하기 !</button>
     </h3>
@@ -45,6 +45,7 @@
       :article="article"
       :crew_pk="crew_pk"
     ></article-list-item>
+  </div>
   </div>
 </template>
 

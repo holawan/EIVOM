@@ -22,7 +22,7 @@
       <!-- submit button -->
       <div>
         <div v-if="selectedGenre.length >= 3">
-          <router-link :to="{name: 'Main'}">
+          <router-link :to="{name: 'Login'}">
             <button class="btn btn-light btn-lg rounded-pill my-3" style="font-weight:600; width: 150px; height: 60px; box-shadow: 2px 2px 2px gray;">
               제출
             </button>

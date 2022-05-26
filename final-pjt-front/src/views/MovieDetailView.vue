@@ -6,17 +6,23 @@
       <br>
       <br>
     <div class="row my-5">
-      <div class="col-4 align-self-center px-0" style="height: 80% ">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 60%;  filter: brightness(100%); opacity: 1;" alt="...">
+      <div class="col-4 align-self-center px-0" style="height: 100% ">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 80%;  filter: brightness(100%); opacity: 1;" alt="...">
         <div class="col-12 d-flex justify-content-center">
-          <div class="col-6">
-            <button @click="likeMovie(movieId)">Like It</button>
-          </div>
-          <div class="col-6"> 
-            <button @click="addMovie(this.movieId)">Add Crew</button>
+
+
+          <!-- like ui -->
+          <div class="col-1 offset-4 justify-content-end">
+            <div class="d-flex justify-content-start align-items-center">
+              <button class="btn" sytle="background-color: transparent;" @click="likeMovie(movieId)">
+                <i class="fa-solid fa-heart" style="color:red;"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
+
       <div class="col-7  text-dark">
         <div>
           <div class="d-flex ">
@@ -51,7 +57,11 @@
       </div>
       <h1 class="mb-5 mx-2 " style="text" align="left">주요 출연진</h1>
       <actor-list :movieId ="movieId" class="row d-flex justify-content-center" ></actor-list>
+      
       <br>
+      <br>
+      <br>
+      <hr>
       <br>
       <movie-review-list :reviews="this.reviews"></movie-review-list>
 

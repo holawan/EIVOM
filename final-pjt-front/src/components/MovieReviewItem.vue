@@ -25,6 +25,7 @@
                 <h3 class="mb-1  d-flex">{{ payload.content }} </h3>
 
           </div>
+        <StarRating v-if="isEditing" v-model="payload.rate" id="rate" :rate="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"></StarRating>
 
           <!--  -->
            <div v-if="isEditing">
@@ -38,16 +39,17 @@
               <div class="star-ratings-base space-x-2 text-lg">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-              <input class="mb-0" type="text" v-model="payload.rate">
+              <label for="rate"></label>
+              <!-- <input class="mb-0" type="text" v-model="payload.rate"> -->
               <input class="mb-0" type="text" v-model="payload.content">
-              <button @click="onUpdate"> Update</button>
-              <button @click="switchIsEditing"> Cancle</button>
+              <button @click="onUpdate" class="btn btn-secondary rounded-pill"> Update</button>
+              <button @click="switchIsEditing" class="btn btn-danger rounded-pill"> Cancle</button>
             </div>
 
            </div>
             <span v-if="currentUsernow == payload.commentUser" class="d-flex" >
             <!-- <span  > -->
-            <button @click="switchIsEditing" class="btn btn-secondary rounded-pill">Edit</button> 
+            <button @click="switchIsEditing" :rate="parseFloat(10) / 2" class="btn btn-secondary rounded-pill">Edit</button> 
             <button @click="onDelete" class="btn btn-danger rounded-pill">Delete</button>
             </span>
         </div>
@@ -57,10 +59,14 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'MovieReviewItem',
   props: { review:Object },
+  components:{
+    StarRating,
+  },
   data(){
     return {
       // 수정 삭제할거면 필요

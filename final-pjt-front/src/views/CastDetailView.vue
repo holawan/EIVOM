@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="CastDetail"></nav-bar>
+
     <!-- info -->
     <div>
       <img :src="'https://image.tmdb.org/t/p/w400/'+ actorInfo.profile_path" alt="">
@@ -29,11 +31,13 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name:'CastDetailView',
   components: {
+    NavBar
   },
   data(){
     return {

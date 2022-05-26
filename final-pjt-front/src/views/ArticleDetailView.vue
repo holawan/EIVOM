@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="ArticleDetail"></nav-bar>
+
     <h1>ArticleDetailView</h1>
     {{ article.title }}
     {{ article.user }}
@@ -11,11 +13,13 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import CommentList from '@/components/CommentList.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'ArticleDetailView',
   components:{
+    NavBar,
     CommentList,
   },
   data(){

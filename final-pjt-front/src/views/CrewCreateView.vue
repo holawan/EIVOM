@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="CrewCreate"></nav-bar>
+
     <account-error-list v-if="authError"></account-error-list>
     <div>
       
@@ -34,10 +36,13 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import AccountErrorList from '@/components/AccountErrorList.vue'
 import { mapActions,mapGetters } from 'vuex'
 export default {
   components: {
+    NavBar,
+    
     AccountErrorList,
   },
   data(){

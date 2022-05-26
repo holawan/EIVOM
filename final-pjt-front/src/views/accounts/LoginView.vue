@@ -33,10 +33,29 @@
             <!-- login button -->
             <div class="btn_area">
               <button id="btnJoin">
-                  <span style="font-weight:700">로그인</span>
+                  <h3 style="font-weight:700">로그인</h3>
               </button>
+
+              <br><br>
+
+              <!-- signup button -->
+              <router-link :to="{name:'Signup'}" class="signup">
+                <h6>회원가입</h6>
+              </router-link>
             </div>
+            
+
+            
           </form>
+        </div>
+          
+        <!-- guest user -->
+        <div>
+          <router-link :to="{name: 'Main'}" class="guest d-flex justify-content-center">
+            <h5>
+              로그인없이 이:봄 이용하기
+            </h5> 
+          </router-link>
         </div>
       </div>
 
@@ -126,6 +145,17 @@ input {
     font-size: 20px;
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+.signup{
+  color: black;
+  text-decoration: none;
+}
+
+.guest{
+  color: rgb(81, 82, 79);
+  text-decoration: none;
+
 }
 
 </style>

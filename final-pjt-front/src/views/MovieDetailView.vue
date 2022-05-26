@@ -1,6 +1,7 @@
 <template>
   <section class="container">
-    <nav-bar></nav-bar>
+    <nav-bar :now="MovieDetail"></nav-bar>
+
     <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
 
       <div class="col-4 align-self-center px-0" style="height: 80% ">
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import MovieReviewList from '@/components/MovieReviewList.vue'
 import MovieRecSimilar from '@/components/MovieRecSimilar.vue'
 import ActorList from '@/components/ActorList.vue'
@@ -67,6 +69,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'MovieDetailView',
   components:{
+    NavBar,
+
     MovieReviewList,
     MovieRecSimilar,
     ActorList,

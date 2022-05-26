@@ -1,5 +1,6 @@
 <template>
   <div>
+    <nav-bar :now="CrewDetail"></nav-bar>
 
     <!-- crew info -->
     <div>
@@ -34,7 +35,7 @@
 </template>
 
 <script>
-
+import NavBar from '@/components/NavBar.vue'
 import ArticleListItem from '@/components/ArticleListItem.vue'
 import MovieListItem from '@/components/MovieListItem.vue'
 
@@ -43,6 +44,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'CrewDetailView',
   components:{
+    NavBar,
     ArticleListItem,
     MovieListItem,
   },

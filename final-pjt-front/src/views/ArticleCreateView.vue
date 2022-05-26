@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="ArticleCreate"></nav-bar>
+
     <h1>Article Create</h1>
     
     <!-- create form -->
@@ -25,9 +27,14 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import { mapActions } from 'vuex'
+
 export default {
   name: 'ArticleCreateView',
+  props:{
+    NavBar
+  },
   data(){
     return {
       crewId: this.$route.params.crewId,

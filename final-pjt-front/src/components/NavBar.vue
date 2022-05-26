@@ -6,12 +6,12 @@
 
         <div class="col-2 d-flex justify-content-center align-items-center">
           <!-- search magnifier -->
-          <router-link :to="{ name: 'Search' }" style="text-decoration:none; color:black" >
+          <router-link :to="{ name: 'Search' }" style="text-decoration:none; color:black">
             <div class="d-flex flex-row align-items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
-              <h4>Search</h4>
+              <h4 style="font-weight:bold">Search</h4>
             </div>
           </router-link>
         </div>
@@ -24,52 +24,29 @@
               <img src="@/assets/eivom_logo.png" alt="" style="height:60px; width:100px;">
             </router-link>
           </div>
-          <div class="col-12 d-flex justify-content-around">
-            <div class="">
-              <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
-                <h6>
-                  MAIN
-                </h6> 
-              </router-link>
-            </div>
-
-            <div class>
-              <router-link :to="{ name: 'Crew' }" style="text-decoration:none; color:black;">
-                <h6>
-                  CREW
-                </h6> 
-              </router-link>
-            </div>
-
-          </div>
         </div>
 
         <!-- profile or logout -->
         <div class="col-2 d-flex justify-content-center align-items-center">
-          <div v-if="isLoggedIn && now==='profile'">
-            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;">
+
+            <router-link :to="{ name: 'Crew'}" style="text-decoration:none; color:black;" >
+              <h4>
+                CREW
+              </h4> 
+            </router-link>
+
+
+            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;" class="mx-3">
               <h4>
                 Logout
               </h4> 
             </router-link>
-          </div>
 
-
-          <div v-if="isLoggedIn">
             <router-link :to="{ name: 'Profile', params:{user_pk: currentUser.pk} }" style="text-decoration:none; color:black;">
-              <h4>
+              <h4 style="font-weight:bold">
                 Profile
               </h4> 
             </router-link>
-          </div>
-
-          <div v-else>
-            <router-link :to="{ name: 'Login'}" style="text-decoration:none; color:black;">
-              <h4>
-                Login
-              </h4> 
-            </router-link>
-          </div>
         </div>
       </div>
       </div>

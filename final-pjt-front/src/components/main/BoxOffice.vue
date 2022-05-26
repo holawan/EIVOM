@@ -2,11 +2,15 @@
 
 <template>
   <div>
-    <h1>BoxOffice</h1>
+    <div style="background-color:white; height:200px"></div>
+    <div class="mx-5">
+      <h1 align="start" style="font-family: 'East Sea Dokdo', cursive; font-size:100px">BoxOffice</h1>
+    </div>
     <!-- movies -->
     <movie-list
       :movies="nowPlayingMovies"
     ></movie-list>
+    <hr>
 
   </div>
 </template>

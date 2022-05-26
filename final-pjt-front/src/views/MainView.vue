@@ -2,9 +2,9 @@
   <div>
 
     <nav-bar :now="'main'"></nav-bar>
+
     <div class="container">
       <div class="row-col-8">
-  
         <box-office></box-office>
         <rec-for-you ></rec-for-you>
         <rec-weather></rec-weather>

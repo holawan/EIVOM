@@ -4,13 +4,18 @@
 
 <template>
   <div>
-    <h1>RecWeather</h1>
-    <h2>{{ weather }}</h2>
+    <div style="background-color:white; height:50px"></div>
+    <div class="mx-5">
+      <h1 align="start" style="font-family: 'East Sea Dokdo', cursive; font-size:100px">오늘같은 날씨엔! </h1>
+      <h1 align="start">오늘의 날씨는 ? {{ weather }}</h1>
+    </div>
+
     <div>
       <movie-list
         :movies="weatherMovies"
       ></movie-list>
     </div>
+    <hr>
 
   </div>
 </template>

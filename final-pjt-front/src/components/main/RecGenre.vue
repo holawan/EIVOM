@@ -3,7 +3,11 @@
 
 <template>
   <div>
-    <h1>Rec Genre</h1>
+    <div style="background-color:white; height:50px"></div>
+    <div class="mx-5">
+      <h1 align="start" style="font-family: 'East Sea Dokdo', cursive; font-size:100px">당신의 취향을 저격할 영화 </h1>
+      <h1 align="start">회원님이 선택한 장르를 기반으로 추천됩니다 :)</h1>
+    </div>
 
     <movie-list
       :movies="recGenreMovies"

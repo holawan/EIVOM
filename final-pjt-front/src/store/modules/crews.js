@@ -92,6 +92,19 @@ export default{
       })
     },
 
+    fetchCrews({commit, getters}){
+      axios({
+        url: drf.crews.crews(),
+        method:'get',
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit ('SET_CREWS', res.data)
+        console.log(res.data)
+      })
+      .catch(err => console.error(err.response))
+    },
+
     createArticle({getters, commit}, {crew_pk, article}){
       axios({
         url: drf.crews.articles(crew_pk),

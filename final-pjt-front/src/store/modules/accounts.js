@@ -12,6 +12,7 @@ export default {
     refresh: localStorage.getItem('refresh') || '',
     selectedGenres: [],
     nowSelectGenrePk : '',
+    myCrews: [],
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -23,6 +24,7 @@ export default {
     refresh: state => state.refresh,
     selectedGenres: state => state.selectedGenres,
     nowSelectGenrePk: state => state.nowSelectGenrePk,
+    myCrews: state => state.myCrews,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -33,6 +35,7 @@ export default {
     SET_REFRESH: (state, refresh) => state.refresh = refresh,
     SET_SELECTED_GENRES:(state, genres) => state.selectedGenres = genres,
     SET_NOW_GENRE_PK: (state, genrePk) => state.nowSelectGenrePk = genrePk,
+    SET_MY_CREWS: (state, crews) => state.myCrews = crews,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -216,6 +219,18 @@ export default {
       })
 
     },
+
+    getCrew({getters, commit}, user_pk) {
+      axios({
+        url:drf.accounts.getCrew(user_pk),
+        method: 'get',
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('SET_MY_CREWS', res.data.users_crew)
+      })
+      .catch(err => console.error(err.response))
+    }
   },
 }
 

@@ -3,14 +3,16 @@
 
 <template>
   <div>
-    <div>
-      <h1>RecForYou</h1><br><hr>
-      <h2>{{ cmTitle }}</h2><hr>
+    <div style="background-color:white; height:50px"></div>
+    <div class="mx-5">
+      <h1 align="start" style="font-family: 'East Sea Dokdo', cursive; font-size:100px">이런 영화 어때요?</h1>
+      <h1 align="start">{{ cmTitle }} !</h1>
     </div>
 
       <movie-list
         :movies="clusterMovies"
       ></movie-list>
+      <hr>
   </div>
 </template>
 

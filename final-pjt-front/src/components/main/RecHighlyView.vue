@@ -2,12 +2,14 @@
 
 <template>
   <div>
-    <h1>Rec Highly View Movie</h1>
-    
+    <div style="background-color:white; height:50px"></div>
+    <div class="mx-5">
+      <h1 align="start" style="font-family: 'East Sea Dokdo', cursive; font-size:100px">최근 조회수가 높은 영화</h1>
+    </div>
     <movie-list
       :movies="recViewCountsMovies"
     ></movie-list>
-
+  <hr>
   </div>
 </template>
 

@@ -1,7 +1,9 @@
 <template>
   <div>
     <crew-list-item
-      :v-for="movie in user.like_movies"
+      v-for="(crew, idx) in myCrews"
+      :key="idx"
+      :crew="crew"
     ></crew-list-item>
   </div>
 </template>
@@ -15,15 +17,15 @@ export default {
   components: {
     CrewListItem,
   },
+  props:{
+    myCrews:Array,
+  },
   computed:{
     ...mapGetters(['currentUser'])
   },
   methods:{
     ...mapActions(['fetchCurrentuser'])
   },
-  created(){
-    console.log(this.currentUser.pk.like_movies)
-  }
 
 }
 </script>

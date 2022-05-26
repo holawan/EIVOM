@@ -19,6 +19,7 @@ export default {
     profile: user_pk => HOST + ACCOUNTS + 'profile/' + `${user_pk}/`,
     genrelist: () => HOST + ACCOUNTS + 'genrelist/',
     selectGenre: (genre) => HOST + ACCOUNTS + 'selectgenre/' + `${genre}/`,
+    getCrew: user_pk => HOST + ACCOUNTS + 'getcrew/' + `${user_pk}/`
   },
   movies: {
     movies: () => HOST + MOVIES,

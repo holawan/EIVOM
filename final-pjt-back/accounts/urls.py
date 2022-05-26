@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/<int:user_pk>/',views.profile_datail_or_update,name='profile'),
     #장르선택 시 보여줄 리스트 
     path('genrelist/',views.genre_list),
+    path('getcrew/<int:user_pk>/',views.get_crew),
     # 회원가입 시 장르선택 
     path('selectgenre/<int:genre>/',views.genre_add),
     path('jwt/', obtain_jwt_token),          # JWT 토큰 획득

@@ -1,6 +1,8 @@
 from dataclasses import field
 from rest_framework import serializers
 
+from crews.models import Crew
+
 from .models import User,Profile
 from movies.models import Genre
 
@@ -57,3 +59,16 @@ class GenreSerializer(serializers.ModelSerializer) :
         model = Genre 
         fields = ('pk','user','name')
         read_only_fields = ('user')
+
+class UserCrewSerializer(serializers.ModelSerializer) :
+
+    class CrewSerializer(serializers.ModelSerializer) :
+        class Meta : 
+            model = Crew
+            fields = ('pk','crewname','crew_image','crew_backdrop')
+    users_crew = CrewSerializer(read_only=True,many=True)
+    
+    class Meta :
+        model = User
+        fields = ('pk','users_crew',)
+        

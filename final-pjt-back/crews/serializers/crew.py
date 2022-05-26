@@ -26,7 +26,6 @@ class CrewSerializer(serializers.ModelSerializer) :
         model = Crew 
         fields = '__all__'
         read_only_fields=('crew_leader',)
-    
 
 # Article List Read
 class CrewListSerializer(serializers.ModelSerializer):
@@ -34,7 +33,7 @@ class CrewListSerializer(serializers.ModelSerializer):
     class Meta :
         crew_image = serializers.ImageField()
         model = Crew 
-        fields = ('crewname','crew_image',)
+        fields = ('pk','crewname','crew_image',)
 
 
     

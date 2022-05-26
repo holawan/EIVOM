@@ -3,7 +3,7 @@ from django.db.models import Count
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import GenreListSerializer, ProfileSerializer, UserSerilaizer
+from .serializers import GenreListSerializer, ProfileSerializer, UserCrewSerializer, UserSerilaizer
 from movies.models import Genre
 from .models import Profile
 from accounts.models import User
@@ -60,7 +60,11 @@ def genre_add(request,genre):
         serializer = UserSerilaizer(user)
         return Response(serializer.data,status=status.HTTP_201_CREATED)
 
-
+@api_view(['GET'])
+def get_crew(request,user_pk):
+    user = get_object_or_404(User,pk=user_pk) 
+    serializer = UserCrewSerializer(user)
+    return Response(serializer.data)
 # from allauth.socialaccount.providers.kakao.views import KakaoOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView

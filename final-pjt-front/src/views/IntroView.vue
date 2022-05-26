@@ -15,6 +15,9 @@
           <div class="shooting-star shooting-star--meh2"></div>
         </div>
       </div>
+
+    <router-link :to="{name:'Login'}" class="box">
+
     <div class="d-flex justify-content-center">
       <p class="mainPageTitle">EIVOM</p>
       <div class="mainPageContent">
@@ -22,7 +25,9 @@
           <p>깊이봄, 같이봄, 오롯이봄</p>
       </div>      
     </div>
+  </router-link>
   </div>
+
 </template>
 
 <script>
@@ -68,20 +73,32 @@ export default {
   }
 .mainPageContent{
     
-    position: absolute;
-    top: 450px;
-    font-family: 'East Sea Dokdo';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 80px;
-    text-align: center;
+  position: absolute;
+  top: 450px;
+  font-family: 'East Sea Dokdo';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
 
-    color: #FFFFFF;
+  color: #FFFFFF;
 
-    mix-blend-mode: normal;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  mix-blend-mode: normal;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  }
+}
+
+/* .box{
+  -webkit-transition:opacity 2s, -webkit-transform 2s;
+  transition:opacity 2s, transform 2s;
+} */
+
+.box:hover{
+  
+  opacity: 70%;
+
+}
+
 
 </style>

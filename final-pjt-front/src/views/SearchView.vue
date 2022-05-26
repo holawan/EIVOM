@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="search"></nav-bar>
+
     <SearchBar
       @text-input="onTextInput"
       @search-text="onSearchText"
@@ -16,6 +18,7 @@ import axios from 'axios'
 
 import SearchBar from '@/components/search/SearchBar.vue'
 import SearchMovieList from '@/components/search/SearchMovieList.vue'
+import NavBar from '@/components/NavBar.vue'
 import { mapGetters } from 'vuex'
 
 const URL = "http://localhost:8000/movies/search"
@@ -31,6 +34,7 @@ export default {
     }
   },
   components: {
+    NavBar,
     SearchBar,
     SearchMovieList
   },

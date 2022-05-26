@@ -56,26 +56,27 @@ export default {
       localStorage.setItem('jwt', '')
     },
 
-     login({ commit,dispatch }, credentials) {
-       axios({
-        url: drf.accounts.login(),
-        method: 'post',
-        data: credentials
+    login({ commit,dispatch }, credentials) {
+      axios({
+      url: drf.accounts.login(),
+      method: 'post',
+      data: credentials
+    })
+      .then(res => {
+        dispatch('getJwt',credentials)
+        dispatch('saveRefresh', res.data.refresh_token)
+        commit('SET_CURRENT_USER', res.data.user.pk)
+        // router.push({name: 'Main'})
+        return res
       })
-        .then(res => {
-          dispatch('getJwt',credentials)
-          dispatch('saveRefresh', res.data.refresh_token)
-          // router.push({name: 'Main'})
-          return res
-        })
-        .then((res)=>{
-          console.log(res.data)
-          router.push({name: 'Wating'})
-        })
-        .catch(err => {
-          console.error(err.response.data)
-          commit('SET_AUTH_ERROR', err.response.data)
-        })
+      .then((res)=>{
+        console.log(res.data)
+        router.push({name: 'Wating'})
+      })
+      .catch(err => {
+        console.error(err.response.data)
+        commit('SET_AUTH_ERROR', err.response.data)
+      })
     },
 
     signup({ commit, dispatch }, credentials) {

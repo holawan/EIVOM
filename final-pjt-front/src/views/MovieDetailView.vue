@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="MovieDetail"></nav-bar>
+
     <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
       <div class="col-12 col-md-3 align-self-center" style="height: 100%;">
         <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 100%;" alt="...">
@@ -56,6 +58,7 @@
 </template>
 
 <script>
+import NavBar from '@/components/NavBar.vue'
 import MovieReviewList from '@/components/MovieReviewList.vue'
 import MovieRecSimilar from '@/components/MovieRecSimilar.vue'
 import ActorList from '@/components/ActorList.vue'
@@ -65,6 +68,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'MovieDetailView',
   components:{
+    NavBar,
+
     MovieReviewList,
     MovieRecSimilar,
     ActorList,

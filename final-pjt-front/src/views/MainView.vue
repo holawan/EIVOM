@@ -1,5 +1,7 @@
 <template>
   <div>
+    <nav-bar :now="'main'"></nav-bar>
+
     <h1>MainView</h1>
     <box-office></box-office>
     <rec-for-you ></rec-for-you>
@@ -18,11 +20,14 @@ import RecGenre from '@/components/main/RecGenre.vue'
 import RecHighlyView from '@/components/main/RecHighlyView.vue'
 import RecMasterPiece from '@/components/main/RecMasterPiece.vue'
 import RecWeather from '@/components/main/RecWeather.vue'
+import NavBar from '@/components/NavBar.vue'
 
 
 export default {
   name: 'MainView',
   components:{
+    NavBar,
+    
     BoxOffice,
     RecForYou,
     RecGenre,

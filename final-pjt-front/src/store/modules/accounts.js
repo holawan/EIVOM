@@ -135,7 +135,7 @@ export default {
           alert('성공적으로 logout!')
           commit('SET_REFRESH', '')
           dispatch('removeRefresh')
-          router.push({ name: 'login' })
+          router.push({ name: 'Login' })
         })
         .catch(err => {
           console.error(err.response)

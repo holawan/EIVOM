@@ -16,6 +16,8 @@ import LogoutView from '@/views/accounts/LogoutView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
 import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
+import ArticleEditView from '@/views/ArticleEditView.vue'
+
 import WatingView from '@/views/WatingView.vue'
 import IntroView from '@/views/IntroView'
 import NoneMovieFromMain from'@/views/NoneMovieFromMain.vue'
@@ -117,6 +119,11 @@ const routes = [
     path: '/:crew_pk/articlecreate',
     name: 'ArticleCreate',
     component: ArticleCreateView
+  },
+  {
+    path: '/:crew_pk/articleedit/:article_pk',
+    name: 'ArticleEdit',
+    component: ArticleEditView
   },
   {
     path: '/:crew_pk/articles/:article_pk',

@@ -3,55 +3,51 @@
     <nav-bar :now="'ArticleDetail'"></nav-bar>
 
     <h1>ArticleDetailView</h1>
-    <!-- {{ article.title }}
-    {{ article.user }}
-    {{ article.content }} -->
-    <h1>ReviewListItem</h1>
-      <comment-list-item 
-        v-for="comment in article.comments"
-        :comment="comment"
-        :key="comment.pk"  
-      ></comment-list-item>
+    <h1>{{ article.title }}</h1>
+    <h3>{{ article.content }}</h3>
 
-    <comment-form
-      :crew_pk="crewId"
-      :article_pk="articleId"
-    ></comment-form>
+    <div v-if="isAuthor">
+      <router-link :to="{ name: 'ArticleEdit', params: { crew_pk, article_pk } }">
+        <button>Edit</button>
+      </router-link>
+      |
+      <button @click="deleteArticle({crew_pk, article_pk})">Delete</button>
+    </div>
+    
+
+    <!-- comment ui -->
+    <comment-list
+      :comments="article.comments"
+    ></comment-list>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import CommentForm from '@/components/CommentForm.vue'
-import CommentListItem from '@/components/CommentListItem.vue'
+import CommentList from '@/components/CommentList.vue'
 
 import { mapActions, mapGetters } from 'vuex'
 export default {
   name:'ArticleDetailView',
   components:{
     NavBar,
-    CommentForm,
-    CommentListItem,
+    CommentList
   },
   data(){
     return {
-      articleId: this.$route.params.article_pk,
-      crewId: this.$route.params.crew_pk,
+      article_pk: this.$route.params.article_pk,
+      crew_pk: this.$route.params.crew_pk,
     }
   },
   computed:{
-    ...mapGetters(['article',])
+    ...mapGetters(['article', 'isAuthor'])
   },
   methods:{
-    ...mapActions(['fetchArticle', 'fetchProfile'])
+    ...mapActions(['fetchArticle', 'fetchProfile', 'deleteArticle',])
   },
   created(){
-    this.fetchArticle({crew_pk: this.crewId, article_pk: this.articleId})
-    console.log(this.crewId,'크루')
-  },
-  mounted(){
-    this.fetchArticle({crew_pk: this.crewId, article_pk: this.articleId})
-    console.log(this.crewId,'크루')
+    this.fetchArticle({crew_pk: this.crew_pk, article_pk: this.article_pk})
+
   },
 
 

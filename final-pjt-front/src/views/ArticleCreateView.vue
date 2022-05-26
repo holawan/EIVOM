@@ -4,52 +4,34 @@
 
     <h1>Article Create</h1>
     
-    <!-- create form -->
-    <div>
-      <form @submit.prevent="onSubmit">
-        <div>
-          <label for="title">제목을 입력하세요:</label>
-          <input v-model="newArticle.title" type="text" id="title" required/>
-        </div>
-
-        <div>
-          <label for="content">내용을 입력하세요:</label>
-          <input v-model="newArticle.content" type="text" id="content" required/>
-        </div>
-
-        <div>
-          <button>make article!!</button>
-        </div>
-
-      </form>
-    </div>
+    <article-form
+      :article="article"
+      :crew_pk="crew_pk"
+      action="create"
+    ></article-form>
+ 
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { mapActions } from 'vuex'
+import ArticleForm from '@/components/ArticleForm.vue'
 
 export default {
   name: 'ArticleCreateView',
-  props:{
-    NavBar
+  components:{
+    NavBar,
+    ArticleForm,
   },
   data(){
     return {
-      crewId: this.$route.params.crew_pk,
-      newArticle:{
+      crew_pk: this.$route.params.crew_pk,
+      article:{
+        pk: null,
         title: '',
         content: '',
+
       }
-    }
-  },
-  methods: {
-    ...mapActions(['createArticle']),
-    onSubmit(){
-      const payload = {crewId: this.crewId, article:this.newArticle}
-      console.log(this.crewId)
-      this.createArticle(payload)
     }
   },
 

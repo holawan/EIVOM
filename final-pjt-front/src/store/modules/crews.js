@@ -1,6 +1,7 @@
 import drf from "@/api/drf"
 import router from "@/router"
 import axios from "axios"
+import _ from 'lodash'
 
 
 export default{
@@ -30,6 +31,10 @@ export default{
     articles: state => state.articles,
     comment: state => state.comment,
     comments: state => state.comments,
+    isArticle: state => !_.isEmpty(state.article),
+    isAuthor: (state, getters) => {
+      return state.article.user?.pk === getters.currentUser.pk
+    }
 
   },
 
@@ -63,6 +68,16 @@ export default{
       })
     },
 
+    joinCrew({commit, getters}, crew_pk){
+      axios({
+        url:drf.crews.crew(crew_pk),
+        method: 'post',
+        headers: getters.authHeader1,
+      })
+      .then(res => commit('SET_CREW', res.data))
+      .catch(err => console.error(err.response))
+    },
+
     fetchCrew({commit, getters}, crewId){
       axios({
         url: drf.crews.crew(crewId),
@@ -77,17 +92,45 @@ export default{
       })
     },
 
-    createArticle({getters, commit}, payload){
+    createArticle({getters, commit}, {crew_pk, article}){
       axios({
-        url: drf.crews.articles(payload.crewId),
+        url: drf.crews.articles(crew_pk),
         method: 'post',
-        data: payload.article,
+        data: article,
         headers: getters.authHeader1,
       })
       .then(res => {
         commit('SET_ARTICLE', res.data)
-        router.push({ name:'ArticleDetail', params:{crew_pk:payload.crewId, article_pk:getters.article.pk} ,query: { timestamp: Date.now() } })
+        router.push({ name:'ArticleDetail', params:{crew_pk:crew_pk, article_pk:getters.article.pk} ,query: { timestamp: Date.now() } })
       })
+    },
+
+    updateArticle({commit, getters}, {crew_pk, article_pk, title, content}){
+      axios({
+        url: drf.crews.article(crew_pk, article_pk),
+        method: 'put',
+        data: {title, content},
+        headers:getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_ARTICLE', res.data)
+        router.push({name: 'ArticleDetail', params:{crew_pk:crew_pk, article_pk:getters.article.pk, query: { timestamp: Date.now() }}})
+      })
+    },
+
+    deleteArticle({commit, getters}, {crew_pk, article_pk}){
+      if (confirm('정말 삭제하시겠습니까?')) {
+        axios({
+          url:drf.crews.article(crew_pk, article_pk),
+          method: 'delete',
+          headers: getters.authHeader1,
+        })
+        .then(()=>{
+          commit('SET_ARTICLE', {})
+          router.push({name: 'CrewDetail', params:{crew_pk:crew_pk}})
+        })
+        .catch(err => console.error(err.resoponse))
+      }
     },
 
     fetchArticles({commit, getters}, crewId){
@@ -115,20 +158,50 @@ export default{
       .catch(err => console.error(err.resoponse))
     },
 
-    commentCreate({commit, getters}, {crew_pk, article_pk, content}){
+    createComment({commit, getters}, {crew_pk, article_pk, content}){
+      const comment= {content}
       axios({
         url: drf.crews.comments(crew_pk, article_pk),
         method: 'post',
-        data: {content},
+        data: comment,
         headers: getters.authHeader1,
       })
       .then(res => {
-        console.log('new review!!!!!')
-        console.log(res)
         commit('SET_COMMENT', res.data)
         router.push({ name:'ArticleDetail', params:{crewId:crew_pk, articleId:article_pk},query: { timestamp: Date.now() }})
       })
       .catch(err => console.error(err.resoponse))
+    },
+
+    updateComment({commit, getters}, {crew_pk, article_pk, comment_pk, content}){
+      const comment = {content}
+
+      axios({
+        url: drf.crews.comment(crew_pk, article_pk, comment_pk),
+        method: 'put',
+        data: comment,
+        headers: getters.authHeader1,
+      })
+      .then(res => {
+        commit('SET_COMMENTS', res.data)
+      })
+      .catch(err => console.error(err.response))
+    },
+
+    deleteComment({commit, getters}, {crew_pk, article_pk, comment_pk}){
+     
+        axios({
+          ulr: drf.crews.comment(crew_pk, article_pk, comment_pk),
+          method: 'delete',
+          data: {},
+          headers: getters.authHeader1,
+        })
+        .then(res => {
+          console.log(res)
+          commit('SET_COMMENTS', res.data)
+        })
+        .catch(err => console.error(err.response))
+      
     },
 
     fetchComments({commit, getters}, {crew_pk, article_pk} ){

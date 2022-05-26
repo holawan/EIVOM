@@ -48,15 +48,6 @@
             
           </form>
         </div>
-          
-        <!-- guest user -->
-        <div>
-          <router-link :to="{name: 'Main'}" class="guest d-flex justify-content-center">
-            <h5>
-              로그인없이 이:봄 이용하기
-            </h5> 
-          </router-link>
-        </div>
       </div>
 
     </div>

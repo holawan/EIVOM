@@ -3,12 +3,12 @@
     <div class="d-flex ">
       <router-link :to="{name: 'Profile', params: { user_pk: this.review.user.pk } }">
           <div class="col-3">
-            <img :src="'http://127.0.0.1:8000'+ profile.image" alt="" style="width:120px;height:120px; border-radius:100px">
+            <img :src="'http://127.0.0.1:8000'+ payload.image" alt="" style="width:120px;height:120px; border-radius:100px">
           </div>
         <!-- {{ payload.nickname }} -->
       </router-link>
         <div class="offset-1 mb-0">
-          <h5 class="mb-0"> {{profile.nickname}}</h5>
+          <h5 class="mb-0"> {{payload.nickname}}</h5>
           <p class="mb-0 mt-0">{{date}}</p>
           <div v-if="!isEditing">
             <div class="star-ratings mb-0 d-flex">
@@ -46,12 +46,15 @@
             </div>
 
            </div>
-            <!-- <span v-if="currentUsernow === commentUser" > -->
-            <span  >
+            <span v-if="currentUsernow == payload.commentUser" >
+            <!-- <span  > -->
             <button @click="switchIsEditing">Edit</button> |
             <button @click="onDelete">Delete</button>
             </span>
         </div>
+        {{currentUsernow}}
+        {{ payload.commentUser}}
+        {{review}}
     <!-- {{payload}} -->
     </div>
       <!-- {{payload}} -->
@@ -68,16 +71,17 @@ export default {
       // 수정 삭제할거면 필요
       isEditing : false,
       payload: {
-        // nickname: this.profile.nickname,
+        nickname: this.review.user.profile.nickname,
         pk : this.review.pk,
         movieId: this.review.movie,
         content: this.review.content,
         rate: this.review.rate,
         created_at : this.review.created_at,
+        commentUser : this.review.user.pk,
+        image : this.review.user.profile.image,
+
       
       },
-    // currentUser : localStorage.get('user_pk'),
-    // commentUser : this.review.user.pk
     }
   },
   computed:{
@@ -91,6 +95,10 @@ export default {
       const date = this.payload.created_at.slice(0,10)
       return date
     },
+    currentUsernow() {
+      const currentUsernow = localStorage.getItem('user_pk')
+      return currentUsernow
+    }
     // currentUsernow() {
     //   const currentUsernow = this.currentUser
     //   return currentUsernow

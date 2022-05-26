@@ -137,6 +137,7 @@ export default {
           dispatch('removeRefresh')
           localStorage.setItem('user_pk','')
           router.push({ name: 'login' })
+
         })
         .catch(err => {
           console.error(err.response)

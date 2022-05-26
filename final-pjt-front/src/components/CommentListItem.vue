@@ -1,23 +1,61 @@
 <template>
-  <div>
+  <li class="comment-list-item">
+    <router-link :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
+      {{ comment.user }}
+    </router-link>: 
     
-    <!-- <div>
-      <router-link :to="{name: 'profile', params: { nickname: comments.user.nickname } }">
-        {{ comments.user.nickname }}
-      </router-link>
-    </div> -->
-  {{comment.content}}
-  </div>
+    <span v-if="!isEditing">{{ payload.content }}</span>
+
+    <span v-if="isEditing">
+      <input type="text" v-model="payload.content">
+      <button @click="onUpdate">Update</button> |
+      <button @click="switchIsEditing">Cancle</button>
+    </span>
+
+    <span v-if="currentUser.username === comment.user.username && !isEditing">
+      <button @click="switchIsEditing">Edit</button> |
+      <button @click="deleteComment(payload)">Delete</button>
+    </span>
+  </li>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  name:'ReviewListItem',
-  props:{ comment:Object },
+  name: 'CommentListItem',
+  props: { comment: Object },
+  data() {
+    return {
+      isEditing: false,
+      payload: {
+        crew_pk : this.$route.params.crew_pk,
+        article_pk: this.comment.article,
+        comment_pk: this.comment.pk,
+        content: this.comment.content
+      },
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser']),
+  },
+  methods: {
+    ...mapActions(['updateComment', 'deleteComment']),
+    switchIsEditing() {
+      this.isEditing = !this.isEditing
+    },
+    onUpdate() {
+      this.updateComment(this.payload)
+      this.isEditing = false
+    }
+  },
 
 }
 </script>
 
 <style>
+.comment-list-item {
+  border: 1px solid green;
 
+}
 </style>

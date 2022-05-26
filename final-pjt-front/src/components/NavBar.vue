@@ -106,18 +106,7 @@ export default {
   updated(){
     console.log(this.currentUser.pk)
   }
-    // updated(){
-    // console.log('1',this.isLoggedIn)
-    // console.log('2',this.currentUser)
-    // console.log('4',this.user_pk)
 
-    // if (!this.user_pk) {
-    //   this.fetchCurrentUser()}
-    
-    // console.log('1',this.isLoggedIn)
-    // console.log('2',this.currentUser)
-    // console.log('4',this.user_pk)
-  // }
 
 }
 </script>

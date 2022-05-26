@@ -11,6 +11,15 @@
       {{ crew.crewintro }}
     </div>
 
+    <!-- Join Crew -->
+    <div>
+      Join this Crew:
+      <button
+        @click="joinCrew(crew_pk)"
+        class="btn btn-lg"
+      >{{ joinCount }}</button>
+    </div>
+
     <!-- article 만들기 -->
     <div>
        <router-link :to="{ name: 'ArticleCreate', params:{ crew_pk: crew_pk } }">
@@ -55,10 +64,13 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['crew', 'isLeader', 'articles'])
+    ...mapGetters(['crew', 'isLeader', 'articles']),
+    joinCount(){
+      return this.crew.crew_user?.length
+    }
   },
   methods:{
-    ...mapActions(['fetchCrew', 'fetchProfile', 'fetchArticles'])
+    ...mapActions(['fetchCrew', 'fetchProfile', 'fetchArticles', 'joinCrew'])
   },
   created(){
     this.fetchCrew(this.crew_pk)

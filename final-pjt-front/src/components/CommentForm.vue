@@ -1,40 +1,39 @@
 <template>
-  <div>
-    <h1>ReviewForm</h1>
-    <input type="text" @keyup.enter="inputComment" v-model="comment">
-  </div>
+  <form @submit.prevent="onSubmit" class="comment-list-form">
+    <label for="comment">comment: </label>
+    <input type="text" id="comment" v-model="content" required>
+    <button>Comment</button>
+  </form>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  name:'CommentForm',
-  data(){
+  name: 'CommentListForm',
+  data() {
     return {
-      comment:'',
-      }
-  },
-  props:{ 
-    article_pk:null ,
-    crew_pk:null 
-  },
-  methods:{
-    ...mapActions(['commentCreate']),
-    inputComment(){
-      const newComment = this.comment
-      if (newComment){
-        this.commentCreate({article_pk:this.article_pk, crew_pk:this.crew_pk, content:newComment})
-        console.log(this.article_pk)
-        console.log(this.crew_pk)
-        console.log(this.comment)
-        this.comment = ''
-      }
+      crew_pk:this.$route.params.crew_pk,
+      content: ''
     }
   },
-
+  computed: {
+    ...mapGetters(['article']),
+  },
+  methods: {
+    ...mapActions(['createComment']),
+    onSubmit() {
+      this.createComment({ crew_pk: this.crew_pk, article_pk: this.article.pk, content: this.content, })
+      this.content = ''
+    }
+  }
 }
 </script>
 
 <style>
-
+.comment-list-form {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
+}
 </style>

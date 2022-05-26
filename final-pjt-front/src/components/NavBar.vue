@@ -46,7 +46,7 @@
 
         <!-- profile or logout -->
         <div class="col-2 d-flex justify-content-center align-items-center">
-          <div v-if="logintf && now==='profile'">
+          <div v-if="isLoggedIn && now==='profile'">
             <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;">
               <h4>
                 Logout
@@ -55,8 +55,8 @@
           </div>
 
 
-          <div v-if="logintf">
-            <router-link :to="{ name: 'Profile', params:{user_pk: this.user_pk} }" style="text-decoration:none; color:black;">
+          <div v-if="isLoggedIn">
+            <router-link :to="{ name: 'Profile', params:{user_pk: currentUser} }" style="text-decoration:none; color:black;">
               <h4>
                 Profile
               </h4> 
@@ -93,6 +93,13 @@ export default {
   },
   computed: {
     ...mapGetters(['isLoggedIn', 'currentUser', 'logintf'])
+  },
+
+  mounted(){
+    console.log('1',this.isLoggedIn)
+    console.log('2',this.currentUser)
+    console.log('3',this.logintf)
+    console.log('4',this.user_pk)
   }
 
 }

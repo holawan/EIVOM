@@ -42,7 +42,7 @@ class MovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ('pk', 'title', 'original_title',
         'poster_path', 'backdrop_path','overview','release_date',
-        'runtime','tagline','actor_id','actors','actors_path',
+        'runtime','tagline','actor_id','actors','actors_path','vote_average',
         'director','view_count','genres','review', 'like_users','like_user_count',)
 
 from crews.models import Crew

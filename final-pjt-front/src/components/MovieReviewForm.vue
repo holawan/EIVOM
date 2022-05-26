@@ -20,20 +20,24 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  
+    <StarRating :rating="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"/>
   </div>
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 import { mapActions, mapGetters} from 'vuex'
 export default {
   name:'MovieReviewForm',
+  components :{
+    StarRating
+  },
   data(){
     return {
       content:'',
-      rate:'',
+      rating:'',
       movieId: this.$route.params.movie_pk,
-      score :0
+      score :0,
       }
   },
   methods:{
@@ -45,10 +49,15 @@ export default {
     },
     getActiveStar(index) {
       this.score = index + 1;
-    }
+    },
+    click(event){
+      console.log(event)
+      console.log(this.rating)
+    },
+
   },
   computed:{
-    ...mapGetters(['reviews'])
+    ...mapGetters(['reviews','movie']),
   },
   created(){
     this.fetchMovie(this.movieId)
@@ -59,5 +68,30 @@ export default {
 
 <!-- <style lang="scss"> -->
 <style>
-
+.star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+}
+ 
+.star-ratings-fill {
+  color: #fff58c;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
 </style>

@@ -1,7 +1,6 @@
 <template>
   <section class="container">
-    <nav-bar :now="MovieDetail"></nav-bar>
-
+    <nav-bar :now="'MovieDetail'"></nav-bar>
     <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
 
       <div class="col-4 align-self-center px-0" style="height: 80% ">
@@ -28,8 +27,22 @@
           <hr>
           <p class="custom-break-word color-dark">{{ movie.overview }}</p>
         </div>
+        <div>
+              <div class="star-ratings">
+              <div 
+                class="star-ratings-fill space-x-2 text-lg"
+                :style="{ width: ratingToPercent + '%' }"
+              >
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <div class="star-ratings-base space-x-2 text-lg">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+                <p>{{this.movie.vote_average}}점 </p>
+            </div>
+        </div>
+        </div>
       </div>
-    </div>
       <h1 class="mb-5 mx-2 " style="text" align="left">주요 출연진</h1>
       <actor-list :movieId ="movieId" class="row d-flex justify-content-center" ></actor-list>
       <br>
@@ -87,7 +100,11 @@ export default {
     }, 
     backdropUrl(){
       return `https://image.tmdb.org/t/p/w400/${this.movie.backdrop_path}`
-    }
+    },
+    ratingToPercent() {
+      const score = this.movie.vote_average *10;
+      return score ;
+  },
   },
   methods: {
     ...mapActions([

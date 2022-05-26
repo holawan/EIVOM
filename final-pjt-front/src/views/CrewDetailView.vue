@@ -7,7 +7,7 @@
       <img :src="`http://127.0.0.1:8000${crew.crew_image}`" alt="">
       {{ crew.crewname }}
       <p> {{ crew.crew_location1 }}  {{ crew.crew_location2 }} </p>
-      {{ crew.crew_leader.profile.nickname }} <br>
+      {{ crew.crew_leader.nickname }} <br>
       {{ crew.crewintro }}
     </div>
 

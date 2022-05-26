@@ -40,6 +40,6 @@ export default {
     articles: crew_pk => HOST + CREWS + `${crew_pk}/` + ARTICLES,
     article : (crew_pk, article_pk) => HOST + CREWS + `${crew_pk}/` + ARTICLES + `${article_pk}/`,
     comments: article_pk => HOST + ARTICLES + `${article_pk}` + COMMENTS,
-    comment: (article_pk, comment_pk) => HOST + ARTICLES + `${article_pk}` + COMMENTS + `${comment_pk}/`,
+    comment: (article_pk, comment_pk) => HOST + ARTICLES + `${article_pk}/` + COMMENTS + `${comment_pk}/`,
   }
 }

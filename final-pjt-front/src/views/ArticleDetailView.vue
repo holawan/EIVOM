@@ -7,8 +7,10 @@
     <br>
     <br>
     <h1>ArticleDetailView</h1>
-    <h2>제목 : {{ article.title }}</h2>
-    <p>{{ article.content }}</p>
+    <br>
+    <h3>{{article.user.profile.nickname}} 의 글 </h3>
+    <h3 style="font-weight: bold;   ">{{ article.title }}</h3>
+    <p style="font-size : 20px">{{ article.content }}</p>
 
     <div v-if="isAuthor">
       <router-link :to="{ name: 'ArticleEdit', params: { crew_pk, article_pk } }">
@@ -45,7 +47,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['article', 'isAuthor'])
+    ...mapGetters(['article', 'isAuthor','currentUser']) 
   },
   methods:{
     ...mapActions(['fetchArticle', 'fetchProfile', 'deleteArticle',])

@@ -29,8 +29,9 @@
     <!-- article 만들기 -->
     <div>
        <router-link :to="{ name: 'ArticleCreate', params:{ crew_pk: crew_pk } }">
-         <button>new Article</button>
+         <button class="btn-lg btn-dark">new Article</button>
         </router-link>
+        
     </div>
     <!-- CREW MOVIE LIST -->
     <movie-list-item
@@ -38,7 +39,7 @@
       :key="movie.id"
       :movie="movie"
     ></movie-list-item>
-
+    {{crew.movies}}
     <!-- article list -->
     <article-list-item
       v-for="article in articles"

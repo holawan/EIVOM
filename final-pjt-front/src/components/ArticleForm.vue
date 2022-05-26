@@ -1,23 +1,23 @@
 <template>
   <div>
     <h3> article form </h3>
-    <div>
-      <form @submit.prevent="onSubmit">
+    <div class="container">
+      
+      <form @submit.prevent="onSubmit" class="form-group row-cols-8" >
         <div>
-          <label for="title">제목을 입력하세요:</label>
-          <input v-model="newArticle.title" type="text" id="title" required/>
+          <label for="title">제목</label>
+          <input type="text" class="form-control" id="title"  v-model="newArticle.title">
         </div>
-
-        <div>
-          <label for="content">내용을 입력하세요:</label>
-          <textarea v-model="newArticle.content" type="text" id="content" required/>
+        <div class="form-group">
+          <label for="content">내용</label>
+          <input style="height: 150px;" type="text" class="form-control" id="content" v-model="newArticle.content">
         </div>
-
-        <div>
-          <button>{{action}}</button>
-        </div>
-
+        <br>
+        <br>
+        <button type="submit" class="btn-lg btn-info rounded-pill">{{action}}</button>
       </form>
+
+
     </div>
   </div>
 </template>

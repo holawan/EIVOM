@@ -54,7 +54,6 @@
       <br>
       <br>
       <movie-review-list :reviews="this.reviews"></movie-review-list>
-
   </section>
 
 </template>
@@ -82,7 +81,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['movie', 'reviews']),
+    ...mapGetters(['movie', 'reviews','currentUser']),
     likeCount(){
       return this.movie.like_users?.length
     }, 
@@ -99,7 +98,8 @@ export default {
       'likeMovie',
       'fetchMovie',
       'addMovie',
-      'readReviews'
+      'readReviews',
+
     ])
   },
   mounted(){

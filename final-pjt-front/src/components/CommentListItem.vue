@@ -8,13 +8,13 @@
 
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
-      <button @click="onUpdate">Update</button> |
-      <button @click="switchIsEditing">Cancle</button>
+      <button @click="onUpdate" class="btn btn-open">Update</button> |
+      <button @click="switchIsEditing" class=" btn btn-close" ></button>
     </span>
 
-    <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing" class="btn btn-open">Edit</button> |
-      <button @click="onDelete(payload)" class=" btn btn-close"></button>
+    <span v-if="currentUser.pk === comment.user.pk && !isEditing">
+      <button @click="switchIsEditing" class="btn btn-open">Edit </button>
+      <button @click="onDelete(payload)" class=" btn btn-open">Delete</button>
     </span>
     <hr>
   </div>
@@ -38,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentUser']),
+    ...mapGetters(['currentUser','isAuthor']),
   },
   methods: {
     ...mapActions(['updateComment', 'deleteComment']),

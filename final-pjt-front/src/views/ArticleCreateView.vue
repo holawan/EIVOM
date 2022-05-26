@@ -1,7 +1,10 @@
 <template>
   <div>
     <nav-bar :now="'ArticleCreate'"></nav-bar>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Article Create</h1>
     
     <article-form

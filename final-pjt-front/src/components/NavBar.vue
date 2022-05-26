@@ -41,8 +41,8 @@
               </h4> 
             </router-link>
 
-            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;">
-              <h4>
+            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:rgb(100,100,100);">
+              <h4 style="font-weight:bold">
                 Logout
               </h4> 
             </router-link>

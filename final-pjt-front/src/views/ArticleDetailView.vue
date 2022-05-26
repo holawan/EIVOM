@@ -1,20 +1,27 @@
 <template>
   <div>
     <nav-bar :now="'ArticleDetail'"></nav-bar>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>ArticleDetailView</h1>
-    <h1>{{ article.title }}</h1>
-    <h3>{{ article.content }}</h3>
+    <br>
+    <h3>{{article.user.profile.nickname}} 의 글 </h3>
+    <h3 style="font-weight: bold;   ">{{ article.title }}</h3>
+    <p style="font-size : 20px">{{ article.content }}</p>
 
     <div v-if="isAuthor">
       <router-link :to="{ name: 'ArticleEdit', params: { crew_pk, article_pk } }">
-        <button>Edit</button>
+        <button  class="btn btn-primary" >Edit</button>
       </router-link>
       |
-      <button @click="deleteArticle({crew_pk, article_pk})">Delete</button>
+      <button  class="btn btn-danger" @click="deleteArticle({crew_pk, article_pk})">Delete</button>
     </div>
-    
-
+    <br>
+    <hr>
+    <br>
     <!-- comment ui -->
     <comment-list
       :comments="article.comments"
@@ -40,7 +47,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['article', 'isAuthor'])
+    ...mapGetters(['article', 'isAuthor','currentUser']) 
   },
   methods:{
     ...mapActions(['fetchArticle', 'fetchProfile', 'deleteArticle',])

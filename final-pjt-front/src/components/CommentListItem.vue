@@ -1,21 +1,22 @@
 <template>
   <div class="comment-list-item d-flex justify-content-between">
     <router-link  style="text-decoration: none; color: black;" :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
-       글쓴이  :    {{ comment.user.profile.nickname }}
+       댓글쓴이  :    {{ comment.user.profile.nickname }}
     </router-link>
     
     <span v-if="!isEditing">{{ payload.content }}</span>
 
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
-      <button @click="onUpdate">Update</button> |
-      <button @click="switchIsEditing">Cancle</button>
+      <button @click="onUpdate" class="btn btn-open">Update</button> |
+      <button @click="switchIsEditing" class=" btn btn-close" ></button>
     </span>
 
-    <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">Edit</button> |
-      <button @click="onDelete(payload)">Delete</button>
+    <span v-if="currentUser.pk === comment.user.pk && !isEditing">
+      <button @click="switchIsEditing" class="btn btn-open">Edit </button>
+      <button @click="onDelete(payload)" class=" btn btn-open">Delete</button>
     </span>
+    <hr>
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['currentUser']),
+    ...mapGetters(['currentUser','isAuthor']),
   },
   methods: {
     ...mapActions(['updateComment', 'deleteComment']),
@@ -50,7 +51,7 @@ export default {
     },
     onDelete(payload){
       this.deleteComment(payload)
-       this.$router.push()
+      this.$router.go()
     }
   },
 

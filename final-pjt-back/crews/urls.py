@@ -12,7 +12,7 @@ urlpatterns = [
     path('<int:crew_pk>/articles/', views.article_list_or_create),
     path('<int:crew_pk>/articles/<int:article_pk>/', views.article_detail_or_update_or_delete),
     # comments
-    path('articles/<int:article_pk>/comments/', views.comment_create_or_list),
-    path('articles/<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete),
+    path('<int:crew_pk>/articles/<int:article_pk>/comments/', views.comment_create_or_list),
+    path('<int:crew_pk>/articles/<int:article_pk>/comments/<int:comment_pk>/', views.comment_update_or_delete),
     # path('test/<int:user_pk>/',views.test),
 ]

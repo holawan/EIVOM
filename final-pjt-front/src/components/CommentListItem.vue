@@ -1,18 +1,19 @@
 <template>
   <div>
-    <h1>ReviewListItem</h1>
-    <div>
-      <router-link :to="{name: 'profile', params: { nickname: review.user.nickname } }">
-        {{ review.user.nickname }}
+    
+    <!-- <div>
+      <router-link :to="{name: 'profile', params: { nickname: comments.user.nickname } }">
+        {{ comments.user.nickname }}
       </router-link>
-    </div>
+    </div> -->
+  {{comment.content}}
   </div>
 </template>
 
 <script>
 export default {
   name:'ReviewListItem',
-  props:{ review:Object },
+  props:{ comment:Object },
 
 }
 </script>

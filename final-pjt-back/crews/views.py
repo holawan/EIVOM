@@ -118,7 +118,7 @@ def article_detail_or_update_or_delete(request, crew_pk,article_pk):
             return delete_article()
 
 @api_view(['GET','POST'])
-def comment_create_or_list(request,article_pk) :
+def comment_create_or_list(request,article_pk,crew_pk) :
     def create_comment():
         user = request.user
         article = get_object_or_404(CrewArticle, pk=article_pk)
@@ -131,11 +131,13 @@ def comment_create_or_list(request,article_pk) :
             # 사용자가 댓글을 입력하는 사이에 업데이트된 comment 확인 불가 => 업데이트된 전체 목록 return 
             comments = article.comments.all()
             serializer = CommentSerializer(comments, many=True)
+            # print(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def comment_list():
         comments = get_list_or_404(CrewReview,article=article_pk)
         serializer = CommentSerializer(comments,many=True)
+        print(serializer.data)
         return Response(serializer.data)
 
 
@@ -145,7 +147,7 @@ def comment_create_or_list(request,article_pk) :
         return comment_list()
 
 @api_view(['PUT', 'DELETE'])
-def comment_update_or_delete(request, article_pk, comment_pk):
+def comment_update_or_delete(request, article_pk, comment_pk,crew_pk):
     article = get_object_or_404(CrewArticle, pk=article_pk)
     comment = get_object_or_404(CrewReview, pk=comment_pk)
 

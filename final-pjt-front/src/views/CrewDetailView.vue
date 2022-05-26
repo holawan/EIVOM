@@ -1,19 +1,19 @@
 <template>
   <div>
-    <nav-bar :now="CrewDetail"></nav-bar>
+    <nav-bar :now="'CrewDetail'"></nav-bar>
 
     <!-- crew info -->
     <div>
       <img :src="`http://127.0.0.1:8000${crew.crew_image}`" alt="">
+      {{crew}}
       {{ crew.crewname }}
-      <p> {{ crew.crew_location1 }}  {{ crew.crew_location2 }} </p>
-      {{ crew.crew_leader.nickname }} <br>
+      <p> {{ crew.crew_location1 }}</p>
       {{ crew.crewintro }}
     </div>
 
     <!-- article 만들기 -->
     <div>
-       <router-link :to="{ name: 'ArticleCreate', params:{ crewId:crew.id } }">
+       <router-link :to="{ name: 'ArticleCreate', params:{ crew_pk: crew_pk } }">
          <button>new Article</button>
         </router-link>
     </div>
@@ -30,6 +30,7 @@
       v-for="article in articles"
       :key="article.pk"
       :article="article"
+      :crew_pk="crew_pk"
     ></article-list-item>
   </div>
 </template>
@@ -50,7 +51,7 @@ export default {
   },
   data(){
     return{
-      crewId: this.$route.params.crewId
+      crew_pk: this.$route.params.crew_pk
     }
   },
   computed:{
@@ -60,8 +61,9 @@ export default {
     ...mapActions(['fetchCrew', 'fetchProfile', 'fetchArticles'])
   },
   created(){
-    this.fetchCrew(this.crewId)
-    this.fetchArticles(this.crewId)
+    this.fetchCrew(this.crew_pk)
+    this.fetchArticles(this.crew_pk)
+    console.log(this.crew_pk)
   }
 
 }

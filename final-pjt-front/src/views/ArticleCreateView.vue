@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-bar :now="ArticleCreate"></nav-bar>
+    <nav-bar :now="'ArticleCreate'"></nav-bar>
 
     <h1>Article Create</h1>
     
@@ -37,7 +37,7 @@ export default {
   },
   data(){
     return {
-      crewId: this.$route.params.crewId,
+      crewId: this.$route.params.crew_pk,
       newArticle:{
         title: '',
         content: '',
@@ -48,6 +48,7 @@ export default {
     ...mapActions(['createArticle']),
     onSubmit(){
       const payload = {crewId: this.crewId, article:this.newArticle}
+      console.log(this.crewId)
       this.createArticle(payload)
     }
   },

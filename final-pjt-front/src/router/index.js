@@ -98,7 +98,7 @@ const routes = [
     component: MovieDetailView
   },
   {
-    path: '/crewdetail/:crewId',
+    path: '/crewdetail/:crew_pk',
     name: 'CrewDetail',
     component: CrewDetailView
   },
@@ -108,12 +108,12 @@ const routes = [
     component: CrewCreateView
   },
   {
-    path: '/:crewId/articlecreate',
+    path: '/:crew_pk/articlecreate',
     name: 'ArticleCreate',
     component: ArticleCreateView
   },
   {
-    path: '/:crewId/articles/:articleId',
+    path: '/:crew_pk/articles/:article_pk',
     name: 'ArticleDetail',
     component: ArticleDetailView
   },

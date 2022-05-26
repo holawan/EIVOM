@@ -86,7 +86,7 @@ export default{
       })
       .then(res => {
         commit('SET_ARTICLE', res.data)
-        router.push({ name:'ArticleDetail', params:{crewId:payload.crewId, articleId:getters.article.pk}})
+        router.push({ name:'ArticleDetail', params:{crew_pk:payload.crewId, article_pk:getters.article.pk} ,query: { timestamp: Date.now() } })
       })
     },
 
@@ -110,32 +110,36 @@ export default{
       })
       .then(res => {
         commit('SET_ARTICLE', res.data)
+        console.log(res.data)
       })
       .catch(err => console.error(err.resoponse))
     },
 
-    commentCreate({commit, getters}, {article_pk, crew_pk, content}){
+    commentCreate({commit, getters}, {crew_pk, article_pk, content}){
       axios({
-        url: drf.crews.comments(article_pk),
+        url: drf.crews.comments(crew_pk, article_pk),
         method: 'post',
-        data: content,
+        data: {content},
         headers: getters.authHeader1,
       })
       .then(res => {
+        console.log('new review!!!!!')
+        console.log(res)
         commit('SET_COMMENT', res.data)
-        router.push({ name:'ArticleDetail', params:{crewId:crew_pk, articleId:article_pk}})
+        router.push({ name:'ArticleDetail', params:{crewId:crew_pk, articleId:article_pk},query: { timestamp: Date.now() }})
       })
       .catch(err => console.error(err.resoponse))
     },
 
-    fetchComments({commit, getters}, article_pk){
+    fetchComments({commit, getters}, {crew_pk, article_pk} ){
       axios({
-        url: drf.crews.comments(article_pk),
+        url: drf.crews.comments(crew_pk, article_pk),
         method: 'get',
         headers: getters.authHeader1,
       })
       .then(res => {
-        commit('SET_COMMENTS', res.date)
+        console.log('했냐?')
+        commit('SET_COMMENTS', res.data)
       })
       .catch(err => console.error(err.response))
     }

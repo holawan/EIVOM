@@ -10,17 +10,15 @@ class Crew(models.Model) :
     crew_image = ProcessedImageField(
         blank=True,null=True,
         upload_to='thumbnails/crew/image/',
-        processors=[Thumbnail(300, 300)],
         format='JPEG',
-        options={'quality': 60},
+        options={'quality': 100},
          default='media/crew/크루기본.png'
     )
     crew_backdrop = ProcessedImageField(
         blank=True,null=True,
         upload_to='thumbnails/crew/backdrop/',
-        processors=[Thumbnail(300, 300)],
         format='JPEG',
-        options={'quality': 60},
+        options={'quality': 100},
         default='media/crew/크루배경기본.png'
     )
     

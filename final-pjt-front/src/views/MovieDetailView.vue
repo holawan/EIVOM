@@ -7,7 +7,7 @@
       <br>
     <div class="row my-5">
       <div class="col-4 align-self-center px-0" style="height: 100% ">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 80%;  filter: brightness(100%); opacity: 1;" alt="...">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 80%; height: 90%;  filter: brightness(100%); opacity: 1;" alt="...">
         <div class="col-12 d-flex justify-content-center">
 
 

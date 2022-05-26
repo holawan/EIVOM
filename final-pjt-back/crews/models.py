@@ -45,7 +45,6 @@ class Crew(models.Model) :
 
     )
     crew_location1 = models.CharField(max_length=10,choices=LOCATION_COHICES,null=True,blank=True)
-    crew_location2 = models.CharField(max_length=5,null=True,blank=True)
     crew_leader = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='leader_user')
     crew_users = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name='users_crew')
     movies = models.ManyToManyField(Movie,blank=True,related_name='crews')

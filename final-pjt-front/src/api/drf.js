@@ -33,7 +33,6 @@ export default {
   },
   crews:{
     create: ()=> HOST + CREWS + 'crew_create/',
-    register: crew_pk => HOST + CREWS + `${crew_pk}`+ 'register/',
     crews: () => HOST + CREWS,
     crew: crew_pk => HOST + CREWS + `${crew_pk}/`,
     withMovie: movieId => HOST + MOVIES + `${movieId}/` + `with/`,

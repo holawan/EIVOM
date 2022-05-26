@@ -68,6 +68,16 @@ export default{
       })
     },
 
+    joinCrew({commit, getters}, crew_pk){
+      axios({
+        url:drf.crews.crew(crew_pk),
+        method: 'post',
+        headers: getters.authHeader1,
+      })
+      .then(res => commit('SET_CREW', res.data))
+      .catch(err => console.error(err.response))
+    },
+
     fetchCrew({commit, getters}, crewId){
       axios({
         url: drf.crews.crew(crewId),

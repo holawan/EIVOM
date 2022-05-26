@@ -7,15 +7,20 @@
       <br>
     <div class="row my-5">
       <div class="col-4 align-self-center px-0" style="height: 100% ">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 80%;  filter: brightness(100%); opacity: 1;" alt="...">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 80%;  filter: brightness(100%); opacity: 1; border-radius:10px" alt="...">
         <div class="col-12 d-flex justify-content-center">
 
 
           <!-- like ui -->
-          <div class="col-1 offset-4 justify-content-end">
+          <div class="justify-content-end">
             <div class="d-flex justify-content-start align-items-center">
               <button class="btn" sytle="background-color: transparent;" @click="likeMovie(movieId)">
-                <i class="fa-solid fa-heart" style="color:red;"></i>
+                <!-- {{currentUser}}
+                {{movie.like_users}} -->
+                <i v-if="currentUser.pk in this.movie.like_users"
+                class="fa-solid fa-heart" style="color:red;"></i>
+                <i v-else
+                class="fa-solid fa-heart" style="color:black;"></i>
               </button>
             </div>
           </div>
@@ -109,11 +114,12 @@ export default {
       'fetchMovie',
       'addMovie',
       'readReviews',
+      'fetchCurrentUser'
 
     ])
   },
   mounted(){
-    
+    this.fetchCurrentUser()
     this.fetchMovie(this.movieId)
     this.readReviews(this.movieId)
     

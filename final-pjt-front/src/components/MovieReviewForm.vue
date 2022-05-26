@@ -14,15 +14,18 @@
         <div class="form-group row">
           <div class="col-12" >
             <label for="review" style="font-size: 30px;">한 줄 리뷰</label>
+            <br>
             <small id="reviewHelp" class="form-text text-muted"></small>
+            <br>
             <input type="text" class="form-control" v-model="content" id="review" aria-describedby="reviewHelp" placeholder="다양한 생각을 남겨주세요">
+      <br>
       <div class="d-flex justify-content-center">
+        <br>
         <h3 class="mt-3">당신의 평점</h3>
         
         <StarRating v-model="rate" id="rate" :rate="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"></StarRating>
   
       </div>
-      <br>
       <br>
             <button type="submit" class="btn btn-warning rounded-pill">Submit</button>
           </div>

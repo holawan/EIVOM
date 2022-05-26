@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>이 영화에 리뷰 남기기 </h1>
+    <h1 style="font-weight:bold">이 영화에 리뷰 남기기 </h1>
     
     <movie-review-item
       v-for="review in reviews"

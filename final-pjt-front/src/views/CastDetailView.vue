@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <nav-bar :now="CastDetail"></nav-bar>
-
+    <div style="height:150px"></div>
     <!-- info -->
-    <div class="col-4 align-self-center px-0">
-      <img v-if="actorInfo.profile_path" :src="'https://image.tmdb.org/t/p/w400/'+ actorInfo.profile_path" style="width: 60%; " alt="">
+    <div class="col-4 offset-4 align-self-center px-0">
+      <img v-if="actorInfo.profile_path" :src="'https://image.tmdb.org/t/p/w400/'+ actorInfo.profile_path" style="width: 60%; border-radius:10px" alt="">
       <h1 v-else>이미지 준비중인 배우입니다.</h1>
-      <h3 v-if="actorInfo.also_known_as">
+      <h3 v-if="actorInfo.also_known_as" style="font-weight:600">
       {{ actorInfo.also_known_as[0] }}
       </h3>
-      <h5>{{ actorInfo.name }} </h5>
+      <h5 style="font-weight:600">{{ actorInfo.name }} </h5>
       <p></p>
     </div>
     

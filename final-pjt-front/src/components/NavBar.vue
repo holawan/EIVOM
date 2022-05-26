@@ -21,7 +21,7 @@
           <!-- logo -->
           <div class="col-12">
             <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
-              <img src="@/assets/eivom_logo.png" alt="" style="height:120px; width:200px;">
+              <img src="@/assets/eivom_logo.png" alt="" style="height:113px; width:200px;">
             </router-link>
           </div>
         </div>

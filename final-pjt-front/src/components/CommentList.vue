@@ -1,15 +1,19 @@
 <template>
-  <div class="comment-list">
+  <div class="comment-list container">
+    <h1>댓글을 작성해보세요 ~!~ </h1>
     
-    <ul>
-      <comment-list-item 
+    <comment-form></comment-form>
+    <br>
+    <br>
+    <div class="row">
+      <comment-list-item class="col-8 offset-2" 
         v-for="comment in comments" 
         :comment="comment" 
         :key="comment.pk">
       </comment-list-item>        
-    </ul>
 
-    <comment-form></comment-form>
+    </div>
+
   </div>
 </template>
 

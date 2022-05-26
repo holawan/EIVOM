@@ -93,6 +93,7 @@ export default {
           res
           dispatch('getJwt',{email:credentials.email,password:credentials.password1})
           commit('SET_LOGIN', 1)
+          commit('SET_CURRENT_USER', res.data.user.pk)
           router.push({name: 'CreateProfile'})
         })
         .catch(err => {

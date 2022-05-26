@@ -1,7 +1,7 @@
 <template>
   <div class="comment-list-item d-flex justify-content-between">
     <router-link  style="text-decoration: none; color: black;" :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
-       글쓴이  :    {{ comment.user.profile.nickname }}
+       댓글쓴이  :    {{ comment.user.profile.nickname }}
     </router-link>
     
     <span v-if="!isEditing">{{ payload.content }}</span>
@@ -13,9 +13,10 @@
     </span>
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
-      <button @click="switchIsEditing">Edit</button> |
-      <button @click="onDelete(payload)">Delete</button>
+      <button @click="switchIsEditing" class="btn btn-open">Edit</button> |
+      <button @click="onDelete(payload)" class=" btn btn-close"></button>
     </span>
+    <hr>
   </div>
 </template>
 
@@ -50,7 +51,7 @@ export default {
     },
     onDelete(payload){
       this.deleteComment(payload)
-       this.$router.push()
+      this.$router.go()
     }
   },
 

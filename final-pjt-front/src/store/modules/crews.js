@@ -210,12 +210,9 @@ export default{
           headers: getters.authHeader1,
         })
         .then(res => {
-          console.log(res)
           commit('SET_COMMENTS', res.data)
         })
         .catch(err => console.error(err.response))
-        .finally(()=>console.log('실행됐냐?')
-        )
     },
 
     fetchComments({commit, getters}, {crew_pk, article_pk} ){

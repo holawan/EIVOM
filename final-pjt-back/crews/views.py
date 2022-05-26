@@ -17,9 +17,12 @@ def crew_list(request):
 @api_view(['POST'])
 def crew_create(request) :
     user = request.user
+
     serializer = CrewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True) :
+        serializer.add(user)
         serializer.save(crew_leader=user)
+
         return Response(serializer.data,status=status.HTTP_201_CREATED)
 
 

@@ -1,32 +1,37 @@
 <template>
   <div>
     <nav-bar :now="'CrewDetail'"></nav-bar>
-
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- crew info -->
     <div>
-      <img :src="`http://127.0.0.1:8000${crew.crew_image}`" alt="">
-      {{crew}}
-      {{ crew.crewname }}
-      <p> {{ crew.crew_location1 }}</p>
-      {{ crew.crewintro }}
-    </div>
+      <img :src="`http://127.0.0.1:8000${crew.crew_backdrop}`" alt="">
+      <h3>
+         크루 리더 : {{crew.crew_leader.profile.nickname}}
 
+      </h3>
+      <h3>크루 이름 :{{ crew.crewname }}</h3>
+      <h4> 활동 장소 : {{ crew.crew_location1 }}</h4>
+      <h4>크루 소개 : {{ crew.crewintro }}</h4>
+      <h5>크루 인원 : {{crew.crew_users.length}}</h5>
+    </div>
+    <hr>
     <!-- Join Crew -->
-    <div>
+    <h3>
       Join this Crew:
-      <button
+      <button class="btn-lg btn-primary"
         @click="joinCrew(crew_pk)"
-        class="btn btn-lg"
-      >{{ joinCount }}</button>
-    </div>
-
+      > 가입하기 !</button>
+    </h3>
+    <hr>
     <!-- article 만들기 -->
     <div>
        <router-link :to="{ name: 'ArticleCreate', params:{ crew_pk: crew_pk } }">
          <button>new Article</button>
         </router-link>
     </div>
-
     <!-- CREW MOVIE LIST -->
     <movie-list-item
       v-for="movie in crew.movies"

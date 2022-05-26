@@ -1,8 +1,8 @@
 <template>
-  <li class="comment-list-item">
-    <router-link :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
-      {{ comment.user }}
-    </router-link>: 
+  <div class="comment-list-item d-flex justify-content-between">
+    <router-link  style="text-decoration: none; color: black;" :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
+       글쓴이  :    {{ comment.user.profile.nickname }}
+    </router-link>
     
     <span v-if="!isEditing">{{ payload.content }}</span>
 
@@ -14,9 +14,9 @@
 
     <span v-if="currentUser.username === comment.user.username && !isEditing">
       <button @click="switchIsEditing">Edit</button> |
-      <button @click="deleteComment(payload)">Delete</button>
+      <button @click="onDelete(payload)">Delete</button>
     </span>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -47,6 +47,10 @@ export default {
     onUpdate() {
       this.updateComment(this.payload)
       this.isEditing = false
+    },
+    onDelete(payload){
+      this.deleteComment(payload)
+       this.$router.push()
     }
   },
 

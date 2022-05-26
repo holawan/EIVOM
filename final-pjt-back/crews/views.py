@@ -8,8 +8,8 @@ from accounts.models import User
 from .models import Crew
 
 @api_view(['GET'])
-def crew_list(request,genre_pk):
-    crews = get_list_or_404(Crew,pk=genre_pk)
+def crew_list(request):
+    crews = get_list_or_404(Crew)
     print(crews)
     serializer = CrewListSerializer(crews, many=True)
     return Response(serializer.data)

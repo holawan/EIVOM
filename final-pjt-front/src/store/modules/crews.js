@@ -204,7 +204,7 @@ export default{
     deleteComment({commit, getters}, {crew_pk, article_pk, comment_pk}){
      
         axios({
-          ulr: drf.crews.comment(crew_pk, article_pk, comment_pk),
+          url: drf.crews.comment(crew_pk, article_pk, comment_pk),
           method: 'delete',
           data: {},
           headers: getters.authHeader1,
@@ -214,7 +214,8 @@ export default{
           commit('SET_COMMENTS', res.data)
         })
         .catch(err => console.error(err.response))
-      
+        .finally(()=>console.log('실행됐냐?')
+        )
     },
 
     fetchComments({commit, getters}, {crew_pk, article_pk} ){

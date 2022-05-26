@@ -25,6 +25,7 @@ export default {
     onSubmit() {
       this.createComment({ crew_pk: this.crew_pk, article_pk: this.article.pk, content: this.content, })
       this.content = ''
+      this.$route.push()
     }
   }
 }

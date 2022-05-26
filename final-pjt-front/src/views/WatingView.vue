@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>어서오세요 이봄입니다아~~~</h1>
+    <img src="@/assets/waiting.png" style="width:100vw; height:100vh" alt="">
   </div>
 </template>
 

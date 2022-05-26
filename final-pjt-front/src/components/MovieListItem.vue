@@ -1,11 +1,11 @@
 <template>
 <div class="item">
   <div >
-    <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }">
+    <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }" style="text-decoration:none">
       <div class="card card-block pr-3 embed-responsive embed-responsive-1by1" >
         <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top embed-responsive-item" alt="...">
         <div class="card-body">
-          <p class="card-text">{{ movie.title }}</p>
+          <p class="card-text" style="text-decoration:none">{{ movie.title }}</p>
         </div>
       </div>  
     </router-link>

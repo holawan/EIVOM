@@ -50,7 +50,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'CrewView',
   components:{
-    NavBar},
+    NavBar
+  },
   data(){
     return{
     }

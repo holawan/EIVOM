@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="row">
     <nav-bar :now="'ArticleDetail'"></nav-bar>
+    <div class="col-8 offset-2">
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <h1>ArticleDetailView</h1>
     <br>
     <h3>{{article.user.profile.nickname}} 의 글 </h3>
     <h3 style="font-weight: bold;   ">{{ article.title }}</h3>
@@ -14,10 +13,10 @@
 
     <div v-if="isAuthor">
       <router-link :to="{ name: 'ArticleEdit', params: { crew_pk, article_pk } }">
-        <button  class="btn btn-primary" >Edit</button>
+        <button  class="btn btn-primary rounded-pill" >Edit</button>
       </router-link>
       |
-      <button  class="btn btn-danger" @click="deleteArticle({crew_pk, article_pk})">Delete</button>
+      <button  class="btn btn-danger rounded-pill" @click="deleteArticle({crew_pk, article_pk})">Delete</button>
     </div>
     <br>
     <hr>
@@ -26,6 +25,7 @@
     <comment-list
       :comments="article.comments"
     ></comment-list>
+  </div>
   </div>
 </template>
 

@@ -49,7 +49,7 @@
         </div>
         </div>
       </div>
-      <h1 class="mb-5 mx-2 " style="text" align="left">주요 출연진</h1>
+      <h1 class="mb-5 mx-2 " style="text ;font-weight: bold;" align="left" >주요 출연진</h1>
       <actor-list :movieId ="movieId" class="row d-flex justify-content-center" ></actor-list>
       <br>
       <br>

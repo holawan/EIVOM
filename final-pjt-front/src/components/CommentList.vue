@@ -1,7 +1,7 @@
 <template>
   <div class="comment-list container">
-    <h1>댓글을 작성해보세요 ~!~ </h1>
-    
+    <h1>댓글을 작성해보세요 ! </h1>
+
     <comment-form></comment-form>
     <br>
     <br>

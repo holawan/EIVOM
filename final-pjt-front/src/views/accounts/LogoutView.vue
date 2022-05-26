@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>로그아웃</h1>
+    <img src="@/assets/logout_back.png" alt="logout page" style="height:100vh; width:100vw;">
   </div>
 </template>
 

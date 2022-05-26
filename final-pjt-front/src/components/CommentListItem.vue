@@ -1,5 +1,5 @@
 <template>
-  <div class="comment-list-item d-flex justify-content-between">
+  <div class="comment-list-item d-flex justify-content-between align-items-center">
     <router-link  style="text-decoration: none; color: black;" :to="{ name: 'Profile', params: { user_pk:comment.user.pk } }">
        댓글쓴이  :    {{ comment.user.profile.nickname }}
     </router-link>
@@ -8,7 +8,7 @@
 
     <span v-if="isEditing">
       <input type="text" v-model="payload.content">
-      <button @click="onUpdate" class="btn btn-open">Update</button> |
+      <button @click="onUpdate" class="btn btn-open" >Update</button> |
       <button @click="switchIsEditing" class=" btn btn-close" ></button>
     </span>
 

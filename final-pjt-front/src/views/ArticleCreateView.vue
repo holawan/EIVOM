@@ -5,7 +5,6 @@
     <br>
     <br>
     <br>
-    <h1>Article Create</h1>
     
     <article-form
       :article="article"

@@ -23,11 +23,11 @@
             <h2 class="mt-3 custom-break-word">{{ movie.title }}</h2>
             <div class="mt-4 offset-1"> {{ movie.release_date }}</div>
           </div>
-          <h4  v-if="movie.title!==movie.original_title" class="custom-break-word offset-1 " align="left">{{ movie.original_title }}</h4>
-          <div class="d-flex " v-for="genre,idx in movie.genres" :key="idx" :genre="genre">
-              {{genre.name}}
-          </div>
-          <h5> {{movie.runtime}} 분</h5>
+          <h4  v-if="movie.title!==movie.original_title" class="custom-break-word" align="left">{{ movie.original_title }}</h4>
+           <div class="d-flex "><div class="mx-1 mb-2" v-for="genre,idx in movie.genres" :key="idx" :genre="genre">
+                {{genre.name}} | 
+            </div></div>
+          <h5 align="left" class="mx-1"> 영화 상영 시간 :  {{movie.runtime}} 분</h5>
           <hr>
           <p>{{movie.tagline}}</p>
           <hr>
@@ -54,33 +54,15 @@
       <br>
       <br>
       <movie-review-list :reviews="this.reviews"></movie-review-list>
-      <movie-rec-similar></movie-rec-similar>
-    <!-- movie like ui -->
+
   </section>
 
-    <!-- movie cast -->
-    
-    
-
-    <!-- <div 
-      v-for="actor,idx in this.movie.actors"
-      :key="idx"
-      :idx="idx"
-    >
-      <router-link :to="{name: 'CastDetail', params: { castId:movie.actor_id[idx] } }">
-        <div class="col-4 card mx-4 mb-5" style="width: 18rem;padding-left:0px;">
-          <img class="card-img-top " :src="'https://image.tmdb.org/t/p/w400/'+ movie.actors_path[idx]" alt="Card image cap" style="width:10rem; height:15rem; box-sizing:content-box;">
-          <br>
-            <h5>{{ movie.actors[idx] }}</h5>
-        </div>
-      </router-link>
-    </div> -->
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import MovieReviewList from '@/components/MovieReviewList.vue'
-import MovieRecSimilar from '@/components/MovieRecSimilar.vue'
+// import MovieRecSimilar from '@/components/MovieRecSimilar.vue'
 import ActorList from '@/components/ActorList.vue'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -91,7 +73,7 @@ export default {
     NavBar,
 
     MovieReviewList,
-    MovieRecSimilar,
+    // MovieRecSimilar,
     ActorList,
   },
   data(){

@@ -135,6 +135,7 @@ export default {
           alert('성공적으로 logout!')
           commit('SET_REFRESH', '')
           dispatch('removeRefresh')
+          localStorage.setItem('user_pk','')
           router.push({ name: 'login' })
         })
         .catch(err => {

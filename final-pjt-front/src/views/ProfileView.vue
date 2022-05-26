@@ -22,6 +22,7 @@ export default {
   name: 'UserView',
   data (){
     return {
+      current_pk : this.$route.params.user_pk
     }
   },
   components:{
@@ -37,7 +38,7 @@ export default {
     ...mapActions(['fetchProfile'])
   },
   mounted(){
-    this.fetchProfile(1)
+    this.fetchProfile(this.current_pk)
     console.log(this.profile,'profile!')
   }
 }

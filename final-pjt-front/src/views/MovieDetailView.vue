@@ -114,7 +114,7 @@ export default {
       'readReviews'
     ])
   },
-  created(){
+  mounted(){
     
     this.fetchMovie(this.movieId)
     this.readReviews(this.movieId)
@@ -132,9 +132,5 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-}
-.box01::before{
-  /* opacity: 0.5; */
-
 }
 </style>

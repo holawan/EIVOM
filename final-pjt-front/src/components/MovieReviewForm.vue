@@ -20,7 +20,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <StarRating :rating="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"/>
+    <StarRating :rate="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"/>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   data(){
     return {
       content:'',
-      rating:'',
+      rate:'',
       movieId: this.$route.params.movie_pk,
       score :0,
       }
@@ -52,7 +52,7 @@ export default {
     },
     click(event){
       console.log(event)
-      console.log(this.rating)
+      console.log(this.rate)
     },
 
   },

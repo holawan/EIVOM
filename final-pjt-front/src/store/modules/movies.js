@@ -60,7 +60,7 @@ export default{
     SET_MOVIES: (state, movies) => state.movies = movies,
     SET_MOVIE: (state, movie) => state.movie= movie,
     SET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
-    GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
+    // GET_MOVIE_REVIEWS: (state, reviews) => (state.reviews = reviews),
     SET_TOP_RATED_MOVIES: (state, movies) => (state.topRatedMovies = movies),
     SET_NOW_PLAYING_MOVIES: (state, movies) => (state.nowPlayingMovies = movies),
     SET_FILMOS: (state, filmos) => (state.filmos = filmos),
@@ -127,6 +127,38 @@ export default{
       })
       .catch(err => console.error(err.response))
     },
+    updateReview({commit, getters}, payload) {
+      const review = {content : payload.content, rate : payload.rate}
+      axios({
+        url: drf.movies.reviewEdit(payload.movieId,payload.pk),
+        method: 'put',
+        data: review,
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('SET_MOVIE_REVIEWS', res.data)
+        console.log(res.data)
+      })
+      .catch(err =>{
+        console.error(err.response)
+      })
+    },
+    deleteReview({commit, getters}, payload) {
+      axios({
+        url: drf.movies.reviewEdit(payload.movieId,payload.pk),
+        method: 'delete',
+        data:{},
+        headers: getters.authHeader,
+      })
+      .then(res => {
+        commit('SET_MOVIE_REVIEWS', res.data)
+        console.log(res.data)
+          // this.$router.go(-1)
+
+      })
+      
+      .catch(err => console.error(err.response))
+    },
 
     readReviews({ commit, getters}, movieId) {
       axios({
@@ -135,7 +167,7 @@ export default{
         headers: getters.authHeader,
       })
       .then(res => {
-        commit('GET_MOVIE_REVIEWS', res.data)
+        commit('SET_MOVIE_REVIEWS', res.data)
       })
       .catch(err => console.error(err.response))
     },

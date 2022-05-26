@@ -8,7 +8,6 @@
       :review="review"
       :key="review.pk"
     ></movie-review-item>
-    
   </div>
 </template>
 
@@ -17,13 +16,14 @@ import MovieReviewForm from './MovieReviewForm.vue'
 import MovieReviewItem from './MovieReviewItem.vue'
 
 export default {
-  name:'MovieReview',
+  name:'MovieReviewList',
   components:{
     MovieReviewForm,
     MovieReviewItem,
   },
-  props: { reviews:Array }
-
+  props: { 
+    reviews:Array, }
+  
 }
 </script>
 

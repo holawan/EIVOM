@@ -30,6 +30,7 @@ export default {
     cluster: cluster => HOST + MOVIES + 'cluster_recommend/' +`${cluster}/`,
     genreRec: () => HOST + MOVIES + 'genre_recommend/',
     viewCount: () => HOST + MOVIES + 'view_count_recommend/',
+    reviewEdit : (movie_pk,review_pk) => HOST + MOVIES + `${movie_pk}/reviews/${review_pk}/`,
   },
   crews:{
     create: ()=> HOST + CREWS + 'crew_create/',

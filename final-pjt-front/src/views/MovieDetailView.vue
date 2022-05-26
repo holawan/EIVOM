@@ -1,35 +1,42 @@
 <template>
-  <div>
+  <section class="container">
+    <nav-bar></nav-bar>
     <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
 
-      <div class="col-12 col-md-3 align-self-center" style="height: 100%;">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 100%;  filter: brightness(100%); opacity: 1;" alt="...">
+      <div class="col-4 align-self-center px-0" style="height: 80% ">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 60%;  filter: brightness(100%); opacity: 1;" alt="...">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="col-6">
+            <button @click="likeMovie(movieId)">Like It</button>
+          </div>
+          <div class="col-6"> 
+            <button @click="addMovie(this.movieId)">Add Crew</button>
+          </div>
+        </div>
       </div>
-      <div class="col-12 col-md-9 text-dark">
-        <h3 class="mt-3 custom-break-word">{{ movie.title }}</h3>
-        <div class="custom-break-word">장르: {{ movie.genres }}</div>
-        <hr>
-        <p class="custom-break-word color-dark">{{ movie.overview }}</p>
-        <hr>
-        <div>{{ movie.release_date }} 개봉</div>
-        <div>평점: {{ movie.vote_average }}</div>
-        <div class="custom-break-word">원제목: {{ movie.original_title }}</div>
-        <div>언어: {{ movie.original_language }}</div>
+      <div class="col-7  text-dark">
+        <div>
+          <div class="d-flex ">
+            <h2 class="mt-3 custom-break-word">{{ movie.title }}</h2>
+            <div class="mt-4 offset-1"> {{ movie.release_date }}</div>
+          </div>
+          <h4 v-if="movie.title!==movie.original_title" class="custom-break-word offset-1" align="left">{{ movie.original_title }}</h4>
+          <h5 class="custom-break-word " align="left">{{ movie.genres }}   |  {{movie.runtime}} 분</h5>
+          <hr>
+          <p>{{movie.tagline}}</p>
+          <hr>
+          <p class="custom-break-word color-dark">{{ movie.overview }}</p>
+        </div>
+      </div>
     </div>
-    </div>
+      <h1 class="mb-5 mx-2 " style="text" align="left">주요 출연진</h1>
+      <actor-list :movieId ="movieId" class="row d-flex justify-content-center" ></actor-list>
+      <br>
+      <br>
+      <movie-review-list :reviews="this.reviews"></movie-review-list>
+      <movie-rec-similar></movie-rec-similar>
     <!-- movie like ui -->
-    <div>
-      LikeIt: 
-      <button
-        @click="likeMovie(movieId)"
-      >좋아요</button>
-    </div>
-    <div>
-      AddCrew:
-      <button
-        @click="addMovie(this.movieId)"
-      >크루에 추가하기</button>
-    </div>
+  </section>
 
     <!-- movie cast -->
     
@@ -48,10 +55,6 @@
         </div>
       </router-link>
     </div> -->
-    <actor-list :movieId ="movieId"></actor-list>
-    <movie-review-list :reviews="this.reviews"></movie-review-list>
-    <movie-rec-similar></movie-rec-similar>
-  </div>
 </template>
 
 <script>
@@ -102,7 +105,7 @@ export default {
 
 <style>
 .backdrop{
-  opacity: 0.5;
+  /* opacity: 0.5; */
   /* height: 100vh; */
   margin:0;
   background-size: cover;
@@ -110,7 +113,7 @@ export default {
   background-position: center;
 }
 .box01::before{
-  opacity: 0.5;
+  /* opacity: 0.5; */
 
 }
 </style>

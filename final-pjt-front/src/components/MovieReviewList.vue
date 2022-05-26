@@ -2,13 +2,13 @@
   <div>
     <h1>MovieReview</h1>
     
+    <movie-review-form></movie-review-form>
     <movie-review-item
       v-for="review in reviews"
       :review="review"
       :key="review.pk"
     ></movie-review-item>
     
-    <movie-review-form></movie-review-form>
   </div>
 </template>
 

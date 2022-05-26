@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="d-flex justify-content-center">
       <router-link :to="{name: 'Profile', params: { user_pk: this.review.user.pk } }">
         <!-- {{ payload.nickname }} -->
       </router-link>

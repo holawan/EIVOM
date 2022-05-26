@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h1>MainView</h1>
-    <box-office></box-office>
-    <rec-for-you ></rec-for-you>
-    <rec-weather></rec-weather>
-    <rec-highly-view></rec-highly-view>
-    <rec-master-piece></rec-master-piece>
-    <rec-genre></rec-genre>
+  <div class="container">
+    <div class="row-col-8">
+
+      <h1>MainView</h1>
+      <box-office></box-office>
+      <rec-for-you ></rec-for-you>
+      <rec-weather></rec-weather>
+      <rec-highly-view></rec-highly-view>
+      <rec-master-piece></rec-master-piece>
+      <rec-genre></rec-genre>
+    </div>
 
   </div>
 </template>

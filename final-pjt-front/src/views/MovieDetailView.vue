@@ -3,22 +3,21 @@
     <nav-bar :now="MovieDetail"></nav-bar>
 
     <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
+
       <div class="col-12 col-md-3 align-self-center" style="height: 100%;">
-        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 100%;" alt="...">
+        <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 100%;  filter: brightness(100%); opacity: 1;" alt="...">
       </div>
       <div class="col-12 col-md-9 text-dark">
         <h3 class="mt-3 custom-break-word">{{ movie.title }}</h3>
         <div class="custom-break-word">장르: {{ movie.genres }}</div>
         <hr>
-        <p class="custom-break-word">{{ movie.overview }}</p>
+        <p class="custom-break-word color-dark">{{ movie.overview }}</p>
         <hr>
         <div>{{ movie.release_date }} 개봉</div>
         <div>평점: {{ movie.vote_average }}</div>
         <div class="custom-break-word">원제목: {{ movie.original_title }}</div>
         <div>언어: {{ movie.original_language }}</div>
-        <hr>
-        <hr>
-      </div>
+    </div>
     </div>
     <!-- movie like ui -->
     <div>
@@ -108,11 +107,15 @@ export default {
 
 <style>
 .backdrop{
-  filter: brightness(70%);
-  height: 100vh;
+  opacity: 0.5;
+  /* height: 100vh; */
   margin:0;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.box01::before{
+  opacity: 0.5;
+
 }
 </style>

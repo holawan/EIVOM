@@ -14,58 +14,65 @@
       </div>
     </div>
     <hr>
-    <div v-if="profile">
+    <!-- {{profile.user.like_movies}} -->
 
-      <movie-list-item v-for="movieId,idx in likeMovies"
-          :key="idx"
-          :movieId="movieId">
+      <div class="row">
+        <div class="col-2" v-for="movie,idx in profile.user.like_movies"
+            :key="idx"
+            :movie="movie">
+              <div >
+            <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }">
+              <div class="card card-block pr-3 embed-responsive embed-responsive-1by1" >
+                <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top embed-responsive-item" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{ movie.title }}</p>
+                </div>
+              </div>  
+            </router-link>
+          </div>
+          </div>
 
-        </movie-list-item>
+      </div>
+    
     </div>
-    <my-crew-list></my-crew-list>
     <!-- {{this.likeMovies}} -->
     <!-- <my-movie-list :movies="profile.user.like_movies"></my-movie-list> -->
-    <div>
-      {{profile}}
-    </div>
-  </div>
+      <!-- {{profile}} -->
+
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import MyCrewList from '@/components/MyCrewList.vue'
 // import MyMovieList from '@/components/MyMovieList.vue'
 import { mapActions, mapGetters } from 'vuex'
-import MovieListItem from '../components/MovieListItem.vue'
+// import MovieListItem from '../components/MovieListItem.vue'
 
 export default {
   name: 'UserView',
   data (){
     return {
       current_pk : this.$route.params.user_pk,
-      
     }
   },
   components:{
     NavBar,
-    MovieListItem,
+    // MovieListItem,
     
-    MyCrewList
+    // MyCrewList
     // MyMovieList,
   },
   computed :{
     ...mapGetters(['profile']),
-    likeMovies() {
-      return this.profile.user.like_movies
-    }
+
   },
   methods : {
     ...mapActions(['fetchProfile'])
   },
-  mounted(){
+  created(){
     this.fetchProfile(this.current_pk)
     console.log(this.profile,'profile!')
-  }
+  },
+  
 }
 </script>
 

@@ -1,8 +1,8 @@
-from dataclasses import field
+
 from rest_framework import serializers
 
 from .models import User,Profile
-from movies.models import Genre
+from movies.models import Genre,Movie
 
 class ProfileSerializer(serializers.ModelSerializer) :
     
@@ -11,6 +11,13 @@ class ProfileSerializer(serializers.ModelSerializer) :
         class Meta : 
             model = User 
             fields = ('pk','email','like_movies')
+
+        class MovieSerializer(serializers.ModelSerializer) :
+            class Meta : 
+                model = Movie 
+                fields = '__all__'
+
+        like_movies = MovieSerializer(read_only=True,many=True)
     image = serializers.ImageField()
     backdrop = serializers.ImageField()
     user = UserSerializer(read_only=True)

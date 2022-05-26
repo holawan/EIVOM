@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="container">
     <nav-bar :now="'Crew'"></nav-bar>
 
     <div class="row">
-      <div class="col-8 offset-2">
-        <div>
-          <img src="@/assets/crew_back.png" alt="crewback" class="crewback">
-        </div>
+      <div class="col-12">
+          <img src="@/assets/crew_back.png" alt="crewback" class="crewback"  style="width: 100%;">
+
 
         <!-- 내가 가입한 크루 -->
         <div>
@@ -34,7 +33,6 @@
 <script>
 import NavBar from '@/components/NavBar.vue'
 import NearCrewList from '@/components/NearCrewList.vue'
-import MyCrewList from '@/components/MyCrewList.vue'
 
 
 export default {
@@ -43,7 +41,6 @@ export default {
     NavBar,
     
     NearCrewList,
-    MyCrewList,
   },
   methods:{
     crewcreate(){

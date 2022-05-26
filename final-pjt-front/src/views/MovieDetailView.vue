@@ -1,8 +1,11 @@
 <template>
   <section class="container">
     <nav-bar :now="'MovieDetail'"></nav-bar>
-    <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" >
-
+    <!-- <div class="backdrop row m-0 my-5" :style="{ backgroundImage:  `url(${backdropUrl})` }" > -->
+      <br>
+      <br>
+      <br>
+    <div class="row my-5">
       <div class="col-4 align-self-center px-0" style="height: 80% ">
         <img :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path" id="poster-img"  style="width: 60%;  filter: brightness(100%); opacity: 1;" alt="...">
         <div class="col-12 d-flex justify-content-center">
@@ -20,8 +23,11 @@
             <h2 class="mt-3 custom-break-word">{{ movie.title }}</h2>
             <div class="mt-4 offset-1"> {{ movie.release_date }}</div>
           </div>
-          <h4 v-if="movie.title!==movie.original_title" class="custom-break-word offset-1" align="left">{{ movie.original_title }}</h4>
-          <h5 class="custom-break-word " align="left">{{ movie.genres }}   |  {{movie.runtime}} 분</h5>
+          <h4  v-if="movie.title!==movie.original_title" class="custom-break-word offset-1 " align="left">{{ movie.original_title }}</h4>
+          <div class="d-flex " v-for="genre,idx in movie.genres" :key="idx" :genre="genre">
+              {{genre.name}}
+          </div>
+          <h5> {{movie.runtime}} 분</h5>
           <hr>
           <p>{{movie.tagline}}</p>
           <hr>

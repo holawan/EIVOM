@@ -1,14 +1,14 @@
-<template>
-  <li @click="onClickItem" class="item">
-    <img  
-      v-if="poster_path"
-      :src="poster_path"
-      alt="movie_poster"
-    >
-    {{ movie.title }}
-    <p>야 너 뭐해</p>
-  </li>
-  
+<template class="row">
+<router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }">
+    <div @click="onClickItem" class="searchitem col-3 my-1" style="border: solid 3px;">
+      <img  style="width: 16rem; height: 19rem; "
+        v-if="poster_path"
+        :src="poster_path"
+        alt="movie_poster"
+      >
+      <p class="my-2">  {{ movie.title }}</p>
+    </div>
+    </router-link>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
   computed: {
     poster_path () {
       if (this.movie.poster_path) {
-        return `https://www.themoviedb.org/t/p/w92${this.movie.poster_path}`
+        return `https://image.tmdb.org/t/p/w500${this.movie.poster_path}`
       } else {
         return ''
       }
@@ -35,11 +35,12 @@ export default {
 </script>
 
 <style>
-  .item {
+  .searchitem {
+    display:inline-block; padding: 0px 0px;  margin-right:10px;
     cursor: pointer;
   }
 
-  .item:hover {
+  .searchitem:hover {
     background: #eee;
   }
 </style>

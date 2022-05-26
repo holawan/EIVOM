@@ -1,7 +1,13 @@
 <template>
-  <li >
-    {{ movie.title }}
-  </li>
+    <div class="row ">
+      <div class="col-6 offset-3" style="border: solid 1px;" >
+        <p >
+          {{ movie.title }}
+        </p>
+  
+      </div>
+
+    </div>
   
 </template>
 

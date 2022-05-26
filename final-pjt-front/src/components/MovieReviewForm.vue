@@ -1,6 +1,6 @@
 <template  v-for="index in 5">
   <div>
-    <h1>MovieReviewForm</h1>
+    <!-- <h1>MovieReviewForm</h1> -->
     <!-- <form @submit.prevent="onSubmit">
       <label for="review">review: </label>
       <input type="text" id="review"  v-model="content" required>

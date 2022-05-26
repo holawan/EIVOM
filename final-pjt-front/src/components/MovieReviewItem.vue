@@ -1,6 +1,6 @@
 <template>
 
-    <div class="d-flex ">
+    <div class="d-flex "  >
       <router-link :to="{name: 'Profile', params: { user_pk: this.review.user.pk } }">
           <div class="col-3">
             <img :src="'http://127.0.0.1:8000'+ payload.image" alt="" style="width:120px;height:120px; border-radius:100px">
@@ -8,8 +8,8 @@
         <!-- {{ payload.nickname }} -->
       </router-link>
         <div class="offset-1 mb-0">
-          <h5 class="mb-0"> {{payload.nickname}}</h5>
-          <p class="mb-0 mt-0">{{date}}</p>
+          <h5 class="mb-0 d-flex"> {{payload.nickname}}</h5>
+          <p class="mb-0 mt-0  d-flex">{{date}}</p>
           <div v-if="!isEditing">
             <div class="star-ratings mb-0 d-flex">
               <div 
@@ -23,7 +23,7 @@
               </div>
                 <p class="mb-0">{{payload.rate}}점 </p>
             </div>
-                <h3 class="mb-1">{{ payload.content }} </h3>
+                <h3 class="mb-1  d-flex">{{ payload.content }} </h3>
 
           </div>
 
@@ -46,18 +46,14 @@
             </div>
 
            </div>
-            <span v-if="currentUsernow == payload.commentUser" >
+            <span v-if="currentUsernow == payload.commentUser" class="d-flex" >
             <!-- <span  > -->
-            <button @click="switchIsEditing">Edit</button> |
-            <button @click="onDelete">Delete</button>
+            <button @click="switchIsEditing" class="btn btn-secondary rounded-pill">Edit</button> 
+            <button @click="onDelete" class="btn btn-danger rounded-pill">Delete</button>
             </span>
         </div>
-        {{currentUsernow}}
-        {{ payload.commentUser}}
-        {{review}}
-    <!-- {{payload}} -->
+    
     </div>
-      <!-- {{payload}} -->
 
 </template>
 

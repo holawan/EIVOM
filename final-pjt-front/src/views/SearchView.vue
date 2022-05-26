@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <nav-bar :now="search"></nav-bar>
 
     <SearchBar

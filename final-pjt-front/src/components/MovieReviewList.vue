@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>MovieReview</h1>
+    <h1>이 영화에 리뷰 남기기 </h1>
     
     <movie-review-form></movie-review-form>
     <movie-review-item

@@ -18,6 +18,7 @@ import SelectGenre from '@/views/accounts/SelectGenre.vue'
 import ArticleCreateView from '@/views/ArticleCreateView.vue'
 import WatingView from '@/views/WatingView.vue'
 import IntroView from '@/views/IntroView'
+import NoneMovieFromMain from'@/views/NoneMovieFromMain.vue'
 // import store from '@/store'
 Vue.use(VueRouter)
 
@@ -38,6 +39,11 @@ const routes = [
     path:'/wating',
     name:'Wating',
     component: WatingView,
+  },
+  {
+    path:'/sorry',
+    name:'Sorry',
+    component: NoneMovieFromMain,
   },
   {
     path: '/login',

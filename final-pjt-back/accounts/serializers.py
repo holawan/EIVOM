@@ -10,9 +10,10 @@ class ProfileSerializer(serializers.ModelSerializer) :
 
         class Meta : 
             model = User 
-            fields = ('pk','email')
+            fields = ('pk','email','like_movies')
     image = serializers.ImageField()
     backdrop = serializers.ImageField()
+    user = UserSerializer(read_only=True)
     # gender = serializers.SerializerMethodField()
     # location1 = serializers.SerializerMethodField()
     class Meta :

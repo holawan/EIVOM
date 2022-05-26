@@ -56,7 +56,7 @@
 
 
           <div v-if="isLoggedIn">
-            <router-link :to="{ name: 'Profile', params:{user_pk: currentUser} }" style="text-decoration:none; color:black;">
+            <router-link :to="{ name: 'Profile', params:{user_pk: currentUser.pk} }" style="text-decoration:none; color:black;">
               <h4>
                 Profile
               </h4> 
@@ -79,28 +79,45 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name:'NavBar',
-  data(){
-    return {
-      user_pk: this.currentUser
+  data () {
+    return{
     }
   },
   props:{
     now: String,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'currentUser', 'logintf'])
+    ...mapGetters(['isLoggedIn', 'currentUser'])
+  },
+  methods :{
+    ...mapActions(['fetchCurrentUser'])
   },
 
   mounted(){
-    console.log('1',this.isLoggedIn)
-    console.log('2',this.currentUser)
-    console.log('3',this.logintf)
-    console.log('4',this.user_pk)
+
+    if (!this.currentUser.pk) {
+      this.fetchCurrentUser()}
+    this.user_pk = localStorage.getItem('pk')
+  },
+  updated(){
+    console.log(this.currentUser.pk)
   }
+    // updated(){
+    // console.log('1',this.isLoggedIn)
+    // console.log('2',this.currentUser)
+    // console.log('4',this.user_pk)
+
+    // if (!this.user_pk) {
+    //   this.fetchCurrentUser()}
+    
+    // console.log('1',this.isLoggedIn)
+    // console.log('2',this.currentUser)
+    // console.log('4',this.user_pk)
+  // }
 
 }
 </script>

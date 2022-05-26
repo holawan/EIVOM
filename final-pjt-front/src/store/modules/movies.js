@@ -89,7 +89,7 @@ export default{
       })
       .catch(err => {
         if (err.response.status === 404){
-          router.push({name:'NotFound404'})
+          router.push({name: 'Sorry'})
         }
       })
     },
@@ -222,7 +222,7 @@ export default{
           dispatch('fetchUnkownMovie', movieId)
           console.log(movieId)
         } else {
-          console.error(err.response)
+          router.push({name: 'Sorry'})
         }
       })
     },
@@ -240,6 +240,9 @@ export default{
       })
       .then(res => {
         commit('ADD_WEATHER_MOVIES', res.data)
+      })
+      .catch(()=>{
+        router.push({name: 'Sorry'})
       })
     },
 

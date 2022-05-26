@@ -2,8 +2,8 @@
   <div class="item">
     <div v-if="movie.pk">
       <router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.pk} }">
-        <div class="card  pr-3 embed-responsive embed-responsive-1by1 d-flex justify-content-center" style="width: 18rem;padding-left:0px;" >
-          <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top embed-responsive-item" alt="..." style="width:18rem; height:25rem;">
+        <div class="card  pr-3 d-flex justify-content-center" style="width: 18rem;padding-left:0px;" >
+          <img :src="'https://image.tmdb.org/t/p/w400/'+ movie.poster_path" class="card-img-top" alt="..." style="width:18rem; height:25rem;">
           <div class="tmp">
             <h3 class="MLIh3 justify-content-center mx-3">{{ movie.title }}</h3>
           </div>
@@ -38,8 +38,15 @@ export default {
 </script>
 
 <style>
-.item{display:inline-block; padding: 5px 0px; background: rgb(255, 255, 255); margin-right:10px;}
+.item{
+  display:inline-block; 
+  padding: 5px 0px; 
+  background: rgb(255, 255, 255); 
+  margin-right:10px;
+  border-radius: 30px;}
 .card:hover {
+  border-style: none;
+  border-radius: 30px;
      transform: scale(1.1);
      filter:brightness(0.7);
      z-index: 2000;
@@ -48,6 +55,8 @@ export default {
     background-color: black
 }
 .card{
+  border-style: none;
+  border-radius: 30px;
   max-width: 100%;
   max-height: 100%;
   color: rgba(255, 255, 255, 0);

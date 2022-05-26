@@ -1,8 +1,10 @@
 <template>
 <div id="nav">
-  <nav class="navbar navbar-expand-lg navbar-light py-0" style="background-color: white; opacity:70%; height:80px;">
+  <nav class="navbar navbar-expand-lg navbar-light py-0" style="background-color:gray; opacity:70%; height:80px;">
       <div class="row" style="width:100vw; ">
-        <div class="col-2 d-flex justify-content-center">
+        <div class="col-8 offset-2 d-flex flex-row">
+
+        <div class="col-2 d-flex justify-content-center align-items-center">
           <!-- search magnifier -->
           <router-link :to="{ name: 'Search' }" style="text-decoration:none; color:black" >
             <div class="d-flex flex-row align-items-center">
@@ -14,25 +16,37 @@
           </router-link>
         </div>
 
-        <div class="col-4">
-          <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
-            <h4>
-              MAIN
-            </h4> 
-          </router-link>
-        </div>
+        <!-- center -->
+        <div class="col-8">
+          <!-- logo -->
+          <div class="col-12">
+            <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
+              <img src="@/assets/eivom_logo.png" alt="" style="height:60px; width:100px;">
+            </router-link>
+          </div>
+          <div class="col-12 d-flex justify-content-around">
+            <div class="">
+              <router-link :to="{ name: 'Main' }" style="text-decoration:none; color:black;">
+                <h6>
+                  MAIN
+                </h6> 
+              </router-link>
+            </div>
 
-        <div class="col-4">
-          <router-link :to="{ name: 'Crew' }" style="text-decoration:none; color:black;">
-            <h4>
-              CREW
-            </h4> 
-          </router-link>
+            <div class>
+              <router-link :to="{ name: 'Crew' }" style="text-decoration:none; color:black;">
+                <h6>
+                  CREW
+                </h6> 
+              </router-link>
+            </div>
+
+          </div>
         </div>
 
         <!-- profile or logout -->
-        <div class="col-2">
-          <div v-if="isLoggedin && now==='profile'">
+        <div class="col-2 d-flex justify-content-center align-items-center">
+          <div v-if="logintf && now==='profile'">
             <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;">
               <h4>
                 Logout
@@ -40,8 +54,9 @@
             </router-link>
           </div>
 
-          <div v-if="isLoggedIn">
-            <router-link :to="{ name: 'Profile', parmas:{user_pk: currentUser} }" style="text-decoration:none; color:black;">
+
+          <div v-if="logintf">
+            <router-link :to="{ name: 'Profile', params:{user_pk: this.user_pk} }" style="text-decoration:none; color:black;">
               <h4>
                 Profile
               </h4> 
@@ -57,6 +72,8 @@
           </div>
         </div>
       </div>
+      </div>
+
   </nav>
 </div>
 </template>
@@ -66,11 +83,16 @@ import { mapGetters } from 'vuex'
 
 export default {
   name:'NavBar',
+  data(){
+    return {
+      user_pk: this.currentUser
+    }
+  },
   props:{
     now: String,
   },
   computed: {
-    ...mapGetters(['isLoggedIn', 'currentUser'])
+    ...mapGetters(['isLoggedIn', 'currentUser', 'logintf'])
   }
 
 }

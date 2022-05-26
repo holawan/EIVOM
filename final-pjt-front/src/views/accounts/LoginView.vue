@@ -33,7 +33,7 @@
             <!-- login button -->
             <div class="btn_area">
               <button id="btnJoin">
-                  <h3 style="font-weight:700">로그인</h3>
+                  <h3 id="loginBtn" style="font-weight:700">로그인</h3>
               </button>
 
               <br><br>
@@ -145,6 +145,10 @@ input {
     font-size: 20px;
     font-weight: 400;
     font-family: Dotum,'돋움',Helvetica,sans-serif;
+}
+
+#loginBtn{
+  color:white;
 }
 
 .signup{

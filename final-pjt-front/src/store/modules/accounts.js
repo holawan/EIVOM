@@ -12,6 +12,7 @@ export default {
     refresh: localStorage.getItem('refresh') || '',
     selectedGenres: [],
     nowSelectGenrePk : '',
+    logintf:0,
   },
   getters: {
     isLoggedIn: state => !!state.token,
@@ -23,6 +24,7 @@ export default {
     refresh: state => state.refresh,
     selectedGenres: state => state.selectedGenres,
     nowSelectGenrePk: state => state.nowSelectGenrePk,
+    logintf:state => state.logintf,
   },
   mutations: {
     SET_TOKEN: (state, token) => state.token = token,
@@ -33,6 +35,7 @@ export default {
     SET_REFRESH: (state, refresh) => state.refresh = refresh,
     SET_SELECTED_GENRES:(state, genres) => state.selectedGenres = genres,
     SET_NOW_GENRE_PK: (state, genrePk) => state.nowSelectGenrePk = genrePk,
+    SET_LOGIN:(state, tf) => state.logintf = tf,
   },
   actions: {
     saveToken({ commit }, token) {
@@ -66,6 +69,8 @@ export default {
         dispatch('getJwt',credentials)
         dispatch('saveRefresh', res.data.refresh_token)
         commit('SET_CURRENT_USER', res.data.user.pk)
+        commit('SET_LOGIN', 1)
+        console.log(res.data.user.pk)
         // router.push({name: 'Main'})
         return res
       })
@@ -88,6 +93,7 @@ export default {
         .then(res => {
           res
           dispatch('getJwt',{email:credentials.email,password:credentials.password1})
+          commit('SET_LOGIN', 1)
           router.push({name: 'CreateProfile'})
         })
         .catch(err => {
@@ -133,6 +139,7 @@ export default {
           alert('성공적으로 logout!')
           commit('SET_REFRESH', '')
           dispatch('removeRefresh')
+          commit('SET_LOGIN', 0)
           router.push({ name: 'login' })
         })
         .catch(err => {

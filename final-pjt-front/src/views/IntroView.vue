@@ -16,7 +16,7 @@
         </div>
       </div>
 
-    <router-link :to="{name:'Login'}" class="box">
+    <router-link :to="{name:'Login'}" class="mainbox">
 
     <div class="d-flex justify-content-center">
       <p class="mainPageTitle">EIVOM</p>
@@ -89,12 +89,7 @@ export default {
 
 }
 
-/* .box{
-  -webkit-transition:opacity 2s, -webkit-transform 2s;
-  transition:opacity 2s, transform 2s;
-} */
-
-.box:hover{
+.mainbox:hover{
   
   opacity: 70%;
 

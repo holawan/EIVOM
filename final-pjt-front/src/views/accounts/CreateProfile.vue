@@ -18,17 +18,27 @@
 
             <div class="d-flex justify-content-center">
               <!-- profile image -->
-              <label for="image"></label>
-              <div style="border-radius:100%;" class="mx-3">
-                <input multiple @change="onGetFile()" ref="image" type="file" id="image" class="profile_image">
-              </div>
+              <label for="image" v-if="this.credentials.image===''">
+                <div style="border-radius:100%;" class="mx-3 profile_image_before" ></div>
+              </label>
+              <label for="image" v-else>
+                <div style="border-radius:100%;" class="mx-3 profile_image" ></div>
+              </label>
+
+              <input multiple @change="onGetFile()" ref="image" 
+                type="file" id="image" overflow="hidden" 
+                style="position:absolute; clip:rect(0, 0, 0, 0);"
+              >
 
 
               <!-- back image -->
-              <label for="back"></label>
-              <div style="border-radius:100%;" class="mx-3">
-                <input multiple @change="onGetFile2()" ref="backdrop" type="file" id="back" class="back_image">
-              </div>
+              <label for="back">
+                <div style="border-radius:100%;" class="mx-3 back_image"></div>
+              </label>
+              <input multiple @change="onGetFile2()" 
+                ref="backdrop" type="file" id="back" overflow="hidden" 
+                style="position:absolute; clip:rect(0, 0, 0, 0);"
+              >
             </div>
             
             
@@ -293,7 +303,7 @@ select {
     font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
 
-input.profile_image{
+.profile_image_before{
   background-image: url("@/assets/profile_default_small_text.png");
   border:none;
   cursor: pointer;
@@ -304,7 +314,19 @@ input.profile_image{
   border-radius: 100%;
 }
 
-input.back_image{
+/* .profile_image{
+  background-image: url("this.credentials.image");
+  border:none;
+  cursor: pointer;
+  outline: 0;
+  width: 100px;
+  height: 100px;
+  background-repeat:no-repeat;
+  border-radius: 100%;
+} */
+
+
+.back_image{
   background-image: url("@/assets/back_origin_small_text.png");
   border:none;
   cursor: pointer;

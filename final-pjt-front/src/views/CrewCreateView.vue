@@ -1,47 +1,122 @@
 <template>
   <div>
-    <nav-bar :now="CrewCreate"></nav-bar>
 
+  <div style="width:100vw ; height:100vh" class="px-0 py-0">
     <account-error-list v-if="authError"></account-error-list>
-    <div>
-      
-      <form @submit.prevent="sendImageToServer" enctype="multipart/form-data">
-        <label for="crew_image">크루 이미지 입력: </label>
-        <input multiple @change="onGetFile()" ref="crew_image" type="file" id="crew_image">
-        <label for="crew_backdrop">배경사진 입력: </label>
-        <input multiple @change="onGetFile2()" ref="crew_backdrop" type="file" id="crew_backdrop">
-        <div>
-          <label for="crewname">닉네임 입력: </label>
-          <input  v-model="credentials.crewname" type="text" id="crewname" required/>
-        </div>
-        <div>
-          <label for="crewintro">크루소개:</label>
-          <input v-model="credentials.crewintro" type="text" id="crewintro" required />
-        </div>
-        <div>
-          <label for="crew_location1">시/도:</label>
-          <input v-model="credentials.crew_location1" type="text" id="crew_location1" required />
-        </div>
-        <div>
-          <label for="crew_location2">시/군/구:</label>
-          <input v-model="credentials.crew_location2" type="text" id="crew_location2" required />
-        </div>
-        <div>
-          <button>Signup</button>
-        </div>
-    </form>
 
+    <div class="row" style="width:100vw">
+      <!-- image -->
+      <div class="col-8 mx-0 my-0 px-0 py-0" style=" height:100vh">
+        <img src="@/assets/cew_create_back.png" class="img-fluid" alt="signup background" style=" height:100vh; filter:brightness(90%); opacity:90%">
+      </div>
+
+      <!-- form -->
+      <div id="content" class="col-4" style="height:100%">
+        <h1 class="my-5"> </h1>
+        <h1 class="d-flex justify-content-start" style="font-weight:600">크루 만들기</h1>
+        <div>
+          
+          <form @submit.prevent="sendImageToServer" enctype="multipart/form-data">
+
+            <div class="d-flex justify-content-center">
+              <!-- profile image -->
+              <label for="crew_image">
+                <div style="border-radius:100%;" class="mx-3 profile_image_before" ></div>
+              </label>
+              <!-- <label for="image" v-else>
+                <div style="border-radius:100%;" class="mx-3 profile_image" ></div>
+              </label> -->
+
+              <input multiple @change="onGetFile()" ref="crew_image" 
+                type="file" id="crew_image" overflow="hidden" 
+                style="position:absolute; clip:rect(0, 0, 0, 0);"
+              >
+
+
+              <!-- back image -->
+              <label for="crew_backdrop" >
+                <div style="border-radius:100%;" class="mx-3 back_image"></div>
+              </label>
+              <input multiple @change="onGetFile2()" 
+                ref="crew_backdrop" type="file" id="crew_backdrop" overflow="hidden" 
+                style="position:absolute; clip:rect(0, 0, 0, 0);"
+              >
+            </div>
+            
+            
+            <!-- nickname -->
+            <div>
+              <label for="crewname"></label>
+              <span class="box int_name">
+                <input class="int" v-model="credentials.crewname" placeholder="크루네임 입력" type="text" id="crewname" required/>
+              </span>
+            </div>
+
+
+            <!-- crew info -->
+            <div>
+              <label for="introduce"></label>
+              <span class="box int_name">
+                <input class="int" v-model="credentials.crewintro" type="text" placeholder="크루 소개말을 입력해주세요." id="introduce" required />
+              </span>
+            </div>
+
+
+            <!-- location -->
+            <div>
+              <label for="location1"></label>
+              <!-- <input v-model="credentials.location1" type="text" id="location1" required /> -->
+              <span class="box">
+                <select id="location1" v-model="credentials.crew_location1" class="int" type="text" style="color:black;" required>
+                  <option value="" disabled selected>시 / 도</option>
+                  <option value="서울특별시">서울특별시</option>
+                  <option value="부산광역시">부산광역시</option>
+                  <option value="대구광역시">대구광역시</option>
+                  <option value="인천광역시">인천광역시</option>
+                  <option value="광주광역시">광주광역시</option>
+                  <option value="대전광역시">대전광역시</option>
+                  <option value="울산광역시">울산광역시</option>
+                  <option value="세종특별자치시">세종특별자치시</option>
+                  <option value="경기도">경기도</option>
+                  <option value="강원도">강원도</option>
+                  <option value="충청북도">충청북도</option>
+                  <option value="충청남도">충청남도</option>
+                  <option value="전라북도">전라북도</option>
+                  <option value="전라남도">전라남도</option>
+                  <option value="경상북도">경상북도</option>
+                  <option value="경상남도">경상남도</option>
+                  <option value="제주특별자치도">제주특별자치도</option>
+                </select>
+              </span>
+              <span class="error_next_box"></span>
+            </div>
+
+
+            <!-- <div>
+              <label for="location2">시/군/구:</label>
+              <input v-model="credentials.location2" type="text" id="location2" required />
+            </div> -->
+
+            <!-- create profile button -->
+            <div class="btn_area">
+              <button id="btnJoin">
+                  <span style="font-weight:700">프로필 설정</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
 import AccountErrorList from '@/components/AccountErrorList.vue'
 import { mapActions,mapGetters } from 'vuex'
 export default {
   components: {
-    NavBar,
     
     AccountErrorList,
   },
@@ -53,7 +128,6 @@ export default {
         crewname: '',
         crewintro: '',
         crew_location1: '',
-        crew_location2: '',
       }
     }
   },
@@ -64,7 +138,6 @@ export default {
       this.credentials.crewname = ''
       this.credentials.crewintro = ''
       this.credentials.crew_location1 = ''
-      this.credentials.crew_location2 = ''
     },
     onGetFile() {
       this.credentials.crew_image = this.$refs.crew_image.files[0]
@@ -80,7 +153,6 @@ export default {
         formData.append('crewname', this.credentials.crewname)
         formData.append('crewintro', this.credentials.crewintro)
         formData.append('crew_location1', this.credentials.crew_location1)
-        formData.append('crew_location2', this.credentials.crew_location2)
         this.createCrew(formData)
       },
       ...mapActions(['createCrew']),
@@ -93,5 +165,15 @@ export default {
 </script>
 
 <style>
+.profile_image{
+  background-image: url("@/assets/crew_test.png");
+  border:none;
+  cursor: pointer;
+  outline: 0;
+  width: 100px;
+  height: 100px;
+  background-repeat:no-repeat;
+  border-radius: 100%;
+}
 
 </style>

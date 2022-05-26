@@ -30,21 +30,20 @@
         <div class="col-2 d-flex justify-content-center align-items-center">
 
             <router-link :to="{ name: 'Crew'}" style="text-decoration:none; color:black;" >
-              <h4>
+              <h4 style="font-weight:bold">
                 CREW
-              </h4> 
-            </router-link>
-
-
-            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;" class="mx-3">
-              <h4>
-                Logout
               </h4> 
             </router-link>
 
             <router-link :to="{ name: 'Profile', params:{user_pk: currentUser.pk} }" style="text-decoration:none; color:black;">
               <h4 style="font-weight:bold">
                 Profile
+              </h4> 
+            </router-link>
+
+            <router-link :to="{ name: 'Logout'}" style="text-decoration:none; color:black;" class="mx-3">
+              <h4>
+                Logout
               </h4> 
             </router-link>
         </div>

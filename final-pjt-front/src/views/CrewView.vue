@@ -39,27 +39,19 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-<<<<<<< HEAD
 
 import { mapActions, mapGetters } from 'vuex'
-=======
-import NearCrewList from '@/components/NearCrewList.vue'
->>>>>>> 724bb67df53fbe6b9d03ff57fe893056d211ece4
+
 
 
 export default {
   name: 'CrewView',
   components:{
-    NavBar,
-<<<<<<< HEAD
-  },
+    NavBar},
   data(){
     return{
     }
-=======
-    
-    NearCrewList,
->>>>>>> 724bb67df53fbe6b9d03ff57fe893056d211ece4
+
   },
   methods:{
     ...mapActions(['fetchCrews'])

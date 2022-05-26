@@ -89,7 +89,8 @@ export default{
       })
       .catch(err => {
         if (err.response.status === 404){
-          router.push({name: 'Sorry'})
+          console.error(err)
+          // router.push({name: 'Sorry'})
         }
       })
     },

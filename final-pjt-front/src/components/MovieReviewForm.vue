@@ -1,4 +1,4 @@
-<template  v-for="index in 5">
+<template  v-for="index in 5"  class="d-flex justify-content-center continer">
   <div>
     <!-- <h1>MovieReviewForm</h1> -->
     <!-- <form @submit.prevent="onSubmit">
@@ -8,19 +8,32 @@
       <input type="text" id="rate"  v-model="rate" required>
       <button>review</button>
     </form> -->
-    <form @submit.prevent="onSubmit" class="d-flex justify-content-center">
-      <div class="form-group">
-        <label for="review">한 줄 리뷰</label>
-        <small id="reviewHelp" class="form-text text-muted"></small>
-        <input type="text" class="form-control" v-model="content" id="review" aria-describedby="reviewHelp" placeholder="다양한 생각을 남겨주세요">
+    <div >
+
+      <form @submit.prevent="onSubmit" >
+        <div class="form-group row">
+          <div class="col-12" >
+            <label for="review" style="font-size: 30px;">한 줄 리뷰</label>
+            <small id="reviewHelp" class="form-text text-muted"></small>
+            <input type="text" class="form-control" v-model="content" id="review" aria-describedby="reviewHelp" placeholder="다양한 생각을 남겨주세요">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+          </div>
+        <div class="form-group">
+          <label for="rate"></label>
+          <!-- <input type="text" class="form-control" v-model="rate" id="rate" placeholder="별점을 입력하세요 ! " style="display: hidden;"> -->
+        </div>
+        <div>
+          
+        </div>
+      </form>
+    </div>
+      <div class="d-flex justify-content-center">
+        <h3 class="mt-3">당신의 평점</h3>
+        
+        <StarRating v-model="rate" id="rate" :rate="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"></StarRating>
+  
       </div>
-      <div class="form-group">
-        <label for="rate">별점</label>
-        <input type="text" class="form-control" v-model="rate" id="rate" placeholder="별점을 입력하세요 ! ">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <StarRating :rate="parseFloat(10) / 2" :read-only="false" :increment="1" @click="print('클릭')"/>
   </div>
 </template>
 

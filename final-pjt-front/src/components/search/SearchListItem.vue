@@ -1,13 +1,13 @@
 <template class="row">
-<router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.id} }">
+<router-link :to="{name: 'MovieDetail', params: { movie_pk : movie.pk} }">
     <div @click="onClickItem" class="searchitem col-3 my-1" style="border: solid 3px;">
       <img  style="width: 16rem; height: 19rem; "
         v-if="poster_path"
         :src="poster_path"
         alt="movie_poster"
       >
-      <p class="my-2">  {{ movie.title }}</p>
-    </div>
+      <p class="my-2" style="color:black; font-size: 1.5rem;">  {{ movie.title }}</p>
+     </div>
     </router-link>
 </template>
 

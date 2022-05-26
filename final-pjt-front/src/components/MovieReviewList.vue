@@ -2,12 +2,12 @@
   <div>
     <h1>이 영화에 리뷰 남기기 </h1>
     
-    <movie-review-form></movie-review-form>
     <movie-review-item
       v-for="review in reviews"
       :review="review"
       :key="review.pk"
     ></movie-review-item>
+    <movie-review-form></movie-review-form>
   </div>
 </template>
 

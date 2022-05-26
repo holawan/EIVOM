@@ -5,7 +5,6 @@
           <div class="col-3">
             <img :src="'http://127.0.0.1:8000'+ payload.image" alt="" style="width:120px;height:120px; border-radius:100px">
           </div>
-        <!-- {{ payload.nickname }} -->
       </router-link>
         <div class="offset-1 mb-0">
           <h5 class="mb-0 d-flex"> {{payload.nickname}}</h5>

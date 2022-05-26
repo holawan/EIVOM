@@ -163,7 +163,9 @@ def comment_update_or_delete(request, article_pk, comment_pk,crew_pk):
     def delete_comment():
         if request.user == comment.user:
             comment.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            comments = article.comments.all()
+            serializer = CommentSerializer(comments, many=True)
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
     
     if request.method == 'PUT':
         return update_comment()

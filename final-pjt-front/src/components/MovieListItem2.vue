@@ -44,6 +44,7 @@ export default {
   background: rgb(255, 255, 255); 
   margin-right:10px;
   border-radius: 30px;}
+  
 .card:hover {
   border-style: none;
   border-radius: 30px;

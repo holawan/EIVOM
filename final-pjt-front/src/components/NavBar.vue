@@ -1,6 +1,6 @@
 <template>
-<div id="nav">
-  <nav class="navbar navbar-expand-lg navbar-light py-0" style="background-color:gray; opacity:70%; height:80px;">
+<div id="nav" class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light py-0" style="background-color:rgba(128,128,128,0.5); height:100px;">
       <div class="row" style="width:100vw; ">
         <div class="col-8 offset-2 d-flex flex-row">
 
@@ -118,6 +118,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
 }
 
 nav {

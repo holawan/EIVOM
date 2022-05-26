@@ -107,14 +107,6 @@ export default {
       })
       .then((res)=>{
         console.log(res)
-        // const image = 'http://127.0.0.1:8000/'+res.data.image
-        // const backdrop =  'http://127.0.0.1:8000/'+res.data.backdrop
-        // const nickname = res.data.nickname
-        // const birth = res.data.birth
-        // const introduce = res.data.introduce
-        // const gender = res.data.gender
-        // const location1 = res.data.location1
-        // const location2 = res.data.location2
         router.push({name:'SelectGenre'})
       })
       .catch(err => {

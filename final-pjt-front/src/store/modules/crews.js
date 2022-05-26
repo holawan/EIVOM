@@ -52,7 +52,7 @@ export default{
 
   actions:{
     
-    createCrew({getters}, credentials){
+    createCrew({getters,dispatch}, credentials){
       axios({
         url: drf.crews.create(),
         method: 'post',
@@ -60,11 +60,8 @@ export default{
         headers: getters.authHeader1,
       })
       .then(res => {
-        console.log(res)
-        router.push({name:'CrewDetail', params:{crewId: res.data.id}})
-      })
-      .finally(()=>{
-        console.log(credentials)
+        router.push({name:'CrewDetail', params:{crew_pk: res.data.id}})
+        dispatch('joinCrew',res.data.id)
       })
     },
 

@@ -19,13 +19,12 @@
     </div>
     <hr>
     <!-- Join Crew -->
-    <h3>
+    <h3 v-if="currentUser in crew.crew_users">
       Join this Crew:
       <button class="btn-lg btn-primary"
         @click="joinCrew(crew_pk)"
       > 가입하기 !</button>
     </h3>
-    <hr>
     <!-- article 만들기 -->
     <div>
        <router-link :to="{ name: 'ArticleCreate', params:{ crew_pk: crew_pk } }">
@@ -39,7 +38,6 @@
       :key="movie.id"
       :movie="movie"
     ></movie-list-item>
-    {{crew.movies}}
     <!-- article list -->
     <article-list-item
       v-for="article in articles"
@@ -70,7 +68,7 @@ export default {
     }
   },
   computed:{
-    ...mapGetters(['crew', 'isLeader', 'articles']),
+    ...mapGetters(['crew', 'isLeader', 'articles','currentUser']),
     joinCount(){
       return this.crew.crew_user?.length
     }

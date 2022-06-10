@@ -11,41 +11,43 @@
 
 ### accounts
 
-| url                                                          | 설명        | 데이터                                                       | HTTP |
-| ------------------------------------------------------------ | ----------- | ------------------------------------------------------------ | ---- |
-| accounts/signup/                                             | 회원가입    | email,password1,password2                                    | POST |
-| accoutns/login/                                              | 로그인      | email,password                                               | POST |
-| accounts/jwt/                                                | jwt발급     | email,password                                               | POST |
-| accounts/profile_create                                      | 프로필 생성 | nickname,image,backdrop,intoduce,<br />birth,gender,location1,location2 | POST |
-| accounts/profile/\<int:user_pk>                              | 프로필 조회 | nickname,image,backdrop,intoduce,<br />birth,gender,location1,location2 | GET  |
-| accounts/genrelist/                                          | 장르 조회   | genre_name                                                   | GET  |
-| accounts/selectgenre/<br />\<int:genre1>/\<int:genre2>/\<int:genre3> | 장르 선택   | genre_pk                                                     | POST |
-|                                                              |             |                                                              |      |
-|                                                              |             |                                                              |      |
+| url                                      | 설명             | 데이터                                                       | HTTP |
+| ---------------------------------------- | ---------------- | ------------------------------------------------------------ | ---- |
+| accounts/signup/                         | 회원가입         | email,password1,password2                                    | POST |
+| accoutns/login/                          | 로그인           | email,password                                               | POST |
+| accounts/jwt/                            | jwt발급          | email,password                                               | POST |
+| accounts/profile_create                  | 프로필 생성      | nickname,image,backdrop,intoduce,<br />birth,gender,location1,location2 | POST |
+| accounts/profile/\<int:user_pk>          | 프로필 조회      | nickname,image,backdrop,intoduce,<br />birth,gender,location1,location2 | GET  |
+| accounts/genrelist/                      | 장르 조회        | genre_name                                                   | GET  |
+| accounts/selectgenre/<br />\<int:genre>/ | 장르 선택        | genre_pk                                                     | POST |
+| accounts/getcrew/\<int:user_pk>          | 유저의 크루 조회 | user_pk                                                      | GET  |
+|                                          |                  |                                                              |      |
 
 ### Movies
 
-| url                                              | 설명               | 데이터 | HTTP |
-| ------------------------------------------------ | ------------------ | ------ | ---- |
-| movies/\<int:movie_pk>/                          | 영화 디테일조회    |        | GET  |
-| movies/\<int:movie_pk>/like/                     | 영화 좋아요 누르기 |        | POST |
-| movies/\<int:movie_pk>/reviews/                  | 영화 리뷰 조회     |        | GET  |
-| movies/\<int:movie_pk>/reviews/                  | 영화 리뷰 작성     |        | POST |
-| movies/\<int:movie_pk>/reviews/\<int:review_pk>/ | 영화 리뷰 업데이트 |        | PUT  |
-| movies/\<int:movie_pk>/reviews/\<int:review_pk>/ | 영화 리뷰 삭제     |        | POST |
-| movies/\<int:movie_pk>/\<int:crew_pk>/           | 크루 영화에 추가   |        | POST |
-| movies/crew/\<int:crew_pk>/                      | 크루 영화 조회     |        | GET  |
-|                                                  |                    |        |      |
+| url                                              | 설명                          | 데이터 | HTTP |
+| ------------------------------------------------ | ----------------------------- | ------ | ---- |
+| movies/\<int:movie_pk>/                          | 영화 디테일조회               |        | GET  |
+| movies/\<int:movie_pk>/like/                     | 영화 좋아요 누르기            |        | POST |
+| movies/\<int:movie_pk>/reviews/                  | 영화 리뷰 조회                |        | GET  |
+| movies/\<int:movie_pk>/reviews/                  | 영화 리뷰 작성                |        | POST |
+| movies/\<int:movie_pk>/reviews/\<int:review_pk>/ | 영화 리뷰 업데이트            |        | PUT  |
+| movies/\<int:movie_pk>/reviews/\<int:review_pk>/ | 영화 리뷰 삭제                |        | POST |
+| movies/\<int:movie_pk>/\<int:crew_pk>/           | 크루 영화에 추가              |        | POST |
+| movies/crew/\<int:crew_pk>/                      | 크루 영화 조회                |        | GET  |
+| movies/genre_recommend/                          | 유저 선호 장르 기반 영화 추천 |        | GET  |
+| movies/cluster_recommend/\<int:cluster>/         | 영화 군집별 추천 영화         |        | GET  |
+| movies/view_count_recommend/                     | 조회수 순으로 영화 추천       |        | GET  |
 
 ### Crews
 
 | url                                                          | 설명             | 데이터 | HTTP |
 | ------------------------------------------------------------ | ---------------- | ------ | ---- |
 | crews/                                                       | 크루 리스트      |        | GET  |
-| crews/crew_creqte                                            | 크루 만들기      |        | POST |
-| crews/\<int:crew_pk>                                         | 크루 상세정보    |        | GET  |
-| crews/\<int:crew_pk>                                         | 크루 정보 갱신   |        | PUT  |
-| crews/\<int:crew_pk>                                         | 크루 가입        |        | POST |
+| crews/crew_create/                                           | 크루 만들기      |        | POST |
+| crews/\<int:crew_pk>/                                        | 크루 상세정보    |        | GET  |
+| crews/\<int:crew_pk>/                                        | 크루 정보 갱신   |        | PUT  |
+| crews/\<int:crew_pk>/                                        | 크루 가입        |        | POST |
 | crews/\<int:crew_pk>/articles/                               | 크루 게시글 조회 |        | GET  |
 | crews/\<int:crew_pk>/articles/                               | 크루 게시글 작성 |        | POST |
 | crews/\<int:crew_pk>/articles/\<int:article_pk>              | 게시글 상세조회  |        | GET  |

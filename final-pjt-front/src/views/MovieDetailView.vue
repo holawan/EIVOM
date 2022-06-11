@@ -15,10 +15,13 @@
           <!-- like ui -->
           <div class="justify-content-end">
             <div class="d-flex justify-content-start align-items-center">
+              <!-- {{likeUsers}} -->
               <button class="btn" sytle="background-color: transparent;" @click="likeMovie(movieId)">
-                <!-- {{currentUser}}
-                {{movie.like_users}} -->
-                <i v-if="currentUser.pk in this.movie.like_users"
+                <!-- {{currentUser}} -->
+                <!-- {{movie.like_users}} -->
+                <!-- {{likeUsers}}
+                {{currentUser.pk}} -->
+                <i v-if="likeUsers.includes(currentUser.pk)"
                 class="fa-solid fa-heart" style="color:red;"></i>
                 <i v-else
                 class="fa-solid fa-heart" style="color:black;"></i>
@@ -93,7 +96,7 @@ export default {
   },
   data(){
     return {
-      movieId: this.$route.params.movie_pk
+      movieId: this.$route.params.movie_pk,
     }
   },
   computed: {
@@ -108,6 +111,14 @@ export default {
       const score = this.movie.vote_average *10;
       return score ;
   },
+    likeUsers (){
+      const users = []
+      for (let user of this.movie.like_users){
+        users.push(user.pk)
+        // console.log(user)
+      }
+      return users
+    },
   },
   methods: {
     ...mapActions([

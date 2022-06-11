@@ -20,10 +20,16 @@
     </div>
     <hr>
     <!-- Join Crew -->
-    <h3 v-if="!(currentUser in crew.crew_users)">
+
+    <h3 v-if="!(crew.crew_users.includes(currentUser.pk))">
       <button class="btn-lg btn-warning rounded-pill"
         @click="joinCrew(crew_pk)"
       > 가입하기 !</button>
+    </h3>
+    <h3 v-else>
+      <button class="btn-lg btn-danger rounded-pill"
+        @click="joinCrew(crew_pk)"
+      > 탈퇴하기 !</button>
     </h3>
     <!-- article 만들기 -->
     <div>

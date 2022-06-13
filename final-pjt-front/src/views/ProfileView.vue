@@ -15,14 +15,12 @@
     </div>
     <hr>
     <!-- {{profile.user.like_movies}} -->
-
-      <div class="row">
         <h2>내가 좋아하는 영화</h2>
         <br>  
         <br>
         <br>
-        <div class="col-6 offset-3 d-flex">
-        <div class="col-4" v-for="movie,idx in profile.user.like_movies"
+        <div class="d-flex row offset-3 col-6">
+        <div class=" col-3" v-for="movie,idx in profile.user.like_movies"
             :key="idx"
             :movie="movie">
               <div >
@@ -37,8 +35,6 @@
           </div>
           </div>
         </div>
-
-      </div>
     
     </div>
     <!-- {{this.likeMovies}} -->

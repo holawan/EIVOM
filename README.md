@@ -259,4 +259,6 @@ get_movie_datas()
 
 
 
-## [URL](C:\Users\SAMSUNG\Desktop\SSAFY\project\final-pjt\final-pjt-back)
+## 서버 URL 명세
+
+### [URL](https://github.com/holawan/EIVOM/blob/master/final-pjt-back/URL.md)
